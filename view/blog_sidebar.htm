@@ -1,0 +1,32 @@
+        <aside class="sidebar">
+            <section id="search">
+                <h3>全站搜索</h3>
+							<!--{if $conf[search_type]}-->
+							<form action="?search-index.htm" target="_blank" id="search_form" method="post">
+								<input accesskey="s" placeholder="请输入搜索关键词，按回车搜索" type="text" id="search_keyword" name="keyword" x-webkit-speech lang="zh-CN" />
+							</form>
+							<!--{/if}-->
+            </section>
+            <section class="sidelink"> 
+                <h3>用户</h3>
+                <div class="sidepan clear">
+<!--{include header_user.htm}-->
+                </div>
+            </section>
+            <section class="sidelink"> 
+                <h3>友情链接</h3>
+                <ul class="sidepan clear">
+		<!--{if $friendlinklist[1]}-->
+			<!--{loop $friendlinklist[1] $friendlink}-->
+			<li><a href="$friendlink[url]" target="_blank" title="$friendlink[sitename]"><img src="$friendlink[logourl]" width="88" height="31" class="xgrey" /></a></li>
+			<!--{/loop}-->
+		<!--{/if}-->
+		
+		<!--{if $friendlinklist[0]}-->
+			<!--{loop $friendlinklist[0] $friendlink}-->
+			<li><a href="$friendlink[url]" target="_blank" class="grey2">$friendlink[sitename]</a></li>
+			<!--{/loop}-->
+		<!--{/if}-->
+                </ul>
+            </section>
+       </aside>

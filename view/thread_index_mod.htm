@@ -1,0 +1,93 @@
+					<!--{if !empty($post[attachlist])}-->
+					<br />
+					<div class="attachlist">
+						<table width="100%" cellpadding="2" class="noborder">
+							<tr>
+								<td class="bold"><span class="red" style="font-size: 18px">$post[attachnum] </span>个附件</td>
+								<td width="70" class="grey">售价</td>
+								<td width="70" class="grey">大小</td>
+								<td width="70" class="grey">下载</td>
+								<td width="70" class="grey">时间</td>
+							</tr>
+							<tr><td colspan="6"><hr /></td></tr>
+							<!--{loop $post[attachlist] $attach}-->
+							<tr>
+								<td>
+									<a href="?attach-dialog-fid-$fid-aid-$attach[aid].htm" class="ajaxdialog" ajaxdialog="{showtitle: false, cache: true, position: 6, modal: false}"  target="_blank" rel="nofollow"><img src="view/image/filetype/$attach[filetype].gif" width="16" height="16" />$attach[orgfilename]</a>
+								</td>
+								<td class="red">$attach[golds] 金币</td>
+								<td class="grey">$attach[filesize_fmt]</td>
+								<td>$attach[downloads] 次</td>
+								<td class="grey">$attach[dateline_fmt]</td>
+							</tr>
+							<tr><td colspan="6"><hr /></td></tr>
+							<!--{/loop}-->
+						</table>
+					</div>
+					<!--{/if}-->
+					
+					<!--{if $ismod && $thread[firstpid] == $post[pid] && $thread[modnum] > 0}-->
+					<br />
+					<div class="modlist">
+						<table width="100%" cellpadding="2" class="noborder">
+							<tr>
+								<td width="100" class="bold"><span class="red" style="font-size: 18px">$thread[modnum] </span>条管理记录</td>
+								<td width="50" class="grey">操作</td>
+								<td width="50" class="grey">积分</td>
+								<td width="50" class="grey">金币</td>
+								<td class="grey">备注</td>
+								<td width="70" class="grey">时间</td>
+							</tr>
+							<tr><td colspan="6"><hr /></td></tr>
+							<!--{loop $modlist $mod}-->
+							<tr>
+								<td>
+									<a href_real="?you-index-uid-$mod[user][uid].htm" target="_blank" href="?you-profile-uid-$mod[user][uid].htm" class="ajaxdialog" ajaxdialog="{position: 5, modal: false, timeout: 1000, showtitle: false}"  style="display: block" rel="nofollow">
+										<span class="avatar_small bg1" {if $mod[user][avatar_small]}style="background-image: url($mod[user][avatar_small])"{/if}></span>
+										<span>$mod[user][username]</span>
+									</a>
+								</td>
+								<td class="grey">$mod[action_fmt]</td>
+								<td>$mod[credits_fmt]</td>
+								<td class="red">$mod[golds_fmt]</td>
+								<td class="grey">$mod[comment]</td>
+								<td class="grey">$mod[dateline_fmt]</td>
+							</tr>
+							<tr><td colspan="6"><hr /></td></tr>
+							<!--{/loop}-->
+						</table>
+					</div>
+					<!--{/if}-->
+					
+					<!--{if $post[rates] > 0}-->
+					<br />
+					<div class="ratelist">
+						<table width="100%" cellpadding="2" class="noborder">
+							<tr>
+								<td width="100" class="bold"><span class="red" style="font-size: 18px">$post[rates] </span>条评分记录</td>
+								<td width="50" class="grey">操作</td>
+								<td width="50" class="grey">积分</td>
+								<td width="50" class="grey">金币</td>
+								<td class="grey">点评</td>
+								<td width="70" class="grey">时间</td>
+							</tr>
+							<tr><td colspan="6"><hr /></td></tr>
+							<!--{loop $post[ratelist] $rate}-->
+							<tr>
+								<td>
+									<a href_real="?you-index-uid-$rate[user][uid].htm" target="_blank" href="?you-profile-uid-$rate[user][uid].htm" class="ajaxdialog" ajaxdialog="{position: 5, modal: false, timeout: 1000, showtitle: false}"  style="display: block" rel="nofollow">
+										<span class="avatar_small bg1" {if $rate[user][avatar_small]}style="background-image: url($rate[user][avatar_small])"{/if}></span>
+										<span class="">$rate[user][username]</span>
+									</a>
+								</td>
+								<td class="grey">评分</td>
+								<td>$rate[credits_fmt]</td>
+								<td class="red">$rate[golds_fmt]</td>
+								<td class="grey">$rate[comment]</td>
+								<td class="grey">$rate[dateline_fmt]</td>
+							</tr>
+							<tr><td colspan="6"><hr /></td></tr>
+							<!--{/loop}-->
+						</table>
+					</div>
+					<!--{/if}-->

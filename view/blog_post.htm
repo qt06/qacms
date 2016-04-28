@@ -1,0 +1,20 @@
+<!--{include blog_header.htm}-->
+        <section class="content"> 
+            <article id="post-$thread[tid]" class="clear"> 
+                <h2 class="entry-title"><a href="?thread-index-fid-$thread[fid]-tid-$thread[tid].htm" rel="bookmark">$thread[subject]</a></h2>
+                <section class="entry-meta">
+                    作者：$thread[username] 发表于：$thread[dateline_fmt] | 分类： <a href="?forum-index-fid-$thread[fid].htm">$forum[name]</a><span class="postcom">阅读：$thread[views] | 评论：$thread[posts]</span>
+                </section>
+                <section class="entry-post">
+                    $post[message]
+                </section> 
+                <section class="entry-meta">
+                    <span class="share">分享收藏：<script type="text/javascript" src="view/js/share.js?v=101017"></script></span>
+                </section>
+            </article>
+            <article>
+<!--comments -->
+            </article> 
+        </section>
+<!--{include blog_sidebar.htm}-->
+<!--{include blog_footer.htm}-->

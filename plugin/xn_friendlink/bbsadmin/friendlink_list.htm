@@ -1,0 +1,125 @@
+<!--{include header.htm}-->
+
+<div class="width">
+		
+	<form action="?friendlink-rank-page-$page.htm" method="post" id="rankform">
+		<input type="hidden" name="FORM_HASH" value="{FORM_HASH}" />
+		<div style="width: 780px;">
+			<h2>
+				<select id="type" name="type">
+					$typeoptions
+				</select>
+			</h2>
+			<div class="list">
+				<table class="table">
+					<tr class="header">
+						<td width="50"><input type="checkbox" value="" title="全选" id="checkall" /></td>
+						<td width="50">顺序</td>
+						<td width="70">连接类型</td>
+						<td width="100">站点名称</td>
+						<td>URL</td>
+					<!--{if $type == 1}-->
+						<td>LOGO</td>
+					<!--{/if}-->
+						<td width="150">操作</td>
+					</tr>
+					<!--{loop $friendlinklist $friendlink}-->
+					<tr>
+						<td align="center"><input type="checkbox" name="linkids[]" value="{$friendlink[linkid]}" /></td>
+						<td><input type="text" size="4" name="ranks[{$friendlink[linkid]}]" value="$friendlink[rank]" /></td>
+						<td>$friendlink[typeword]</td>
+						<td>$friendlink[sitename]</td>
+						<td><a href="$friendlink[url]" target="_blank">$friendlink[url]</a></td>
+					<!--{if $type == 1}-->
+						<td><img src="$friendlink[logourl]" width="88" height="31" /></td>
+					<!--{/if}-->
+						<td align="center">
+							<input convert="true" type="button" value="编辑" class="button smallblue" onclick="window.location='?friendlink-update-linkid-$friendlink[linkid]-page-$page.htm'" />
+							<input convert="true" type="button" value="删除" class="button smallgrey" onclick="if(window.confirm('确定删除吗？'))window.location='?friendlink-delete-linkid-$friendlink[linkid]-page-$page.htm'" />
+						 </td>
+					</tr>
+					<!--{/loop}-->
+				</table>
+			</div>
+			<!--{if $pages}--><div class="page" style="margin-top: 4px;">$pages</div><!--{/if}-->
+			<div style="text-align: center; margin-top: 4px;">
+				<input type="button" value=" 调整顺序 " class="button bigblue" id="setrank" />
+				<input type="button" value=" 批量删除 " class="button bigblue" id="mdeletefriendlink" />
+			</div>
+		</div>
+	</form>
+	<br />
+	<form action="?friendlink-create-type-$type-page-$page.htm" method="post" id="friendlink_create_form" enctype="multipart/form-data">
+		<input type="hidden" name="FORM_HASH" value="{FORM_HASH}" />
+		<div style="width: 780px; margin:0px;">
+			<div class="div">
+				<div class="header">添加友情链接</div>
+				<div class="body">
+					<table id="addtable">
+						<tr>
+							<td width="50">顺序</td>
+							<td width="50">类型</td>
+							<td width="150">站点名称</td>
+							<td width="250">URL</td>
+							<td width="150">LOGO</td>
+						</tr>
+						<tr>
+							<td><input type="text" name="ranks[]" value="" style="width: 50px" /></td>
+							<td><select name="types[]">$typeoptions</select></td>
+							<td><input type="text" name="sitenames[]" value="" style="width: 100px" /></td>
+							<td><input type="text" name="urls[]" value="" style="width: 250px" /></td>
+							<td><input type="file" name="logos[]" value="" style="width: 50px" /></td>
+						</tr>
+					</table>
+					<p><a href="javascript:void(0)" id="addlink">[+]添加</a></p>
+				</div>
+			</div>
+			<div style="text-align: center; margin-top: 4px;">
+				<input type="submit" class="button bigblue" id="friendlink_create_submit" value="添加" />
+				<input type="button" class="button biggrey" value="返回插件列表" onclick="window.location='?plugin-list.htm'" />
+				<div class="notice" id="addnotice" style="display: none;"></div>
+			</div>
+		</div>
+	</form>
+	 
+</div>
+<!--{include footer.htm}-->
+
+<script>
+$('#setrank').click(function() {
+	$('#rankform').submit();
+	return false;
+});
+
+$('#mdeletefriendlink').click(function() {
+	if(window.confirm('确定删除选中项吗？')) {
+		$('#rankform').attr('action', '?friendlink-delete-page-$page.htm');
+		$('#rankform').submit();
+	}
+	return false;
+});
+
+$('#checkall').click(function() {
+	$('#rankform input[name="linkids[]"]').attr('checked', this.checked);
+});
+
+$('#type').change(function() {
+	var type = $("#type option:selected").val(); 
+	window.location = '?friendlink-list-page-$page-type-'+type+'.htm';
+});
+
+$('#addlink').click(function() {
+	for(var i=0; i<3; i++) {
+		var jtr = $('#addtable tr:last-child').clone().appendTo('#addtable');
+		$('input', jtr).val('');
+	}
+});
+
+$('#friendlink_create_submit').click(function() {
+	$('#friendlink_create_form').submit();
+});
+
+
+</script>
+</body>
+</html>

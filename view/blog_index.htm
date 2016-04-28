@@ -1,0 +1,17 @@
+<!--{include blog_header.htm}-->
+        <section class="content">
+<!--{loop $threadlist $thread}-->
+            <article id="post-$thread[tid]"> 
+                <h2 class="entry-title"><a accesskey="x" href="?thread-index-fid-$thread[fid]-tid-$thread[tid].htm" rel="bookmark">$thread[subject]</a></h2>
+                <section class="entry-meta">
+                    作者：$thread[username] 发表于：$thread[dateline_fmt]
+                </section>
+                <section class="entry-index">
+                    $thread[message]
+                </section> 
+            </article> 
+<!--{/loop}-->
+        <div class="pages">$pages</div>
+        </section>
+<!--{include blog_sidebar.htm}-->
+<!--{include blog_footer.htm}-->

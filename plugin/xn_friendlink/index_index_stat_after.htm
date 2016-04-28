@@ -1,0 +1,8 @@
+<h3>友情链接</h3>
+		<!--{if $friendlinklist[0]}-->
+<div class="bd">
+			<!--{loop $friendlinklist[0] $friendlink}-->
+			<a href="$friendlink[url]" target="_blank">$friendlink[sitename]</a> | 
+			<!--{/loop}-->
+</div>
+		<!--{/if}-->

@@ -1,0 +1,35 @@
+/* ------------------
+ * IE 7
+ * --------------- */
+footer {
+    +padding-top:10px;
+}
+article section span.postcom {
+    +margin:-25px 10px 0 0;
+}
+#submit {
+    +margin:0;
+}
+.share {
+    float:right;
+    height:27px;
+    margin-top:-25px;
+}
+/* ------------------
+ * IE 6
+ * --------------- */
+.content {
+    _margin:10px 0 10px 7px;
+}
+body aside {
+    _margin:10px 11px 0 0;
+}
+#submit {
+    _margin:0;
+}
+#top{
+    _display:none;
+}
+aside section {
+    _height:100%;
+}

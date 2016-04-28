@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title><!--{loop $_title $title}-->$title <!--{/loop}--></title>
+	<meta name="keywords" content="$_seo_keywords" />
+	<meta name="description" content="$_seo_description " />
+	<meta name="generator" content="qt.hk" />
+	<meta name="author" content="qacms Team" />
+	<meta name="copyright" content="2014 qt.hk" />
+
+		<link rel="stylesheet" href="view/bootstrap/css/bootstrap.min.css" />
+	<!--{hook header_css_before.htm}-->
+	<link href="view/common.css" type="text/css" rel="stylesheet" />
+	<link rel="shortcut icon" href="favicon.ico" />
+	<!--{hook header_css_after.htm}-->
+	<script type="text/javascript">
+	var cookie_pre = '$conf[cookie_pre]';
+	var g_uid = $_user[uid];
+	</script>
+
+
+	</head>
+	<body class="index">
+		<div class="navbar navbar-inverse" role="navigation">
+			<div class="navbar-inner">
+				<div class="container">
+					<ul class="nav">
+							<li$_checked[index]><a accesskey="z" href="./">首页</a></li>
+							<!--{hook header_menu_middle.htm}-->
+							<!--{loop $conf[forumarr] $_fid $_name}-->
+							<li$_checked[forum_$_fid]><a href="?forum-index-fid-$_fid.htm">$_name</a></li>
+							<!--{/loop}-->
+							<!--{hook header_menu_end.htm}-->
+					</ul>
+					<div role="search"><form action="?search-index.htm" method="post" class="navbar-search pull-right" id="search_form" target="_blank">
+						<input type="text" name="keyword" value="" accesskey="s" class="search-query input-small" placeholder="搜索">
+					</form></div>
+				</div><!-- /container -->
+			</div>
+		</div><!-- /navbar -->
+<div id="body">

@@ -1,0 +1,37 @@
+<!--{include header.htm}-->
+<div class="header">
+	<div class="container">
+		<h1>$conf[app_name]</h1>
+<p>$conf[app_description]</p>
+	</div>
+</div>
+<!--{include header_user.htm}-->
+<div class="container" role="main">
+	<ul class="thumbnails">
+<!--{loop $threadlists $fid $threadlist}-->
+		<li class="span4">
+		<div class="thumbnail">
+			<div class="caption">
+				<h3><a accesskey="x" href="?forum-index-fid-$fid.htm">$forumarr[$fid]</a></h3>
+				<div class="info">
+					<ul>
+<!--{loop $threadlist $thread}-->
+<li><a href="?thread-index-fid-$thread[fid]-tid-$thread[tid].htm">$thread[subject]</a></li>
+<!--{/loop}-->
+					</ul>
+				</div>
+			</div>
+		</div>
+		</li>
+<!--{/loop}-->
+	</ul>
+</div><!-- /container -->
+<div class="container">
+	<div class="friendlinks">
+<!--{hook index_index_stat_after.htm}-->		
+
+	</div>
+</div><!-- /container -->
+<!--{include footer.htm}-->
+</body>
+</html>

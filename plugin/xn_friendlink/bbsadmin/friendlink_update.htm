@@ -1,0 +1,65 @@
+<!--{include header.htm}-->
+
+<div class="width">
+	<form action="?friendlink-update-linkid-$friendlink[linkid].htm" method="post" id="friendlink_update_form" enctype="multipart/form-data">
+		<input type="hidden" name="FORM_HASH" value="{FORM_HASH}" />
+		<div class="div" style="width: 600px;">
+			<div class="header">编辑friendlink</div>
+			<div class="body">
+				<dl>
+					<dt>顺序:</dt><dd><input type="text" name="rank" value="$friendlink[rank]" style="width: 50px" /></dd>
+					<dt><label for="type">连接类型：</label></dt>
+					<dd>
+						<select id="type" name="type">
+							$typeoptions
+						</select>
+					</dd>
+					<dt><label for="sitename">站点名称：</label></dt>
+					<dd><input type="text" name="sitename" id="sitename" value="$friendlink[sitename]" style="width: 100px" /></dd>
+					<dt><label for="url">URL：</label></dt>
+					<dd><input type="text" name="url" id="url" value="$friendlink[url]" style="width: 250px" /></dd>
+					<dt><label for="logo">LOGO：</label></dt>
+					<dd>
+						<img src="$friendlink[logourl]" width="88" height="31" /><br />
+						<input type="file" name="logo" id="logo" value="$friendlink[logourl]" style="width: 100px" />
+					</dd>
+					
+					<dt></dt>
+					<dd>
+						<input type="submit" class="button bigblue" id="friendlink_update_submit" value="编辑" />
+						<input type="button" class="button biggrey" value="返回" onclick="window.location='?friendlink-list.htm'" />
+						<div class="notice" id="notice" style="display: none;"></div>
+					</dd>
+					
+				</dl>
+			</div>
+		</div>
+	</form>
+</div>
+
+<!--{include footer.htm}-->
+
+<script type="text/javascript">
+$('#friendlink_update_submit').click(function() {
+	$('#friendlink_update_form').submit();
+	return false;
+});
+
+<!--{loop $error $k $v}-->
+<!--{if $v}-->
+	$('#$k').alert('$v');
+<!--{/if}-->
+<!--{/loop}-->
+
+<!--{if !empty($_POST)}-->
+<!--{if empty($error)}-->
+	$('#notice').html('编辑成功！').show();
+<!--{else}-->
+	$('#notice').html('编辑失败！').show();
+<!--{/if}-->
+<!--{/if}-->
+
+</script>
+
+</body>
+</html>

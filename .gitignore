@@ -1,0 +1,11 @@
+/upload/attach/
+/upload/avatar/
+/upload/forum/
+/upload/friendlink/
+/upload/plugin/
+/upload/install.lock
+/upload/*.db
+/tmp/*.php
+/log/*.php
+/conf/127*.php
+/conf/lh*.php

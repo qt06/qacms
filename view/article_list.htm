@@ -1,0 +1,38 @@
+<!--{include header.htm}-->
+<!--{include header_user.htm}-->
+<div class="main">
+	<div class="container" role="main">
+
+		<ul class="entry-list">
+<!--{loop $toplist $thread}-->
+<li>			<!--{if $fid && $ismod}-->
+			<input aria-label="$thread[subject]" type="checkbox" name="fid_tid[]" value="$thread[fid]_$thread[tid]" />
+			<!--{/if}--><span>$thread[dateline_fmt]</span> &raquo; <a accesskey="x" href="?thread-index-fid-$thread[fid]-tid-$thread[tid].htm">$thread[subject]</a></li>
+<!--{/loop}-->
+<!--{loop $threadlist $thread}-->
+<li>			<!--{if $fid && $ismod}-->
+			<input aria-label="$thread[subject]" type="checkbox" name="fid_tid[]" value="$thread[fid]_$thread[tid]" />
+			<!--{/if}--><span>$thread[dateline_fmt]</span> &raquo; <a accesskey="x" href="?thread-index-fid-$thread[fid]-tid-$thread[tid].htm">$thread[subject]</a></li>
+<!--{/loop}-->
+		</ul>
+$pages
+<!--{if $fid && $ismod}-->
+<div style="text-align: center; margin-top: 8px;">
+	<input type="checkbox" name="checkall" id="mod_checkall" /><label for="mod_checkall">全选</label>
+	<button class="button smallblue" id="mod_top">置顶</button>
+	<!--{if !empty($forum[typecates])}-->
+	<button class="button smallblue" id="mod_type">主题分类</button>
+	<!--{/if}-->
+	<button class="button smallblue" id="mod_digest">精华</button>
+	<button class="button smallblue" id="mod_move">移动</button>
+	<!--{hook thread_list_mod_before_delete.htm}-->
+	<button class="button smallblue" id="mod_delete">删除</button>
+	<!--{hook thread_list_mod_end.htm}-->
+</div>
+<!--{/if}-->
+	</div>
+</div>
+<!--{include footer.htm}-->
+<!--{require thread_list_js.inc.htm}-->
+</body>
+</html>

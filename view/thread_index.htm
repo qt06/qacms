@@ -1,0 +1,401 @@
+<!--{include header.htm}-->
+<!--{include header_user.htm}-->
+<!--{hook thread_index_start.htm}-->
+
+<div class="container" role="main">
+
+	<!--{hook thread_index_nav_before.htm}-->
+<ul class="breadcrumb">
+<li><a href="?forum-index-fid-$fid-page-1.htm" id="forum_link">$forum[name]</a></li>
+<li class="active"><a href="?thread-index-fid-$fid-tid-$tid.htm">$thread[subject_substr]</a></li>
+</ul>
+
+	
+	<!--{hook thread_index_nav_after.htm}-->
+	
+	<!--{loop $postlist $post}-->
+	<!--{php $u = isset($userlist[$post['uid']]) ? $userlist[$post['uid']] : array();}-->
+	<!--{hook thread_index_post_loop_start.htm}-->
+	<div class="row post_table">
+			<div class="span2">
+					<div>
+<a href="?you-index-uid-$u[uid].htm" target="_blank" style="display: block" rel="nofollow" aria-label="$u[username] $post[floor]楼">
+						<span class="avatar_huge border bg1" {if !empty($u[avatar_middle])}style="background-image: url($u[avatar_middle])"{/if}></span>
+					</a>
+				</div>
+				<div>$u[username]</div>
+				<!--{hook thread_index_userinfo.htm}-->
+			</div>
+			<div class="span10 post">
+				
+					<!--{hook thread_index_subject_before.htm}-->
+					
+					<!--{if $thread[firstpid] == $post[pid]}-->
+					<h2 id="subject_$tid">
+					
+						<!--{if $thread[top]}--><span class="icon icon-top-$thread[top]" style="margin-right: 2px;" title="置顶主题"></span><!--{/if}-->
+									
+					<!--{loop $forum[types] $cateid $types}-->
+						<!--{if $cateid == 1 && $thread[typeid1]}--><a href="?forum-index-fid-$fid-typeid1-$thread[typeid1].htm" target="_blank" rel="nofollow">[{$thread[typename1]}]</a><!--{/if}-->
+						<!--{if $cateid == 2 && $thread[typeid2]}--><a href="?forum-index-fid-$fid-typeid2-$thread[typeid2].htm" target="_blank" rel="nofollow">[{$thread[typename2]}]</a><!--{/if}-->
+						<!--{if $cateid == 3 && $thread[typeid3]}--><a href="?forum-index-fid-$fid-typeid3-$thread[typeid3].htm" target="_blank" rel="nofollow">[{$thread[typename3]}]</a><!--{/if}-->
+						<!--{if $cateid == 4 && $thread[typeid4]}--><a href="?forum-index-fid-$fid-typeid4-$thread[typeid4].htm" target="_blank" rel="nofollow">[{$thread[typename4]}]</a><!--{/if}-->
+					<!--{/loop}-->
+					
+						$thread[subject]
+						
+						<!--{hook thread_index_subject_end.htm}-->
+					</h2>
+					<!--{/if}-->
+					
+					<!--{hook thread_index_subject_after.htm}-->
+					
+					<div tabindex="-1" accesskey="x" id="message_$post[pid]" class="message">
+<div class="sr-only">$post[floor]楼 $u[username]</div>
+<!--{hook thread_index_message_before.htm}-->
+$post[edit_log] $post[message]
+<!--{hook thread_index_message_end.htm}-->
+</div>
+					
+					<!--{hook thread_index_message_after.htm}-->
+					<!--{include thread_index_mod.htm}-->
+					
+					<!--{hook thread_index_attachlist_after.htm}-->
+					
+<div class="meta">
+<span>$post[floor]楼</span>
+					<span class="grey">发布于：</span><b>$post[dateline_fmt]</b> 
+		<!--{if $thread[firstpid] == $post[pid]}-->
+					&nbsp; <span class="grey2">|</span> &nbsp; <span class="grey">查看数：</span><span id="thread_views" class="bold">$thread[views]</span> &nbsp; <span class="grey2">|</span> &nbsp; <span class="grey">回复数：$thread[posts_fmt]</span>
+		<!--{/if}-->
+</div>
+					<div class="mod" pid="$post[pid]">
+							
+							<!--{if $_user[uid]}-->
+							<a href="?post-post-fid-$fid-tid-$post[tid]-pid-$post[pid].htm" class="ajaxdialog" ajaxdialog="{cache: true}" >引用</a>
+							<!--{/if}-->
+							
+							<!--{if $ismod}-->	
+							<a href="?mod-rate-fid-$fid-pid-$post[pid].htm" class="ajaxdialog" ajaxdialog="{position: 1, modal: false, cache: false}">评分</a>
+							<!--{/if}-->
+							
+							<!--{if $ismod || $_user[uid] == $post[uid]}-->	
+							<a href="?post-update-fid-$thread[fid]-pid-$post[pid].htm" class="ajaxdialog" ajaxdialog="{modal: false, cache: false}" >编辑</a>
+							<a href="?post-delete-fid-$fid-pid-$post[pid].htm" class="ajaxconfirm" ajaxconfirm="{message: '确定删除吗？'}" >删除</a>
+							<!--{/if}-->
+							
+						</div>
+			</div>
+	</div>
+	<!--{hook thread_index_post_loop_end.htm}-->
+	<!--{/loop}-->
+	
+	<!--{hook thread_index_quick_post_start.htm}-->
+<!--{if $ismod || ($_SERVER[time] - $thread[dateline] < $conf[post_post_expiry])}-->
+	<div class="row post_table">
+<div class="span2">
+				<div>
+					<!--{if $_user[uid]}--><a href_real="?you-index-uid-$_user[uid].htm" target="_blank" href="?you-profile-uid-$_user[uid].htm" class="ajaxdialog_hover" ajaxdialog="{position: 5, modal: false, timeout: 1000, showtitle: false}"  style="display: block" rel="nofollow" aria-label="$_user[username] $_user[groupname]"><!--{/if}-->
+						<span class="avatar_middle border bg1" {if !empty($_user[avatar_middle])}style="background-image: url($_user[avatar_middle])"{/if}></span>
+					<!--{if $_user[uid]}--></a><!--{/if}-->
+				</div>
+				<div style="word-break:break-all;">$_user[username]</div>
+				<div class="grey small">$_user[groupname]</div>
+			</div>
+			<div class="span10 post">
+					<form action="?post-post-fid-$thread[fid]-tid-$thread[tid]-quickpost-1.htm" method="post" id="quick_post_form">
+						<input type="hidden" name="FORM_HASH" value="{FORM_HASH}" />
+						<!--{hook common_form_hash_after.htm}-->
+						<textarea accesskey="z" name="message" id="quick_message" style="width: 100%; height: 60px; font-size: 14px; overflow: hidden;" aria-label="快速回复内容"></textarea>
+						<div style="margin-top: 4px;">
+							<div style="width: 50%; float: left;">
+								<button type="submit" class="button smallblue" id="quick_post_submit">快速回复</button>
+								<!--{hook thread_index_quick_post_after.htm}-->
+							</div>
+							<div style="width: 50%; float: left; text-align: right;">
+								<!--{hook thread_index_advanced_post_after.htm}-->
+							</div>
+						</div>
+					</form>
+
+			</div>
+	</div>
+<!--{/if}-->
+	<!--{hook thread_index_quick_post_end.htm}-->
+	
+	<div class="box">
+		<div class="page" style="text-align: center;">$pages</div>
+		<!--{if $ismod}-->
+		<div style="text-align: center;">
+			<input type="checkbox" name="fid_tid[]" value="$thread[fid]_$thread[tid]" checked="checked" style="display: none;" />
+			<button class="button smallblue" id="mod_top">置顶</button>
+			<!--{if $forum[typecates]}-->
+			<button class="button smallblue" id="mod_type">主题分类</button>
+			<!--{/if}-->
+			<button class="button smallblue" id="mod_digest">精华</button>
+			<button class="button smallblue" id="mod_move">移动</button>
+			<!--{hook thread_index_mod_before_delete.htm}-->
+			<button class="button smallblue" id="mod_delete">删除</button>
+			<!--{hook thread_index_mod_end.htm}-->
+		</div>
+		<!--{/if}-->
+		<p style="text-align: center; padding: 8px;">
+			<!--{if !empty($referer_other)}-->
+			<button class="button bigblue" onclick="window.location='$referer_other'">返回上一页</button>
+			<!--{/if}-->
+			<button class="button bigblue" id="return_back">返回【$forum[name]】</button>
+		</p>
+	</div>
+	
+	<!--{hook thread_index_mod_after.htm}-->
+	
+</div>
+
+<!--{include footer.htm}-->
+
+<!--{if $ismod}-->
+<script type="text/javascript">
+// copy from forum_index.htm
+// 置顶 弹出 dialog 设置为置顶
+$('#mod_top').click(function() {
+	var fid_tids = '';
+	$.each($('#body input[name="fid_tid[]"]:checked'), function(k, v) {
+		fid_tids += (fid_tids ? '__' : '') + v.value;
+	});
+	if(fid_tids == '') {
+		alert('请选择主题！');
+		return false;
+	}
+	var url = url_add_arg('?mod-top-fid-$fid.htm', 'fid_tids', fid_tids);
+	ajaxdialog_request(url, function() {
+		window.location.reload();
+	});
+});
+
+// 主题分类 
+$('#mod_type').click(function() {
+	var fid_tids = '';
+	$.each($('#body input[name="fid_tid[]"]:checked'), function(k, v) {
+		fid_tids += (fid_tids ? '__' : '') + v.value;
+	});
+	if(fid_tids == '') {
+		alert('请选择主题！');
+		return false;
+	}
+	var url = url_add_arg('?mod-type-fid-$fid.htm', 'fid_tids', fid_tids);
+	ajaxdialog_request(url, function() {
+		window.location.reload();
+	});
+});
+
+// 精华
+$('#mod_digest').click(function() {
+	var fid_tids = '';
+	$.each($('#body input[name="fid_tid[]"]:checked'), function(k, v) {
+		fid_tids += (fid_tids ? '__' : '') + v.value;
+	});
+	if(fid_tids == '') {
+		alert('请选择主题！');
+		return false;
+	}
+	var url = url_add_arg('?mod-digest-fid-$fid.htm', 'fid_tids', fid_tids);
+	ajaxdialog_request(url, function() {
+		window.location.reload();
+	});
+	return false;
+});
+
+// 删除
+$('#mod_delete').click(function() {
+	var fid_tids = '';
+	$.each($('#body input[name="fid_tid[]"]:checked'), function(k, v) {
+		fid_tids += (fid_tids ? '__' : '') + v.value;
+	});
+	if(fid_tids == '') {
+		alert('请选择主题！');
+		return false;
+	}
+	var url = url_add_arg('?mod-delete-fid-$fid.htm', 'fid_tids', fid_tids);
+	ajaxdialog_request(url, function() {
+		window.location = '?forum-index-fid-$fid.htm';
+	});
+});
+
+// 移动
+$('#mod_move').click(function() {
+	var fid_tids = '';
+	$.each($('#body input[name="fid_tid[]"]:checked'), function(k, v) {
+		fid_tids += (fid_tids ? '__' : '') + v.value;
+	});
+	if(fid_tids == '') {
+		alert('请选择主题！');
+		return false;
+	}
+	var url = url_add_arg('?mod-move-fid-$fid.htm', 'fid_tids', fid_tids);
+	ajaxdialog_request(url, function() {
+		window.location = '?forum-index-fid-$fid.htm';
+	});
+});
+
+</script>
+<!--{/if}-->
+
+<script type="text/javascript">
+
+tid_add_read($tid, $_SERVER[time]);
+
+$('#create_post').click(function() {
+	if(g_uid == 0) {
+		ajaxdialog_request('?user-login.htm', function() {
+			$('#create_post').unbind('click');
+			ajaxdialog_request($('#create_post').attr('href'));
+			$('#create_post').click(function() {
+				ajaxdialog_request($('#create_post').attr('href'));
+			});
+		});
+		return false;
+	} else {
+		return true;
+	}
+});
+
+// 点击数服务器
+$.getScript('$click_server&'+Math.random(), function() {
+	if(typeof xn_json == 'undefined') return;
+	var json = xn_json;
+	$('#thread_views').html(json['$tid']);
+});
+
+// 自动伸缩，自动提交
+$('#quick_message').keyup(function(e) {
+	if((e.ctrlKey && (e.which == 13 || e.which == 10)) || (e.altKey && e.which == 83)) {
+		$('#quick_post_submit').trigger('click');
+		return false;
+	}
+        
+	var h = $(this)[0].scrollHeight;
+	if(h <= 100) {
+		return true;
+	} else {
+		$(this).height($(this)[0].scrollHeight);
+		return true;
+	}
+});
+
+// 快速回复
+$('#quick_post_submit').click(function() {
+	if(!$('#quick_message').val()) {
+		$('#quick_message').alert('请填写内容！', {width: 150, delay: 3000}).focus();
+		return false;
+	}
+	$('#quick_post_submit').disable();
+	
+	function quick_post_submit_func() {
+		var postdata = $("#quick_post_form").serialize();
+		$.post(url_add_arg($('#quick_post_form').attr('action'),'ajax',1), postdata,  function(s){
+			var json = json_decode(s);
+			if(error = json_error(json)) {alert(error); return false;}
+			if(json.status <= 0) {
+				alert(json.message);
+				return false;
+			} else {
+				json = json.message;
+				if(json.message) {
+					$('#quick_message').alert(json.message, {width:250, delay: 3000}).focus();
+					return false;
+				}
+				// hook thread_index_post_succeed_js.htm
+				
+				//var page = Math.max(1, intval(json.page));
+				//window.location= '?thread-index-fid-$fid-tid-$tid-page-'+page+'-scrollbottom-1.htm';
+				
+				var post = json.post;
+				// 结果直接显示在上面，不再跳转
+				var s = '<div class="row post_table">\
+						<div class="span2">\
+							<div>\
+								<a href_real="?you-index-uid-$_user[uid].htm" target="_blank" href="?you-profile-uid-$_user[uid].htm" class="ajaxdialog_hover" ajaxdialog="{position: 5, modal: false, timeout: 1000, showtitle: false}"  style="display: block" rel="nofollow" aria-label="'+post.username+' '+post.posts+'楼">\
+									<span class="avatar_middle border bg1" {if !empty($_user[avatar_middle])}style="background-image: url($_user[avatar_middle])"{/if}></span>\
+								</a>\
+							</div>\
+							<div style="word-break:break-all;">'+post.username+'</div>\
+						</div>\
+						<div class="span10 post">\
+								<div tabindex="-1" accesskey="x" id="message_'+post.pid+'" class="message"><div class="sr-only">'+post.posts+'楼 '+post.username+'</div>'+post.message+'</div>\
+						</div>\
+				</div>';
+				var jtable = $(s);
+				$('div.post_table:last').before(jtable);
+				//jtable.message = post.message;
+				$('#quick_message').val('');
+				$('#message_' + post.pid).focus();
+				
+				$('#quick_post_submit').enable();
+			}
+		});
+	}
+
+	if(g_uid == 0) {
+		ajaxdialog_request('?user-login.htm', function() {
+			quick_post_submit_func();
+			return false;
+		});
+	} else {
+		quick_post_submit_func();
+		return false;
+	}
+});
+
+// 滚动回复的到最底部
+{if $scrollbottom}
+var offset = $('#quick_message').offset();
+document.documentElement.scrollTop = offset.top - 300;
+$('#quick_message').focus();
+{/if}
+
+// 记录当前页码
+var fid_page = $.parseJSON($.pdata(cookie_pre + 'fid_page'));
+var page = fid_page ? fid_page[''+$fid] : 1;
+var href = $('#forum_link').attr('href').replace(/page-1/ig, "page-"+page);
+$('#forum_link').attr('href', href);
+$('#return_back').click(function() {
+	window.location = href;
+});
+
+// 鼠标放在头像上弹出用户信息 ajaxdialog_hover
+var jajaxdialoglinks = $('a.ajaxdialog_hover');
+jajaxdialoglinks.die('click').live('click', function() {window.open($(this).attr('href_real'))});
+jajaxdialoglinks.die('mouseover').live('mouseover', ajaxdialog_mouseover);
+jajaxdialoglinks.die('mouseout').live('mouseout', ajaxdialog_mouseout);
+$('a.ajaxconfirm').die('click').live('click', ajaxdialog_confirm);
+
+// post_td 下的图片调整大小
+$(function() {
+	var td_width = $('td.post_td').width() - 28;
+	td_width = Math.min($('#body').width() - 170, td_width);
+	$('td.post_td img').each(function() {
+		if($(this).width() > td_width) {
+			this.height = Math.ceil((this.height /this.width) * td_width);
+			this.width = Math.ceil(td_width);
+			
+			this.style.cursor = 'pointer';
+			this.onclick = function() {
+				window.open(this.src);
+			}
+		}
+	});
+});
+
+//帖子正文回车复制到剪贴板
+$(".message").live('keyup',function(){
+	if(event.keyCode == 13) {
+		var data = $(this).attr('innerText') + '\r\n' + '本文来自$conf[app_name]，地址： ' + location.href;		window.clipboardData.setData('text',data);
+	}
+}).find('a').attr("target","_blank");
+
+// 快捷键翻页
+</script>
+
+<!--{hook thread_index_end.htm}-->
+</body>
+</html>

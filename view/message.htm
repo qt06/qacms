@@ -1,0 +1,50 @@
+<!--{include header.htm}-->
+
+<!--{hook message_before.htm}-->
+
+<div class="width">
+		
+	<!--{hook message_nav_before.htm}-->
+	<!--{hook message_nav_after.htm}-->
+
+	<div class="box bg2 border shadow">
+		<div style="margin: 2em;">
+			
+			<!--{hook message_start.htm}-->
+			
+			<div style="text-align: center;">
+				<!--{if is_array($message)}-->
+<ul>					<!--{loop $message $msg}-->
+						<li>$msg</li>
+					<!--{/loop}-->
+</ul>
+				<!--{else}-->
+				$message
+				<!--{/if}-->
+				
+				<!--{hook message_title_end.htm}-->
+			</div>
+			
+			<!--{if !$goto}-->
+			<p style="text-align: center; margin-top: 40px; margin-bottom: 40px;"><input type="button" value=" 返回 " class="button bigblue" onclick="history.back()" /></p>
+			<!--{else}-->
+			<p style="text-align: center; margin-top: 40px; margin-bottom: 40px;"><input type="button" value=" 点击这里跳转 " class="button bigblue" onclick="window.location='$goto'" /></p>
+			<!--{/if}-->
+			
+			<!--{hook message_end.htm}-->
+		</div>
+	</div>
+</div>
+
+<!--{hook message_end.htm}-->
+
+<!--{include footer.htm}-->
+
+<!--{if $goto}-->
+<script type="text/javascript">
+setTimeout(function() {window.location='$goto'}, 3000);
+</script>
+<!--{/if}-->
+
+</body>
+</html>

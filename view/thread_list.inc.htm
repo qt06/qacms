@@ -1,0 +1,40 @@
+	<ul class="threadlist" id="threadlist">
+	
+		<!--{hook thread_list_threadlist_before.htm}-->
+	
+		<!--{loop $toplist $thread}-->
+			<!--{require thread_list_line.inc.htm}-->
+		<!--{/loop}-->
+		
+		<!--{if !empty($toplist)}-->
+		<li><hr /></li>
+		<!--{/if}-->
+		
+		<!--{loop $threadlist $thread}-->
+			<!--{require thread_list_line.inc.htm}-->
+		<!--{/loop}-->
+		
+		<!--{hook thread_list_threadlist_after.htm}-->
+
+	</ul>
+
+$pages
+
+<!--{hook thread_list_after.htm}-->
+
+<!--{if $fid && $ismod}-->
+<div style="text-align: center; margin-top: 8px;">
+	<input type="checkbox" name="checkall" id="mod_checkall" /><label for="mod_checkall">全选</label>
+	<button class="button smallblue" id="mod_top">置顶</button>
+	<!--{if !empty($forum[typecates])}-->
+	<button class="button smallblue" id="mod_type">主题分类</button>
+	<!--{/if}-->
+	<button class="button smallblue" id="mod_digest">精华</button>
+	<button class="button smallblue" id="mod_move">移动</button>
+	<!--{hook thread_list_mod_before_delete.htm}-->
+	<button class="button smallblue" id="mod_delete">删除</button>
+	<!--{hook thread_list_mod_end.htm}-->
+</div>
+<!--{/if}-->
+
+<!--{hook thread_list_mod_after.htm}-->

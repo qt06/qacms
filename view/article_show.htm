@@ -1,0 +1,130 @@
+<!--{include header.htm}-->
+<!--{include header_user.htm}-->
+<div class="main">
+	<div class="container" role="main">
+		<div class="entry">
+			<div class="hd">
+				<h1>$thread[subject]</h1>
+				<div class="meta">
+					<i class="icon-time"></i><span class="time">$thread[dateline_fmt]</span>
+					<div class="mod" pid="$post[pid]">
+							
+							<!--{if $ismod || $_user[uid] == $post[uid]}-->	
+							<a href="?post-update-fid-$thread[fid]-pid-$post[pid].htm" class="ajaxdialog" ajaxdialog="{modal: false, cache: false}" >编辑</a>
+							<!--{/if}-->
+							
+						</div>
+				</div>
+			</div>
+			<div class="bd" accesskey="x" tabindex="-1" id="content">
+				$post[message]
+			</div>
+		<!--{if $ismod}-->
+		<div style="text-align: center;">
+			<input type="checkbox" name="fid_tid[]" value="$thread[fid]_$thread[tid]" checked="checked" style="display: none;" />
+			<button class="button smallblue" id="mod_top">置顶</button>
+			<!--{if $forum[typecates]}-->
+			<button class="button smallblue" id="mod_type">主题分类</button>
+			<!--{/if}-->
+			<button class="button smallblue" id="mod_digest">精华</button>
+			<button class="button smallblue" id="mod_move">移动</button>
+			<!--{hook thread_index_mod_before_delete.htm}-->
+			<button class="button smallblue" id="mod_delete">删除</button>
+			<!--{hook thread_index_mod_end.htm}-->
+		</div>
+		<!--{/if}-->
+		</div>
+	</div>
+</div>
+<!--{include footer.htm}-->
+<!--{if $ismod}-->
+<script type="text/javascript">
+// copy from forum_index.htm
+// 置顶 弹出 dialog 设置为置顶
+$('#mod_top').click(function() {
+	var fid_tids = '';
+	$.each($('#body input[name="fid_tid[]"]:checked'), function(k, v) {
+		fid_tids += (fid_tids ? '__' : '') + v.value;
+	});
+	if(fid_tids == '') {
+		alert('请选择主题！');
+		return false;
+	}
+	var url = url_add_arg('?mod-top-fid-$fid.htm', 'fid_tids', fid_tids);
+	ajaxdialog_request(url, function() {
+		window.location.reload();
+	});
+});
+
+// 主题分类 
+$('#mod_type').click(function() {
+	var fid_tids = '';
+	$.each($('#body input[name="fid_tid[]"]:checked'), function(k, v) {
+		fid_tids += (fid_tids ? '__' : '') + v.value;
+	});
+	if(fid_tids == '') {
+		alert('请选择主题！');
+		return false;
+	}
+	var url = url_add_arg('?mod-type-fid-$fid.htm', 'fid_tids', fid_tids);
+	ajaxdialog_request(url, function() {
+		window.location.reload();
+	});
+});
+
+// 精华
+$('#mod_digest').click(function() {
+	var fid_tids = '';
+	$.each($('#body input[name="fid_tid[]"]:checked'), function(k, v) {
+		fid_tids += (fid_tids ? '__' : '') + v.value;
+	});
+	if(fid_tids == '') {
+		alert('请选择主题！');
+		return false;
+	}
+	var url = url_add_arg('?mod-digest-fid-$fid.htm', 'fid_tids', fid_tids);
+	ajaxdialog_request(url, function() {
+		window.location.reload();
+	});
+	return false;
+});
+
+// 删除
+$('#mod_delete').click(function() {
+	var fid_tids = '';
+	$.each($('#body input[name="fid_tid[]"]:checked'), function(k, v) {
+		fid_tids += (fid_tids ? '__' : '') + v.value;
+	});
+	if(fid_tids == '') {
+		alert('请选择主题！');
+		return false;
+	}
+	var url = url_add_arg('?mod-delete-fid-$fid.htm', 'fid_tids', fid_tids);
+	ajaxdialog_request(url, function() {
+		window.location = '?forum-index-fid-$fid.htm';
+	});
+});
+
+// 移动
+$('#mod_move').click(function() {
+	var fid_tids = '';
+	$.each($('#body input[name="fid_tid[]"]:checked'), function(k, v) {
+		fid_tids += (fid_tids ? '__' : '') + v.value;
+	});
+	if(fid_tids == '') {
+		alert('请选择主题！');
+		return false;
+	}
+	var url = url_add_arg('?mod-move-fid-$fid.htm', 'fid_tids', fid_tids);
+	ajaxdialog_request(url, function() {
+		window.location = '?forum-index-fid-$fid.htm';
+	});
+});
+
+</script>
+<!--{/if}-->
+<script>
+$("#content").focus();
+</script>
+</body>
+</html>

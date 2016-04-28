@@ -1,0 +1,57 @@
+<!--{include header.htm}-->
+<!--{include header_user.htm}-->
+<!--{hook index_index_start.htm}-->
+
+<div class="container" role="main">
+	<!--{hook index_index_nav_before.htm}-->
+	
+<ul class="breadcrumb">
+				<li><a href="?index-index-orderby-tid.htm" accesskey="z">最新主题</a></li>
+				<li><a href="?index-index-orderby-lastpost.htm" accesskey="z">最新回复</a></li>
+</ul>
+	
+	<!--{hook index_index_nav_after.htm}-->
+	
+	<!--{require thread_list.inc.htm}-->
+	
+	<!--{hook index_thread_list_after.htm}-->
+	
+	<div class="div">
+		<div class="header"><span class="icon icon-stat"></span> 站点统计</div>
+		<div class="body">
+			<div style="margin-top: 8px; line-height: 12px; margin-bottom: 4px;">
+				<!--{hook index_index_stat_start.htm}-->
+				<span class="grey">帖子：</span><span>$conf[posts]</span> <span class="small grey2">|</span>
+				<span class="grey">会员：</span><span>$conf[users]</span>
+				<!--{if $conf[todayposts]}-->
+				<span class="small grey2">|</span>
+				<span class="grey">今日帖子：</span><span class="new bold">$conf[todayposts]</span>
+				<!--{/if}-->
+				<!--{if $conf[todayusers]}-->
+				<span class="small grey2">|</span>
+				<span class="grey">今日注册：</span><span class="new bold">$conf[todayusers]</span>
+				<!--{/if}-->
+				<!--{if $conf[newusername]}-->
+				<span class="small grey2">|</span>
+				<span class="grey">新会员:</span> <a href="?you-profile-uid-$conf[newuid].htm" target="_blank" class="ajaxdialog" ajaxdialog="{position: 6, modal: false}" rel="nofollow">$conf[newusername]</a>
+				<!--{/if}-->
+				<span class="small grey2">|</span>
+				<span class="grey">在线：</span><span class="new bold"><a href="?online-list.htm" class="ajaxdialog" >$conf[onlines]</a></span>
+				<!--{hook index_index_stat_end.htm}-->
+			</div>
+		</div>
+		<div class="footer"></div>
+	</div>
+	
+	<!--{hook index_index_stat_after.htm}-->
+	
+</div>
+
+<!--{hook index_index_footer_before.htm}-->
+
+<!--{include footer.htm}-->
+
+<!--{require thread_list_js.inc.htm}-->
+<!--{hook index_index_end.htm}-->
+</body>
+</html>
