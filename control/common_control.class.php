@@ -514,7 +514,7 @@ exit(core::json_encode(array('servererror'=>'','status'=>$status,'message'=>$mes
 	
 	// 综合权限检测：非版主权限的操作。
 	protected function check_access($forum, $action) {
-		$user = $this->_user;
+		$user = $this->user->read($this->_user['uid']);
 		$group = $this->_group;
 	
 		$adminaction = array('top'=>'设置置顶', 'digest'=>'设置精华', 'move'=>'移动主题', 'update'=>'编辑主题', 'delete'=>'删除帖子', 'banuser'=>'禁止用户', 'deleteuser'=>'删除用户');
@@ -583,7 +583,8 @@ exit(core::json_encode(array('servererror'=>'','status'=>$status,'message'=>$mes
 	
 	// 检查是否为待验证用户组。
 	protected function check_forbidden_group() {
-		if($this->_user['groupid'] == 7) {
+		$user = $this->user->read($this->_user['uid']);
+		if($user['groupid'] == 7) {
 			$this->message('对不起，您的账户被禁止发帖。', 0);
 		}
 	}
