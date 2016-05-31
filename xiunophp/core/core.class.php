@@ -178,7 +178,7 @@ class core {
 		}
 		
 		// 关闭运行期间的自动增加反斜线
-		@set_magic_quotes_runtime(0);
+		PHP_VERSION < "7.0" && @set_magic_quotes_runtime(0);
 		
 		// 最低版本需求判断
 		PHP_VERSION < '5.0' && exit('Required PHP version 5.0.* or later.');
