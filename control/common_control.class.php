@@ -434,6 +434,7 @@ exit(core::json_encode(array('servererror'=>'','status'=>$status,'message'=>$mes
 	
 	// 检测用户权限，主要为全局禁止，优先级:1, $expiry 为解除禁止权限的时间。
 	protected function check_user_access($user, $action = 'post', &$message) {
+		if(empty($user)) return true;
 		$uid = $user['uid'];
 		$actiontext = array('read'=>'阅读帖子', 'thread'=>'发表帖子', 'post'=>'回帖', 'attach'=>'上传附件', 'down'=>'下载附件');
 
