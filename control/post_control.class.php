@@ -278,6 +278,12 @@ class post_control extends common_control {
 		$this->check_forum_exists($forum);
 		$this->check_access($forum, 'post');
 		
+		$ismod = $this->is_mod($forum, $this->_user);
+		// 过期不能回复
+		if(!$ismod && $this->conf['post_post_expiry'] && $_SERVER['time'] - $thread['dateline'] > $this->conf['post_post_expiry']) {
+			$time = ceil($this->conf['post_post_expiry'] / 60);
+			$this->message('您不能再继续回复该帖了，已经超出了回复时间: (<b>'.$time.'分钟</b>)。', 0);
+		}
 		// hook post_control_on_post_submit_before.php
 		
 		if(!$this->form_submit()) {

@@ -1,0 +1,7 @@
+			<!--{if $ismod}-->
+				<!--{if $thread[closed] == 0}-->
+					<input type="button" class="button smallblue ajaxtoggle" href="?mod-close-fid-$thread[fid]-tid-$thread[tid]-ajax-1.htm" value="锁定" href2="?mod-open-fid-$thread[fid]-tid-$thread[tid]-ajax-1.htm" value2="解除锁定" class2="button smallgrey ajaxtoggle" />
+				<!--{elseif $thread[closed] == 1}-->
+					<input type="button" class="button smallgrey ajaxtoggle" href="?mod-open-fid-$thread[fid]-tid-$thread[tid]-ajax-1.htm" value="解除锁定" href2="?mod-close-fid-$thread[fid]-tid-$thread[tid]-ajax-1.htm" value2="锁定" class2="button smallblue ajaxtoggle" />
+				<!--{/if}-->
+			<!--{/if}-->
