@@ -1,0 +1,11 @@
+		<!--{if $isfirst}-->
+<dt>
+<label for="status">回帖可见</label></dt>
+<dd>
+<select id="status" name="status">
+<option value="0" <!--{if $thread[status] == 0}-->selected<!--{/if}-->>所有人可见</option>
+<option value="1" <!--{if $thread[status] == 1}-->selected<!--{/if}-->>仅版主和管理员可见</option>
+<option value="2" <!--{if $thread[status] == 2}-->selected<!--{/if}-->>楼主自己可见</option>
+</select>
+</dd>
+<!--{/if}-->
