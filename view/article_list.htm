@@ -2,6 +2,34 @@
 <!--{include header_user.htm}-->
 <div class="main">
 	<div class="container" role="main">
+	<!--{if !empty($forum[types])}-->
+	<div class="tab" id="threadtype">
+		<!--{loop $forum[types] $cateid $types}-->
+		<!--{if $types}-->
+		<div>
+			<table>
+				<tr>
+					<td valign="top" style="white-space: nowrap"><!--{if !empty($forum[typecates][$cateid])}--><span class="grey">$forum[typecates][$cateid]：</span><!--{/if}--></td>
+					<td>
+					<!--{if $cateid == 1}--><a accesskey="z" href="?forum-index-fid-$fid-typeid1-0-typeid2-$typeid2-typeid3-$typeid3-typeid4-$typeid4.htm" $_checked[typecates][$cateid] rel="nofollow" class="all">全部</a><!--{/if}-->
+					<!--{if $cateid == 2}--><a accesskey="z" href="?forum-index-fid-$fid-typeid1-$typeid1-typeid2-0-typeid3-$typeid3-typeid4-$typeid4.htm" $_checked[typecates][$cateid] rel="nofollow" class="all">全部</a><!--{/if}-->
+					<!--{if $cateid == 3}--><a accesskey="z" href="?forum-index-fid-$fid-typeid1-$typeid1-typeid2-$typeid2-typeid3-0-typeid4-$typeid4.htm" $_checked[typecates][$cateid] rel="nofollow" class="all">全部</a><!--{/if}-->
+					<!--{if $cateid == 4}--><a accesskey="z" href="?forum-index-fid-$fid-typeid1-$typeid1-typeid2-$typeid2-typeid3-$typeid3-typeid4-0.htm" $_checked[typecates][$cateid] rel="nofollow" class="all">全部</a><!--{/if}-->
+					<!--{loop $types $typeid $typename}-->
+					<!--{if $cateid == 1}--><a accesskey="z" href="?forum-index-fid-$fid-typeid1-$typeid-typeid2-$typeid2-typeid3-$typeid3-typeid4-$typeid4.htm" rel="nofollow" $_checked[types][$typeid]>$typename</a><!--{/if}-->
+					<!--{if $cateid == 2}--><a accesskey="z" href="?forum-index-fid-$fid-typeid1-$typeid1-typeid2-$typeid-typeid3-$typeid3-typeid4-$typeid4.htm" rel="nofollow" $_checked[types][$typeid]>$typename</a><!--{/if}-->
+					<!--{if $cateid == 3}--><a accesskey="z" href="?forum-index-fid-$fid-typeid1-$typeid1-typeid2-$typeid2-typeid3-$typeid-typeid4-$typeid4.htm" rel="nofollow" $_checked[types][$typeid]>$typename</a><!--{/if}-->
+					<!--{if $cateid == 4}--><a accesskey="z" href="?forum-index-fid-$fid-typeid1-$typeid1-typeid2-$typeid2-typeid3-$typeid3-typeid4-$typeid.htm" rel="nofollow" $_checked[types][$typeid]>$typename</a><!--{/if}-->
+					<!--{/loop}-->
+					</td>
+				</tr>
+			</table>
+		</div>
+		<!--{/if}-->
+		<!--{/loop}-->
+	</div>
+	<!--{/if}-->
+	
 
 		<ul class="entry-list">
 <!--{loop $toplist $thread}-->
