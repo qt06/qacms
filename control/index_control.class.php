@@ -159,6 +159,40 @@ $tl[] = $v;
 	public function blog() {
 
 	}
+public function on_forumlist() {
+$arr = array();
+foreach($this->conf['forumarr'] as $fid => $name) {
+		$forum = $this->mcache->read('forum', $fid);
+		$ismod = $this->is_mod($forum, $this->_user);
+		$arradd1 = !empty($forum['typecates'][1]) && (empty($forum['typecates_mod'][1]) || $forum['typecates_mod'][1] && $ismod) ? array('0'=>$forum['typecates'][1].'▼') : array();
+		$arradd2 = !empty($forum['typecates'][2]) && (empty($forum['typecates_mod'][2]) || $forum['typecates_mod'][2] && $ismod) ? array('0'=>$forum['typecates'][2].'▼') : array();
+		$arradd3 = !empty($forum['typecates'][3]) && (empty($forum['typecates_mod'][3]) || $forum['typecates_mod'][3] && $ismod) ? array('0'=>$forum['typecates'][3].'▼') : array();
+		$arradd4 = !empty($forum['typecates'][4]) && (empty($forum['typecates_mod'][4]) || $forum['typecates_mod'][4] && $ismod) ? array('0'=>$forum['typecates'][4].'▼') : array();
+		$typearr1 = empty($forum['types'][1]) || empty($arradd1) ? array() : $arradd1 + (array)$forum['types'][1];
+		$typearr2 = empty($forum['types'][2]) || empty($arradd2) ? array() : $arradd2 + (array)$forum['types'][2];
+		$typearr3 = empty($forum['types'][3]) || empty($arradd3) ? array() : $arradd3 + (array)$forum['types'][3];
+		$typearr4 = empty($forum['types'][4]) || empty($arradd4) ? array() : $arradd4 + (array)$forum['types'][4];
+$ta = array('fid' => $fid, 'name' => $name, 'types' => array());
+$ta['types']['typeid1'] = array();
+foreach($typearr1 as $k => $v) {
+$ta['types']['typeid1'][] = array('id'=>$k, 'name' => $v);
+}
+$ta['types']['typeid2'] = array();
+foreach($typearr2 as $k => $v) {
+$ta['types']['typeid2'][] = array('id'=>$k, 'name' => $v);
+}
+$ta['types']['typeid3'] = array();
+foreach($typearr3 as $k => $v) {
+$ta['types']['typeid3'][] = array('id'=>$k, 'name' => $v);
+}
+$ta['types']['typeid4'] = array();
+foreach($typearr4 as $k => $v) {
+$ta['types']['typeid4'][] = array('id'=>$k, 'name' => $v);
+}
+$arr[] = $ta;
+}
+$this->message($arr);
+}
 
 	private function get_toplist($forum = array()) {
 		$fidtids = array();

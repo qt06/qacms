@@ -1,0 +1,24 @@
+<!--{include header.htm}-->
+
+<div class="width">
+	<div class="div">
+		<div class="header"><span class="icon"></span>$app[screenname]</div>
+		<div class="body">
+			<div style="margin-top: 8px; line-height: 12px; margin-bottom: 4px;">
+<p>应用名称：$app[name]</p>
+<p>显示名称：$app[screenname]</p>
+<p>应用描述：$app[description]</p>
+<p>作者：<a href="?you-index-uid-$app[uid].htm">$app[username]</a></p>
+<!--{if $app[uid] == $_user[uid]}-->
+<p>appkey:$app[appkey]</p>
+<p>seckey:$app[seckey]</p>
+<!--{/if}-->
+			</div>
+		</div>
+		<div class="footer"></div>
+	</div>
+</div>
+
+<!--{include footer.htm}-->
+</body>
+</html>

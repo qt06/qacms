@@ -554,7 +554,7 @@ exit(core::json_encode(array('servererror'=>'','status'=>$status,'message'=>$mes
 	// 检查是否登录
 	public function check_login() {
 		if(empty($this->_user['uid'])) {
-			$this->message('您还没有登录，请先登录。', -1); // .print_r($_COOKIE, 1)
+			$this->message('您还没有登录，请先登录。', 0); // .print_r($_COOKIE, 1)
 		}
 	}
 	

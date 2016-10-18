@@ -152,7 +152,7 @@ class post_control extends common_control {
 				
 				$tid = $thread['tid'] = $this->thread->create($thread);
 				if(!$thread['tid']) {
-					$this->message('发帖过程中保存数据错误，请联系管理员。');
+					$this->message('发帖过程中保存数据错误，请联系管理员。', 0);
 				}
 				
 				// hook post_thread_create_after.php
@@ -270,7 +270,7 @@ class post_control extends common_control {
 		
 		// 帖子回复数不能超过 10000
 		if($thread['posts'] > 10000) {
-			$this->message('该帖子回复数已经达到10000，不能再回复了，再起话题吧！');
+			$this->message('该帖子回复数已经达到10000，不能再回复了，再起话题吧！', 0);
 		}
 		
 		// 版块权限检查
@@ -611,7 +611,7 @@ class post_control extends common_control {
 		
 		// 检查是否为 post 提交
 		if(!core::gpc('formhash', 'P')) {
-			$this->message('非法请求！');
+			$this->message('非法请求！', 0);
 		}
 		
 		$this->check_login();

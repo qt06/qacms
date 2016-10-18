@@ -1,0 +1,171 @@
+## api简单介绍
+
+* 先安装openapi插件
+* 然后申请app： http://yourdomain.com/open.htm
+* base_url: http://yourdomain.com/
+* appkey:
+* seckey:
+* format: json
+
+* appkey、seckey、format可使用get或者post任意方式传入
+* 所有请求必须传入format参数，这样返回结果才是json格式
+* 所有请求必须传入appkey
+* 用户登陆、发帖、回帖等操作必须传入appkey和seckey
+* 发帖、回复、编辑等操作需要传入auth(auth参数在用户登陆成功后返回的json里)
+
+### json格式说明：
+
+{"servererror":"",
+"status":1,
+"message":""}
+
+* status=1表示正常返回结果，status=0表示错误结果，可以根据message来打印具体错误原因。
+* message字段为具体结果数据
+详情请查看具体的返回数据
+
+
+### 用户注册
+
+* url: user-create.htm
+* method: post
+* format: json
+* appkey: App's key
+* seckey: App's seckey
+* email: 邮箱地址
+* username: 用户名
+* password:  密码
+* password2: 重复一次密码
+
+
+### 用户登陆
+
+* url: user-login.htm
+* method: post
+* format: json
+* appkey: App key
+* seckey: App's seckey
+* email: 用户名或邮箱地址
+* password: 密码
+
+
+### 板块列表
+
+* url: index-forumlist.htm
+*method: get
+* format: json
+* appkey: App key
+* seckey: App's seckey
+
+
+### 最新主题或最新回复
+
+* url: index-index-homepage_type-bbs.htm
+* method: get
+* format: json
+* appkey: App key
+* seckey: App's seckey
+* orderby: tid=最新铁, lastpost=最新回复
+* page: 分页
+
+
+### 主题列表
+
+* url: forum-index.htm
+* method: get
+* format: json
+* appkey: App key
+* seckey: App's seckey
+* fid: 板块id
+* page: 分页
+
+
+### 查看主题
+
+* url: thread-index.htm
+* method: get
+* format: json
+* appkey: App key
+* seckey: App's seckey
+* fid: 板块id
+* tid: 主题id
+* page: 分页
+
+
+### 发新主题
+
+* url: post-thread.htm
+* method: post
+* format: json
+* appkey: App key
+* seckey: App's seckey
+* auth: 用户信息key
+* fid: 板块ID
+* typeid1: 一级分类ID
+* typeid2: 二级分类ID
+* typeid3: 三级分类ID
+* typeid4: 四级分类ID
+* subject: 标题
+* message: 内容
+
+
+### 回复或引用
+
+* url: post-post.htm
+* method: post
+* format: json
+* appkey: App key
+* seckey: App's seckey
+* auth: 用户信息key
+* fid: 板块id
+* tid: 主题id
+* pid: 帖子id(仅在引用时候需要)
+* message: 回复内容
+
+
+### 编辑帖子
+
+* url: post-update.htm
+* method: post
+* format: json
+* appkey: App key
+* seckey: App's seckey
+* auth: 用户信息key
+* fid: 板块id
+* pid: 帖子id
+* typeid1: 一级分类ID
+* typeid2: 二级分类ID
+* typeid3: 三级分类ID
+* typeid4: 四级分类ID
+* subject: 标题(仅在编辑楼主的帖子时候需要)
+* message: 内容
+
+### 搜索
+
+* url: search-index.htm
+* method: get/post
+* format: json
+* appkey: App key
+* seckey: App's seckey
+* keyword: 搜索关键词（urlencode）
+* page: 页码（如果结果有多页）
+
+
+### 个人资料
+
+* url: you-index.htm
+* method: get
+* format: json
+* appkey: App key
+* seckey: App's seckey
+*uid: 用户ID
+
+### 用户参与的主题
+
+* url: you-post.htm
+* method: get
+* format: json
+* appkey: App key
+* seckey: App's seckey
+* uid: 用户ID
+* page: 页码（如果有分业）
+

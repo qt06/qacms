@@ -37,6 +37,14 @@ function delay_execute(dialog, recall) {
 	var ajaxhandle = null;
 	$('#login_form').submit(function() {return false;});
 	$('#login_submit_ajax').click(function() {
+if($("#login_email").val() == "") {
+$("#login_email").focus();
+return false;
+}
+if($("#login_password").val() == "") {
+$("#login_password").focus();
+return false;
+}
 		
 		$('div.alert').remove();
 		$('#login_submit_ajax').disable();

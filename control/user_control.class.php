@@ -39,7 +39,7 @@ class user_control extends common_control {
 			
 			if(empty($email)) {
 				$error['email'] = '请填写用户名或Email';
-				$this->message($error);
+				$this->message($error['email'], 0);
 			}
 			
 			// hook user_login_check_before.php
@@ -49,7 +49,7 @@ class user_control extends common_control {
 				if(empty($userdb)) {
 					$error['email'] = '用户名/Email 不存在';
 					log::write('EMAIL不存在:'.$email, 'login.php');
-					$this->message($error);
+					$this->message($error['email'], 0);
 				}
 			}
 			$uid = $userdb['uid'];
@@ -58,7 +58,7 @@ class user_control extends common_control {
 				$error['password'] = '密码错误!';
 				$log_password = '******'.substr($password, 6);
 				log::write("密码错误：$email - $log_password", 'login.php');
-				$this->message($error);
+				$this->message($error['password'], 0);
 			}
 			
 			// hook user_login_check_after.php
@@ -130,6 +130,9 @@ class user_control extends common_control {
 			
 			// check 数据格式
 			$error['email'] = $this->user->check_email($email);
+			if(array_filter($error)) {
+				$this->message($error['email'], 0);
+			}
 			$error['email_exists'] = $this->user->check_email_exists($email);
 			
 			// 如果email存在
@@ -147,6 +150,9 @@ class user_control extends common_control {
 			$error['password'] = $this->user->check_password($password);
 			$error['password2'] = $this->user->check_password2($password, $password2);
 			
+			if(array_filter($error)) {
+				$this->message(implode(' | ',$error), 0);
+			}
 			$groupid = $this->conf['reg_email_on'] ? 6 : 11;
 			$salt = $this->user->randString(9);
 			$user = array(

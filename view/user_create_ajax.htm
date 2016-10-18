@@ -72,6 +72,22 @@ function delay_execute(dialog, recall) {
 	var ajaxhandle = null;
 	$('#create_form').submit(function() {return false;});
 	$('#create_submit_ajax').click(function() {
+if($("#create_email").val() == "") {
+$("#create_email").focus();
+return false;
+}
+if($("#create_username").val() == "") {
+$("#create_username").focus();
+return false;
+}
+if($("#create_password").val() == "") {
+$("#create_password").focus();
+return false;
+}
+if($("#create_password2").val() == "") {
+$("#create_password2").focus();
+return false;
+}
 		
 		$('#create_submit_ajax').disable();
 		$('div.alert').remove();

@@ -1,0 +1,38 @@
+<!--{include header.htm}-->
+
+<div class="width">
+	<div class="div">
+		<div class="header"><span class="icon"></span>创建新应用 > $conf[app_name]开放平台</div>
+		<div class="body">
+			<div style="margin-top: 8px; line-height: 12px; margin-bottom: 4px;">
+<form action="?open-create.htm" method="post" id="create_app">
+	<input type="hidden" name="FORM_HASH" value="{FORM_HASH}" />
+<p><label for="name">应用名称：</label>
+<input type="text" id="name" name="name" />
+<span>应用名称，建议使用字母</span>
+</p>
+<p><label for="screenname">显示名称：</label>
+<input type="text" id="screenname" name="screenname" />
+<span>用于显示给用户</span>
+</p>
+<p><label for="type"> 应用类型：</label>
+<select id="type" name="type">
+<option value="exe">独立exe执行程序</option>
+<option value="dll">dll调用</option>
+<option value="url">url网页应用</option>
+</select>
+</p>
+<p><label for="description">应用描述：</label>
+<input type="text" id="description" name="description" />
+</p>
+<p><button type="submit">提交申请</button></p>
+</form>
+			</div>
+		</div>
+		<div class="footer"></div>
+	</div>
+</div>
+
+<!--{include footer.htm}-->
+</body>
+</html>
