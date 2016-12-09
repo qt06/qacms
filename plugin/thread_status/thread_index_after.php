@@ -12,4 +12,6 @@ $this->view->assign('userlist', $userlist);
 		$ismod = $this->is_mod($forum, $this->_user);
 		$this->view->assign('ismod', $ismod);
 		$this->view->assign('scrollbottom', $scrollbottom);
+		$this->view->assign('fid', $fid);
+		$this->view->assign('tid', $tid);
 }

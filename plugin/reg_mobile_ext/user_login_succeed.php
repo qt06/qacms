@@ -1,0 +1,11 @@
+$imei = core::gpc("imei", "P");
+$appversion = core::gpc("appversion", "P");
+$androidversion = core::gpc("androidversion", "P");
+$mobiletype = core::gpc("mobiletype", "P");
+$error['user']['imei'] = $imei;
+$user = $this->user->read($userdb['uid']);
+$user["imei"] = $imei;
+$user["appversion"] = $appversion;
+$user["androidversion"] = $androidversion;
+$user["mobiletype"] = $mobiletype;
+$this->user->update($user);
