@@ -93,6 +93,7 @@ class thread_control extends common_control {
 		
 		// 判断权限
 		foreach($postlist as &$post) {
+			$post['message'] = str_replace('<embed ','<embed autostart="false" ', $post['message']);
 			if(isset($userlist[$post['uid']]) && $userlist[$post['uid']]['groupid'] == 7) $post['message'] = '<span class="grey">用户被禁言，帖子被屏蔽。</span>';
 		}
 		
