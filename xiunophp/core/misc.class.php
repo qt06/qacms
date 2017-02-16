@@ -49,7 +49,7 @@ class misc {
 		$left < 0 && $end = min($totalpage, $end -= $left);
 		
 		$s = '<ul class="pagination">';
-		$page != 1 && $s .= '<li><a href="'.$url.$rewritepage.($page - 1).$urladd.'" accesskey="b">上一页</a></li>';
+		$page != 1 && $s .= '<li><a href="'.$url.$rewritepage.($page - 1).$urladd.'" accesskey="x">上一页</a></li>';
 $s .= '<li><input type="text" accesskey="z" onkeyup="if(event.keyCode == 13) {window.location = \''.$url.$rewritepage.'\' + this.value + \''.$urladd.'\';}" title="第' . $page . '页，共' . $totalpage . '页，输入页码，按回车快速跳转" /></li>';
 		if($start > 1) $s .= '<li><a href="'.$url.$rewritepage.'1'.$urladd.'">1 '.($start > 2 ? '... ' : '').'</a></li>';
 		for($i=$start; $i<=$end; $i++) {
@@ -60,7 +60,7 @@ $s .= '<li><input type="text" accesskey="z" onkeyup="if(event.keyCode == 13) {wi
 			}
 		}
 		if($end != $totalpage) $s .= '<li><a href="'.$url.$rewritepage.$totalpage.$urladd.'">'.($totalpage - $end > 1 ? '... ' : '').$totalpage.'</a></li>';
-		$page != $totalpage && $s .= '<li><a href="'.$url.$rewritepage.($page + 1).$urladd.'" accesskey="n">下一页</a></li>';
+		$page != $totalpage && $s .= '<li><a href="'.$url.$rewritepage.($page + 1).$urladd.'" accesskey="x">下一页</a></li>';
 		$s .= '</ul>';
 		return $s;
 	}
@@ -79,8 +79,8 @@ $s .= '<li><input type="text" accesskey="z" onkeyup="if(event.keyCode == 13) {wi
 		}
 		
 		$s = '<ul class="pager">';
-		$page > 1 && $s .= '<li><a href="'.$url.$rewritepage.($page - 1).$urladd.'" accesskey="b">上一页</a></li>';
-		$totalnum >= $pagesize && $s .= '<li><a href="'.$url.$rewritepage.($page + 1).$urladd.'" accesskey="n">下一页</a></li>';
+		$page > 1 && $s .= '<li><a href="'.$url.$rewritepage.($page - 1).$urladd.'" accesskey="x">上一页</a></li>';
+		$totalnum >= $pagesize && $s .= '<li><a href="'.$url.$rewritepage.($page + 1).$urladd.'" accesskey="x">下一页</a></li>';
 		$s .= '</ul>';
 		return $s;
 	}

@@ -2,7 +2,7 @@
 if($('embed').length > 0) {
 $('embed').replaceWith(function() {
 var src = $(this).attr('src');
-$(this).attr('src', '');
+$(this).attr({"src": "", "play": "false", "autostart": "false"});
 var ph = '<audio controls="controls" src="' + src + '"></audio>';
 return ph;
 });
