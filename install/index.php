@@ -427,7 +427,7 @@ if(empty($step) || $step == 'checklicense') {
 			if(!misc::is_writable($configfile)) {
 				include './header.inc.php';
 				if(IN_SAE) {
-					echo '<h3>SAE 环境下安装需要手工将conf目录下的original.conf.php文件改名为' . $_SERVER['SERVER_NAME'] . '.conf.php，然后将以下代码复制粘贴到里面：</h3>';
+					echo '<h3>SAE 环境下安装需要手工将conf目录下的original.conf.php文件改名为conf.php，然后将以下代码复制粘贴到里面：</h3>';
 					echo '<div><textarea style="width: 700px; height: 400px">'.$s.'</textarea></div>';
 					echo '<div>【注意】 需要使用UTF-8编辑器，请不要使用WINDOWS 记事本！</div>';
 					
@@ -435,7 +435,7 @@ if(empty($step) || $step == 'checklicense') {
 					include './footer.inc.php';
 					exit;
 				} else {
-					echo '<h3>当前的配置文件不可写，需要手工将conf目录下的original.conf.php文件改名为' . $_SERVER['SERVER_NAME'] . '.conf.php，然后将以下代码复制粘贴到里面：</h3>';
+					echo '<h3>当前的配置文件不可写，需要手工将conf目录下的original.conf.php文件改名为conf.php，然后将以下代码复制粘贴到里面：</h3>';
 					echo '<div><textarea style="width: 700px; height: 400px">'.$s.'</textarea></div>';
 					echo '<div>【注意】 需要使用UTF-8编辑器，请不要使用WINDOWS 记事本！</div>';
 					echo '<div><input type="submit" value=" 下一步" name="formsubmit" onclick="window.location=\'index.php?step=complete\'" /></div>';
@@ -443,7 +443,7 @@ if(empty($step) || $step == 'checklicense') {
 					exit;
 				}
 			} else {
-				file_put_contents(BBS_PATH . 'conf/' . $_SERVER['SERVER_NAME'] . '.conf.php', $s);
+				file_put_contents(BBS_PATH . 'conf/conf.php', $s);
 			}
 		}
 	}

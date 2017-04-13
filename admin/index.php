@@ -13,7 +13,7 @@ define('BBS_PATH', str_replace('\\', '/', substr(__FILE__, 0, -15)));
 define('FRAMEWORK_PATH', BBS_PATH.'xiunophp/');
 
 // 加载应用的配置文件
-$bbsconf = include BBS_PATH.'conf/' . $domain . '.conf.php';
+$bbsconf = include BBS_PATH.'conf/conf.php';
 $adminconf = include BBS_PATH.'admin/conf/conf.php';
 $conf = array_merge($bbsconf, $adminconf);
 

@@ -20,7 +20,7 @@ DEBUG && function_exists('ini_set') && @ini_set('display_errors', 'On');
 define('BBS_PATH', str_replace('\\', '/', dirname(__FILE__)).'/');
 
 // 加载应用的配置文件，唯一的全局变量 $conf
-if(!@($conf = include BBS_PATH.'conf/' . $domain . '.conf.php')) {
+if(!@($conf = include BBS_PATH.'conf/conf.php')) {
 	header('Location:install/');
 	exit;
 }
