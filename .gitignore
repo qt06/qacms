@@ -9,3 +9,4 @@
 /log/*.php
 /conf/127*.php
 /conf/lh*.php
+/conf/conf.php

@@ -388,6 +388,7 @@ if(empty($step) || $step == 'checklicense') {
 				'seo_description' => '晴天无障碍网站建设系统，运行速度快，负载高，无障碍访问。',	// 网站首页的 description
 				'search_type' => 'title',		// title|baidu|google|bing|sphinx
 				'china_icp' => '',			// icp 备案号，也只有在这神奇的国度有吧。
+				'header_toolbar' => '',		
 				'app_copyright' => '&copy; 2006-2018 科技有限公司',
 				'footer_js' => '',			// 页脚额外的代码，放用于统计JS之类代码。
 				'iptable_on' => 0,			// IP 规则，白名单，黑名单

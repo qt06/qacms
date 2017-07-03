@@ -146,19 +146,19 @@ class base_model {
 	}
 	
 	public function db_get($key) {
-		return $this->get_db_instance($key)->get($key);
+		return $this->db->get($key);
 	}
 	
 	public function db_set($key, $data) {
-		return $this->get_db_instance($key)->set($key, $data);
+		return $this->db->set($key, $data);
 	}
 	
 	public function db_update($key, $data) {
-		return $this->get_db_instance($key)->update($key, $data);
+		return $this->db->update($key, $data);
 	}
 	
 	public function db_delete($key) {
-		return $this->get_db_instance($key)->delete($key);
+		return $this->db->delete($key);
 	}
 	
 	// 重载此函数，用来分布到不同的 cache server
@@ -182,19 +182,19 @@ class base_model {
 	}
 	
 	public function cache_get($key) {
-		return $this->get_cache_instance($key)->get($key);
+		return $this->cache->get($key);
 	}
 	
 	public function cache_set($key, $data) {
-		return $this->get_cache_instance($key)->set($key, $data);
+		return $this->cache->set($key, $data);
 	}
 	
 	public function cache_update($key, $data) {
-		return $this->get_cache_instance($key)->update($key, $data);
+		return $this->cache->update($key, $data);
 	}
 	
 	public function cache_delete($key) {
-		return $this->get_cache_instance($key)->delete($key);
+		return $this->cache->delete($key);
 	}
 	
 	// -------------------------> 以下接口符合 db_interface & cache_interface 标准。在数据量小的情况下（数据表小于2G），直接开启可以起到很好的加速效果。
@@ -399,8 +399,8 @@ class base_model {
 		$arg3 !== FALSE && array_push($key, $arg3);
 		$arg4 !== FALSE && array_push($key, $arg4);
 		
-		$key = $this->to_key($key);
-		return $this->db_cache_get($key);
+		//$key = $this->to_key($key);
+		return $this->get($key); //$this->db_cache_get($key);
 	}
 	
 	/*

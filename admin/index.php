@@ -2,13 +2,11 @@
 
 /*
  * Copyright (C) xiuno.com
+ * Copyright (C) qt06.com
  */
 
-$domain = $_SERVER['HTTP_HOST'];
-//去掉端口号
-stripos($domain,':') && $domain = substr($domain,0,stripos($domain,':'));
 // 调试模式: 1 打开，0 关闭
-define('DEBUG', 0);
+define('DEBUG', 2);
 define('BBS_PATH', str_replace('\\', '/', substr(__FILE__, 0, -15)));
 define('FRAMEWORK_PATH', BBS_PATH.'xiunophp/');
 
