@@ -52,8 +52,10 @@ $this->bbs();
 			$this->thread->format($thread);
 			
 		//get postmessage
-		$post = $this->post->read($thread['fid'],$thread['firstpid']);
-		$thread['message'] = $post['message'];
+		if($this->conf['homepage_type'] == 'blog' && $this->format != 'json') {
+			$post = $this->post->read($thread['fid'],$thread['firstpid']);
+			$thread['message'] = $post['message'];
+		}
 		//end get post message
 			// 去掉没有权限访问的版块数据
 			$fid = $thread['fid'];

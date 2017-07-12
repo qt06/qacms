@@ -94,7 +94,7 @@ class forum_control extends common_control {
 			$readtids .= ','.$thread['tid'];
 			$this->thread->format($thread, $forum);
 		//get postmessage
-			if($forum['type'] == 'blog' && $this->format == 'json') {
+			if($forum['type'] == 'blog' && $this->format != 'json') {
 				$post = $this->post->read($thread['fid'],$thread['firstpid']);
 				$thread['message'] = $post['message'];
 			}
