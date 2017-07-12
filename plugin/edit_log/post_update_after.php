@@ -1,0 +1,1 @@
+			$post['edit_log'] = '本帖由' . $username . '在' . date('Y-m-d H:i:s') . '编辑' . '<br />';

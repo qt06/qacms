@@ -4,6 +4,7 @@
 /upload/friendlink/
 /upload/plugin/
 /upload/install.lock
+/upload/plugin.json
 /upload/*.db
 /tmp/*.php
 /log/*.php
