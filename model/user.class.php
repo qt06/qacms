@@ -214,8 +214,8 @@ class user extends base_model{
 	// 用来显示给用户
 	public function format(&$user) {
 		if(!$user) return;
-		$user['regdate_fmt'] = date('Y-n-j', $user['regdate']);
-		$user['regip'] = long2ip($user['regip']);
+		$user['regdate_fmt'] = date('Y-m-d', $user['regdate']);
+		$user['regip'] = long2ip(intval($user['regip']));
 		$dir = image::get_dir($user['uid']);
 		if($user['avatar']) {
 			$user['avatar_small'] = $this->conf['upload_url'].'avatar/'.$dir.'/'.$user['uid'].'_small.gif?'.$user['avatar'];
