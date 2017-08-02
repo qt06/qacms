@@ -13,11 +13,16 @@ DEBUG && function_exists('ini_set') && @ini_set('display_errors', 'On');
 
 // 站点根目录，在单元测试时候，此文件可能被包含
 define('BBS_PATH', str_replace('\\', '/', dirname(__FILE__)).'/');
+$domain = $_SERVER['HTTP_HOST'];
+//去掉端口号
+stripos($domain,':') && $domain = substr($domain,0,stripos($domain,':'));
 
 // 加载应用的配置文件，唯一的全局变量 $conf
+if(!@($conf = include BBS_PATH.'conf/'.$domain.'.conf.php')) {
 if(!@($conf = include BBS_PATH.'conf/conf.php')) {
 	header('Location:install/');
 	exit;
+}
 }
 if(empty($conf['installed'])) {
 	header('Location:install/');

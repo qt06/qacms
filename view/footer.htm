@@ -2,6 +2,7 @@
 		<div class="footer"  role="contentinfo">
 			<p>$conf[app_copyright]</p>
 			<!--{if $conf[china_icp]}--><p>网站备案号：$conf[china_icp]</p><!--{/if}-->
+			<p>$_SERVER[time_fmt], 耗时:<!--{php echo number_format(microtime(1) - $_SERVER['starttime'], 4);}-->s</p>
 			<p>Powered by <a href="http://www.qt.hk/" target="_blank">晴天无障碍建站系统</a> Based on <a href="http://bbs.xiuno.com/" target="_blank">Xiuno BBS</a>			</p>
 		</div>
 

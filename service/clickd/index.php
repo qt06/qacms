@@ -25,8 +25,12 @@ define('BBS_PATH', str_replace('\\', '/', substr(__FILE__, 0, -24)));
 $domain = $_SERVER['HTTP_HOST'];
 //去掉端口号
 stripos($domain,':') && $domain = substr($domain,0,stripos($domain,':'));
-$conf = include BBS_PATH.'conf/conf.php';
-//$conf = include BBS_PATH.'conf/conf.php';
+if(!@($conf = include BBS_PATH.'conf/'.$domain.'.conf.php')) {
+if(!@($conf = include BBS_PATH.'conf/conf.php')) {
+	header('Location:' . BBS_PATH . 'install/');
+	exit;
+}
+}
 
 define('FRAMEWORK_PATH', BBS_PATH.'xiunophp/');
 define('FRAMEWORK_TMP_PATH', $conf['tmp_path']);

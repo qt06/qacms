@@ -16,6 +16,7 @@
 	
 	<!--{hook index_thread_list_after.htm}-->
 	
+<!--{if $_user['groupid'] > 0 && $_user['groupid'] < 6}-->
 	<div class="div">
 		<div class="header"><span class="icon icon-stat"></span> 站点统计</div>
 		<div class="body">
@@ -42,6 +43,7 @@
 		</div>
 		<div class="footer"></div>
 	</div>
+<!--{/if}-->
 	
 	<!--{hook index_index_stat_after.htm}-->
 	

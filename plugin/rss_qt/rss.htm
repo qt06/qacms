@@ -1,0 +1,35 @@
+<!--{php echo '<?xml version="1.0" encoding="UTF-8"?>';}-->
+<rss version="2.0"
+xmlns:content="http://purl.org/rss/1.0/modules/content/"
+xmlns:dc="http://purl.org/dc/elements/1.1/"
+xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+xmlns:atom="http://www.w3.org/2005/Atom"
+xmlns:wfw="http://wellformedweb.org/CommentAPI/">
+<channel>
+<title><!--{loop $_title $title}-->$title <!--{/loop}--></title>
+<link>$conf[app_url]</link>
+<atom:link href="$conf[app_url]?index-rss.htm" rel="self" type="application/rss+xml" />
+<language>zh-CN</language>
+<description>$conf[app_name]</description>
+<lastBuildDate>$lastbuilddate</lastBuildDate>
+<pubDate>$pubdate</pubDate>
+<!--{loop $threadlist $thread}-->
+<item>
+<title>$thread[subject]</title>
+<link>$conf[app_url]?thread-index-fid-$thread[fid]-tid-$thread[tid].htm</link>
+<guid>$conf[app_url]?thread-index-fid-$thread[fid]-tid-$thread[tid].htm</guid>
+<pubDate>$thread[lastpost_rss]</pubDate>
+<dc:creator>$thread[username]</dc:creator>
+<description><![CDATA[
+$thread[message]
+]]></description>
+<content:encoded xml:lang="zh-CN"><![CDATA[
+$thread[message]
+]]></content:encoded>
+<slash:comments>$thread[comments]</slash:comments>
+<comments>$conf[app_url]?thread-index-fid-$thread[fid]-tid-$thread[tid].htm</comments>
+<wfw:commentRss>$conf[app_url]?thread-index-fid-$thread[fid]-tid-$thread[tid].htm</wfw:commentRss>
+</item>
+<!--{/loop}-->
+</channel>
+</rss>
