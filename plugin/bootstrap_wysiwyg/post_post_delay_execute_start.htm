@@ -1,0 +1,8 @@
+$.xload("plugin/bootstrap_wysiwyg/js/jquery.hotkeys.min.js","plugin/bootstrap_wysiwyg/js/bootstrap-wysiwyg.js", function() {
+$('#post_message_$pid').hide().focus(function(){$('#qacmseditor').focus();});
+$('#post_message_$pid').after(editorHTML);//'<div id="qacmseditor" class="qacmseditor"></div>');
+$('#qacmseditor').html($('#post_message_$pid').val()).wysiwyg();
+$('#qacmseditor').bind('change', function(){
+$('#post_message_$pid').val($('#qacmseditor').html());
+});
+});

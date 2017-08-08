@@ -204,7 +204,7 @@ class post_control extends common_control {
 				$this->post->update($post);
 				
 				// 更新 $user 用户发帖数，积分
-				//$user = $this->user->read($uid);
+				$user = $this->user->read($uid);
 				$user['threads']++;
 				$user['posts']++;
 				$user['credits'] += $this->conf['credits_policy_thread'];
@@ -325,8 +325,8 @@ class post_control extends common_control {
 			if($quickpost) {
 				$message = htmlspecialchars($message);
 				$message = misc::html_space($message);
-				$message = preg_replace('#(https?://[^\'"\\\\<>:\s]+(:\d+)?)([^\'"\\\\<>:\s]+?)#is', '<a href="\\0" target="_blank">\\0</a>', $message);
-				$message = preg_replace('#(ed2k://[^\s\'\"\\\\<>]+)#is', '<a href="\\1" target="_blank">\\1</a>', $message);
+				//$message = preg_replace('#(https?://[^\'"\\\\<>:\s]+(:\d+)?)([^\'"\\\\<>:\s]+?)#is', '<a href="\\0" target="_blank">\\0</a>', $message);
+				//$message = preg_replace('#(ed2k://[^\s\'\"\\\\<>]+)#is', '<a href="\\1" target="_blank">\\1</a>', $message);
 			}
 			
 			// hook post_post_html_safe_before.php
