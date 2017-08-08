@@ -9,7 +9,7 @@
 <p><a href="?open-create.htm">我要创建应用</a></p>
 <ul>
 <!--{loop $applist $app}-->
-<li><a href="?open-view-aid-$app[aid].htm">$app[screenname]</a>作者：<a href="?you-index-uid-$app[uid].htm">$app[username]</a><span>appkey:$app[appkey]</span><span>seckey:$app[seckey]</span></li>
+<li><a href="?open-view-aid-$app[aid].htm">$app[screenname]</a>作者：<a href="?you-index-uid-$app[uid].htm">$app[username]</a><!--{if $app['uid'] == $_user['uid']}--><span>appkey:$app[appkey]</span><span>seckey:$app[seckey]</span><!--{/if}--></li>
 <!--{/loop}-->
 </ul>
 			</div>
