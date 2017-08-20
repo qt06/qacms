@@ -47,6 +47,7 @@ class template {
 	public function display($file, $json = array()) {
 		if(!core::gpc('ajax', 'R')) {
 			extract($this->vars, EXTR_SKIP);
+			//$_title[] = 'powered by 晴天无障碍建站系统';
 			include $this->gettpl($file);
 			
 		// json 格式，约定为格式。

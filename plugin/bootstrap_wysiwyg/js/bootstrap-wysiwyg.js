@@ -1,89 +1,5 @@
 /* jshint browser: true */
 
-var editorHTML = '\
-<div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">\
-	<div class="btn-group">\
-		<a class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" title="Font Size"><i class="fa fa-text-height"></i>&nbsp;<b class="caret"></b></a>\
-		<ul class="dropdown-menu">\
-<li><a data-edit="fontSize 5" class="fs-Five">Huge</a></li>\
-<li><a data-edit="fontSize 3" class="fs-Three">Normal</a></li>\
-<li><a data-edit="fontSize 1" class="fs-One">Small</a></li>\
-		</ul>\
-	</div>\
-	<div class="btn-group">\
-		<a class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" title="Text Highlight Color"><i class="fa fa-paint-brush"></i>&nbsp;<b class="caret"></b></a>\
-		<ul class="dropdown-menu">\
-<p>&nbsp;&nbsp;&nbsp;Text Highlight Color:</p>\
-                        <li><a data-edit="backColor #00FFFF">Blue</a></li>\
-<li><a data-edit="backColor #00FF00">Green</a></li>\
-<li><a data-edit="backColor #FF7F00">Orange</a></li>\
-<li><a data-edit="backColor #FF0000">Red</a></li>\
-<li><a data-edit="backColor #FFFF00">Yellow</a></li>\
-		</ul>\
-	</div>\
-	<div class="btn-group">\
-		<a class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" title="Font Color"><i class="fa fa-font"></i>&nbsp;<b class="caret"></b></a>\
-		<ul class="dropdown-menu">\
-<p>&nbsp;&nbsp;&nbsp;Font Color:</p>\
-<li><a data-edit="foreColor #000000">Black</a></li>\
-                        <li><a data-edit="foreColor #0000FF">Blue</a></li>\
-                        <li><a data-edit="foreColor #30AD23">Green</a></li>\
-<li><a data-edit="foreColor #FF7F00">Orange</a></li>\
-<li><a data-edit="foreColor #FF0000">Red</a></li>\
-<li><a data-edit="foreColor #FFFF00">Yellow</a></li>\
-		</ul>\
-	</div>\
-	<div class="btn-group">\
-		<a class="btn btn-secondary" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i class="fa fa-bold"></i></a>\
-		<a class="btn btn-secondary" data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>\
-		<a class="btn btn-secondary" data-edit="strikethrough" title="Strikethrough"><i class="fa fa-strikethrough"></i></a>\
-		<a class="btn btn-secondary" data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i class="fa fa-underline"></i></a>\
-	</div>\
-	<div class="btn-group">\
-		<a class="btn btn-secondary" data-edit="insertunorderedlist" title="Bullet list"><i class="fa fa-list-ul"></i></a>\
-		<a class="btn btn-secondary" data-edit="insertorderedlist" title="Number list"><i class="fa fa-list-ol"></i></a>\
-		<a class="btn btn-secondary" data-edit="outdent" title="Reduce indent (Shift+Tab)"><i class="fa fa-outdent"></i></a>\
-		<a class="btn btn-secondary" data-edit="indent" title="Indent (Tab)"><i class="fa fa-indent"></i></a>\
-	</div>\
-	<div class="btn-group">\
-		<a class="btn btn-secondary" data-edit="format-pre" title="Preformatted text">pre</a>\
-		<a class="btn btn-secondary" data-edit="format-address" title="Address (Contact Information)">address</a>\
-		<a class="btn btn-secondary" data-edit="format-h1">h1</a>\
-		<a class="btn btn-secondary" data-edit="format-h2">h2</a>\
-		<a class="btn btn-secondary" data-edit="format-h3">h3</a>\
-		<a class="btn btn-secondary" data-edit="format-h4">h4</a>\
-		<a class="btn btn-secondary" data-edit="format-h5">h5</a>\
-		<a class="btn btn-secondary" data-edit="format-p" title="Paragraph"><i class="fa fa-paragraph"></i></a>\
-		<a class="btn btn-secondary" data-edit="format-blockquote">block</a>\
-		<a class="btn btn-secondary" data-edit="format-div">div</a>\
-	</div>\
-	<div class="btn-group">\
-		<a class="btn btn-secondary" data-edit="justifyleft" title="Align Left (Ctrl/Cmd+L)"><i class="fa fa-align-left"></i></a>\
-		<a class="btn btn-secondary" data-edit="justifycenter" title="Center (Ctrl/Cmd+E)"><i class="fa fa-align-center"></i></a>\
-		<a class="btn btn-secondary" data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)"><i class="fa fa-align-right"></i></a>\
-		<a class="btn btn-secondary" data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i class="fa fa-align-justify"></i></a>\
-	</div>\
-	<div class="btn-group">\
-		<a class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" title="Hyperlink"><i class="fa fa-link"></i></a>\
-		<div class="dropdown-menu input-append">\
-<input placeholder="URL" type="text" data-edit="createLink" />\
-<button class="btn" type="button">Add</button>\
-		</div>\
-	</div>\
-	<div class="btn-group">\
-		<a class="btn btn-secondary" data-edit="unlink" title="Remove Hyperlink"><i class="fa fa-unlink"></i></a>\
-		<span class="btn btn-secondary" title="Insert picture (or just drag & drop)" id="pictureBtn"> <i class="fa fa-picture-o"></i>\
-<input class="imgUpload" type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" />\
-		</span>\
-	</div>\
-	<div class="btn-group">\
-		<a class="btn btn-secondary" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="fa fa-undo"></i></a>\
-		<a class="btn btn-secondary" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></a>\
-		<a class="btn btn-secondary" data-edit="html" title="Clear Formatting"><i class="glyphicon glyphicon-pencil"></i></a>\
-	</div>\
-</div>\
-<div id="qacmseditor" class="qacmseditor" style="height: 300"></div>\
-';
 ( function( window, $ )
 {
     "use strict";
@@ -262,8 +178,8 @@ var editorHTML = '\
                 }
             } );
         } );
-$(editor).bind('keydown.ctrl_q', function(e) { alert(        self.selectedRange);});
-$(editor).bind('keydown.ctrl_m', function(e) {pasteHtmlAtCaret('<embed src="a.mp3"></embed><audio src="b.mp3" volume="50" autoplay="autoplay"></audio>');});
+$(editor).bind('keydown.ctrl_s', function(e) { alert(        self.selectedRange);});$(editor).bind('keydown.ctrl_q', function(e) { alert(        self.selectedRange);});
+$(editor).bind('keydown.ctrl_m', function(e) {self.pasteHtmlAtCaret('<embed autostart="false" width="0" height="0" src="http://www.shengbo.org/uploadfile/201708/20170809114527.mp3" type="application/x-mplayer2"></embed>');});
         editor.keyup( function() { editor.trigger( "change" ); } );
      };
 
@@ -340,6 +256,40 @@ $(editor).bind('keydown.ctrl_m', function(e) {pasteHtmlAtCaret('<embed src="a.mp
             }
         } );
      };
+
+     Wysiwyg.prototype.pasteHtmlAtCaret = function(html) {
+        var sel, range;
+        if (window.getSelection) {
+            // IE9 and non-IE
+            sel = window.getSelection();
+            if (sel.getRangeAt && sel.rangeCount) {
+                range = sel.getRangeAt(0);
+                //range.deleteContents();
+                // Range.createContextualFragment() would be useful here but is
+                // non-standard and not supported in all browsers (IE9, for one)
+                var el = document.createElement("div");
+                el.innerHTML = html;
+                var frag = document.createDocumentFragment(), node, lastNode;
+                while ( (node = el.firstChild) ) {
+                    lastNode = frag.appendChild(node);
+                }
+                range.insertNode(frag);
+                
+                // Preserve the selection
+                if (lastNode) {
+                    range = range.cloneRange();
+                    range.setStartAfter(lastNode);
+                    range.collapse(true);
+                    sel.removeAllRanges();
+                    sel.addRange(range);
+                }
+            }
+        } else if (document.selection && document.selection.type != "Control") {
+            // IE < 9
+
+            document.selection.createRange().pasteHTML(html);
+        }
+      };
 
      Wysiwyg.prototype.markSelection = function( input, color, options ) {
         this.restoreSelection(  );

@@ -39,14 +39,14 @@ class rss_control extends common_control {
 		$this->check_forum_exists($forum);
 		$this->check_access($forum, 'read');
 		}
-		
+		if($fid) {
 		// orderby
 		$orderby = core::gpc('orderby', 'C');
 		$orderby = $orderby === NULL ? $forum['orderby'] : intval($orderby);
 		$this->_title[] = $forum['seo_title'] ? $forum['seo_title'] : $forum['name'];
 		$this->_seo_keywords = $forum['seo_keywords'] ?  $forum['seo_keywords'] : $forum['name'];
 		$this->_seo_description = $forum['brief'];
-		
+		}
 		
 		$pagesize = $this->conf['forum_index_pagesize'];
 

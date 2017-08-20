@@ -142,11 +142,11 @@ function delay_execute(dialog, recall) {
 	});
 	
 	// 删除按钮
-	$('table', jpmlist).die('mouseover').live('mouseover', function() {$('a.icon-delete', this).show();});
-	$('table', jpmlist).die('mouseout').live('mouseout', function() {$('a.icon-delete', this).hide();});
+	$('table', jpmlist).on('mouseover', function() {$('a.icon-delete', this).show();});
+	$('table', jpmlist).on('mouseout', function() {$('a.icon-delete', this).hide();});
 	
 	// 删除记录
-	$('a.icon-delete', jpmlist).die('click').live('click', function() {
+	$('a.icon-delete', jpmlist).on('click', function() {
 		if(window.confirm('您确定删除吗？')) {
 			var jlink = $(this);
 			var href = jlink.attr('href');

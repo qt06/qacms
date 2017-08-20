@@ -366,10 +366,10 @@ $('#return_back').click(function() {
 
 // 鼠标放在头像上弹出用户信息 ajaxdialog_hover
 var jajaxdialoglinks = $('a.ajaxdialog_hover');
-jajaxdialoglinks.die('click').live('click', function() {window.open($(this).attr('href_real'))});
-jajaxdialoglinks.die('mouseover').live('mouseover', ajaxdialog_mouseover);
-jajaxdialoglinks.die('mouseout').live('mouseout', ajaxdialog_mouseout);
-$('a.ajaxconfirm').die('click').live('click', ajaxdialog_confirm);
+$(document).on('click', jajaxdialoglinks, function() {window.open($(this).attr('href_real'))});
+$(document).on('mouseover', jajaxdialoglinks, ajaxdialog_mouseover);
+$(document).on('mouseout', jajaxdialoglinks, ajaxdialog_mouseout);
+$(document).on('click','a.ajaxconfirm', ajaxdialog_confirm);
 
 // post_td 下的图片调整大小
 $(function() {
@@ -389,8 +389,8 @@ $(function() {
 });
 
 //帖子正文回车复制到剪贴板
-$(".message").live('keyup',function(){
-	if(event.keyCode == 13) {
+$(document).on('keydown', ".message", function(e){
+	if(e.which == 13) {
 		var data = $(this).attr('innerText') + '\r\n' + '本文来自$conf[app_name]，地址： ' + location.href;		window.clipboardData.setData('text',data);
 	}
 }).find('a').attr("target","_blank");

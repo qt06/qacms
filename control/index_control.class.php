@@ -126,7 +126,7 @@ $tl[] = $v;
 		if($this->conf['homepage_type'] == 'blog') {
 		$this->view->display('blog_index.htm');
 		} else {
-		$this->view->display('index_index.htm');
+			$this->view->display('index_index.htm');
 		}
 	}
 	

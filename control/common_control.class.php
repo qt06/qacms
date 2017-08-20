@@ -389,6 +389,11 @@ class common_control extends base_control {
 			echo core::json_encode($json);
 			exit;
 		} else {
+			if(is_string($message)) {
+				$this->_title[] = strip_tags($message);
+			} else {
+				$this->_title[] = '提示信息';
+			}
 			$this->view->assign('message', $message);
 			$this->view->assign('status', $status);
 			$this->view->assign('goto', $goto);
