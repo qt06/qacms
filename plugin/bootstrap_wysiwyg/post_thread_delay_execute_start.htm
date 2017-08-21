@@ -1,8 +1,3 @@
-$.xload("plugin/bootstrap_wysiwyg/js/jquery.hotkeys.min.js", "plugin/bootstrap_wysiwyg/js/eh.js?t=a", "plugin/bootstrap_wysiwyg/js/bootstrap-wysiwyg.js?adtt={FORM_HASH}", function() {
-$('#thread_message_$pid').hide();
-$('#thread_message_$pid').after(editorHTML);
-$('#qacmseditor').wysiwyg();
-$('#qacmseditor').bind('change', function(){
-$('#thread_message_$pid').val($('#qacmseditor').html());
-});
+$.xload("plugin/bootstrap_wysiwyg/js/jquery.hotkeys.min.js", "plugin/bootstrap_wysiwyg/js/bootstrap-wysiwyg.js", function() {
+$('#thread_message_$pid').editor();
 });
