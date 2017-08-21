@@ -210,6 +210,17 @@ class common_control extends base_control {
 		
 		$this->conf['_user'] = $this->_user;
 		
+		// 五分钟更新一次
+		if($this->_user['uid'] > 0) {
+			$user = $this->user->read($this->_user['uid']);
+			if(!empty($user) && $_SERVER['time'] - $user['lastactive'] > 300) {
+				$user['lastactive'] = $_SERVER['time'];
+				$user['onlinetime'] += 300;
+				$this->user->update($user);
+			
+			}
+		}
+
 		// hook common_control_init_user_after.php
 	}
 
