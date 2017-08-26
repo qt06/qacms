@@ -1,1 +1,2 @@
-<bgsound id="msg" src="$conf[plugin_url]bgsound/index_index.wav" />
+<!--{php $bgsurl = file_exists($conf['plugin_path'].'bgsound/'.$fid.'.wav') ? $conf['plugin_url'].'bgsound/'.$fid.'.wav' : $conf['plugin_url'].'bgsound/index_index.wav'; }-->
+<bgsound id="msg" src="$bgsurl" />
