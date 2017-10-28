@@ -126,7 +126,9 @@ $('#mod_move').click(function() {
 </script>
 <!--{/if}-->
 <script>
-$("#content").focus();
+$(document).ready(function() {
+setTimeout(function() {$('#content').focus();}, 1000);
+});
 </script>
 <!--{hook thread_index_end.htm}-->
 </body>

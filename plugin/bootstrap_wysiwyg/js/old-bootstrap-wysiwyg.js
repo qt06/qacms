@@ -3,10 +3,9 @@
 ( function( window, $ )
 {
     "use strict";
-
 var tb = '<div class="btn-toolbar" role="toolbar" data-role="editor-toolbar" data-target="#qacmseditor" aria-label="">\
 <div class="btn-group">\
-		<button type="button" tabindex="-1" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-hotkey="alt+d1" title="字体"><i class="fa fa-text-height"></i></button>\
+		<button type="button" tabindex="-1" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-hotkey="alt_d1" title="字体"><i class="fa fa-text-height"></i></button>\
 <div class="dropdown-menu">\
 <button class="btn btn-secondary dropdown-item" type="button" tabindex="-1" data-edit="FontName SimSun"><span style="font-family: SimSun;">宋体</span></button>\
 <button class="btn btn-secondary dropdown-item" type="button" tabindex="-1" data-edit="FontName FangSong_GB2312"><span style="font-family: FangSong_GB2312;">仿宋体</span></button>\
@@ -24,7 +23,7 @@ var tb = '<div class="btn-toolbar" role="toolbar" data-role="editor-toolbar" dat
 </div>\
 </div>\
 	<div class="btn-group">\
-		<button type="button" tabindex="-1" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-hotkey="alt+d2" title="字号"><i class="fa fa-text-height"></i></button>\
+		<button type="button" tabindex="-1" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-hotkey="alt_d2" title="字号"><i class="fa fa-text-height"></i></button>\
 		<div class="dropdown-menu">\
 <button class="dropdown-item fs-Five" type="button" tabindex="-1" data-edit="fontSize 5">大</button>\
 <button class="dropdown-item fs-Three" type="button" tabindex="-1" data-edit="fontSize 3">普通</button>\
@@ -32,7 +31,7 @@ var tb = '<div class="btn-toolbar" role="toolbar" data-role="editor-toolbar" dat
 		</div>\
 	</div>\
 	<div class="btn-group">\
-		<button type="button" tabindex="-1" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-hotkey="alt+d3" title="背景颜色"><i class="fa fa-paint-brush"></i></button>\
+		<button type="button" tabindex="-1" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-hotkey="alt_d3" title="背景颜色"><i class="fa fa-paint-brush"></i></button>\
 		<div class="dropdown-menu">\
                         <button class="btn btn-secondary dropdown-item" type="button" tabindex="-1" data-edit="backColor #00FFFF">蓝色</button>\
 <button class="btn btn-secondary dropdown-item" type="button" tabindex="-1" data-edit="backColor #00FF00">绿色</button>\
@@ -42,7 +41,7 @@ var tb = '<div class="btn-toolbar" role="toolbar" data-role="editor-toolbar" dat
 		</div>\
 	</div>\
 	<div class="btn-group">\
-		<button type="button" tabindex="-1" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-hotkey="alt+d4" title="字体颜色"><i class="fa fa-font"></i></button>\
+		<button type="button" tabindex="-1" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-hotkey="alt_d4" title="字体颜色"><i class="fa fa-font"></i></button>\
 		<div class="dropdown-menu">\
 <button class="btn btn-secondary dropdown-item" type="button" tabindex="-1" data-edit="foreColor #000000">黑色</button>\
                         <button class="btn btn-secondary dropdown-item" type="button" tabindex="-1" data-edit="foreColor #0000FF">蓝色</button>\
@@ -53,10 +52,10 @@ var tb = '<div class="btn-toolbar" role="toolbar" data-role="editor-toolbar" dat
 		</div>\
 	</div>\
 	<div class="btn-group">\
-		<button type="button" tabindex="-1" class="btn btn-secondary" data-edit="bold" data-hotkey="ctrl+b meta+b" title="粗体 (Ctrl/Cmd+B)"><i class="fa fa-bold"></i></button>\
-		<button type="button" tabindex="-1" class="btn btn-secondary" data-edit="italic" data-hotkey="ctrl+i meta+i" title="斜体 (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></button>\
-		<button type="button" tabindex="-1" class="btn btn-secondary" data-edit="strikethrough" data-hotkey="ctrl+d meta+d" title="删除线 (Ctrl/Cmd加D)"><i class="fa fa-strikethrough"></i></button>\
-		<button type="button" tabindex="-1" class="btn btn-secondary" data-edit="underline" data-hotkey="ctrl+u meta+u" title="下划线 (Ctrl/Cmd+U)"><i class="fa fa-underline"></i></button>\
+		<button type="button" tabindex="-1" class="btn btn-secondary" data-edit="bold" data-hotkey="ctrl_b meta_b" title="粗体 (Ctrl/Cmd+B)"><i class="fa fa-bold"></i></button>\
+		<button type="button" tabindex="-1" class="btn btn-secondary" data-edit="italic" data-hotkey="ctrl_i meta_i" title="斜体 (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></button>\
+		<button type="button" tabindex="-1" class="btn btn-secondary" data-edit="strikethrough" data-hotkey="ctrl_d meta_d" title="删除线 (Ctrl/Cmd加D)"><i class="fa fa-strikethrough"></i></button>\
+		<button type="button" tabindex="-1" class="btn btn-secondary" data-edit="underline" data-hotkey="ctrl_u meta_u" title="下划线 (Ctrl/Cmd+U)"><i class="fa fa-underline"></i></button>\
 	</div>\
 	<div class="btn-group">\
 		<button type="button" tabindex="-1" class="btn btn-secondary" data-edit="insertunorderedlist" title="无序列表"><i class="fa fa-list-ul"></i></button>\
@@ -65,7 +64,7 @@ var tb = '<div class="btn-toolbar" role="toolbar" data-role="editor-toolbar" dat
 		<button type="button" tabindex="-1" class="btn btn-secondary" data-edit="outdent" title="减小缩进"><i class="fa fa-outdent"></i></button>\
 	</div>\
 	<div class="btn-group">\
-		<button type="button" tabindex="-1" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-hotkey="alt+d5" title="段落标题"><i class="fa fa-pencil"></i>&nbsp;<b class="caret"></b></button>\
+		<button type="button" tabindex="-1" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-hotkey="alt_d5" title="段落标题"><i class="fa fa-pencil"></i>&nbsp;<b class="caret"></b></button>\
 <div class="dropdown-menu">\
 		<button class="btn btn-secondary dropdown-item"  type="button" tabindex="-1" data-edit="formatBlock <pre>" title="代码">代码</button>\
 		<button class="btn btn-secondary dropdown-item"  type="button" tabindex="-1" data-edit="formatBlock <address>" title="Address (Contact Information)">address</button>\
@@ -80,7 +79,7 @@ var tb = '<div class="btn-toolbar" role="toolbar" data-role="editor-toolbar" dat
 </div>\
 	</div>\
 	<div class="btn-group">\
-		<button type="button" tabindex="-1" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-hotkey="alt+d6" title="对其"><i class="fa "></i>&nbsp;<b class="caret"></b></button>\
+		<button type="button" tabindex="-1" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-hotkey="alt_d6" title="对其"><i class="fa "></i>&nbsp;<b class="caret"></b></button>\
 		<div class="dropdown-menu">\
 		<button class="btn btn-secondary dropdown-item" type="button" tabindex="-1" class="btn btn-secondary" data-edit="justifyleft" title="左对齐 (Ctrl/Cmd+L)"><i class="fa fa-align-left"></i></button>\
 		<button class="btn btn-secondary dropdown-item" type="button" tabindex="-1" class="btn btn-secondary" data-edit="justifycenter" title="居中对齐 (Ctrl/Cmd+E)"><i class="fa fa-align-center"></i></button>\
@@ -89,7 +88,7 @@ var tb = '<div class="btn-toolbar" role="toolbar" data-role="editor-toolbar" dat
 		</div>\
 	</div>\
 	<div class="btn-group">\
-		<button type="button" tabindex="-1" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-hotkey="ctrl+k meta+k" title="插入链接 (Ctrl/Cmd+K)"><i class="fa fa-link"></i></button>\
+		<button type="button" tabindex="-1" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-hotkey="ctrl_k meta_k" title="插入链接 (Ctrl/Cmd+K)"><i class="fa fa-link"></i></button>\
 		<div class="dropdown-menu">\
 <input id="bswe-linkurl" placeholder="请输入链接地址：" type="text" />\
 <input id="bswe-linktext" placeholder="请输入链接文本：" type="text" />\
@@ -101,7 +100,7 @@ var tb = '<div class="btn-toolbar" role="toolbar" data-role="editor-toolbar" dat
 		<button type="button" tabindex="-1" class="btn btn-secondary" data-edit="unlink" title="取消链接"><i class="fa fa-unlink"></i></button>\
 	</div>\
 	<div class="btn-group">\
-		<button type="button" tabindex="-1" class="btn btn-secondary btn-media dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-hotkey="ctrl+m" title="插入多媒体 (ctrl加m)"><i class="fa fa-lmedia"></i></button>\
+		<button type="button" tabindex="-1" class="btn btn-secondary btn-media dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-hotkey="ctrl_m" title="插入多媒体 (ctrl加m)"><i class="fa fa-lmedia"></i></button>\
 		<div class="dropdown-menu">\
 <input id="bswe-mediaurl" placeholder="请输入歌曲地址：" type="text" />\
 <div><button class="btn" type="button" data-edit="bswe-createMedia">确定</button>\
@@ -109,11 +108,11 @@ var tb = '<div class="btn-toolbar" role="toolbar" data-role="editor-toolbar" dat
 		</div>\
 	</div>\
 	<div class="btn-group">\
-		<button type="button" tabindex="-1" class="btn btn-secondary" data-edit="SelectAll" data-hotkey="ctrl+a meta+a"title="全选 (Ctrl/Cmd+A)"><i class="fa fa-undo"></i></button>\
-		<button type="button" tabindex="-1" class="btn btn-secondary" data-edit="Copy" data-hotkey="ctrl+c meta+c" title="复制 (Ctrl/Cmd+C)"><i class="fa fa-copy"></i></button>\
-		<button type="button" tabindex="-1" class="btn btn-secondary" data-edit="Cut" data-hotkey="ctrl+x meta+x" title="剪切 (Ctrl/Cmd+X)"><i class="fa fa-cut"></i></button>\
-		<button type="button" tabindex="-1" class="btn btn-secondary" data-edit="Undo" data-hotkey="ctrl+z meta+z" title="撤销 (Ctrl/Cmd+Z)"><i class="fa fa-undo"></i></button>\
-		<button type="button" tabindex="-1" class="btn btn-secondary" data-edit="Redo" data-hotkey="ctrl+y meta+y" title="重做 (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></button>\
+		<button type="button" tabindex="-1" class="btn btn-secondary" data-edit="SelectAll" data-hotkey="ctrl_a meta_a"title="全选 (Ctrl/Cmd+A)"><i class="fa fa-undo"></i></button>\
+		<button type="button" tabindex="-1" class="btn btn-secondary" data-edit="Copy" data-hotkey="ctrl_c meta_c" title="复制 (Ctrl/Cmd+C)"><i class="fa fa-copy"></i></button>\
+		<button type="button" tabindex="-1" class="btn btn-secondary" data-edit="Cut" data-hotkey="ctrl_x meta_x" title="剪切 (Ctrl/Cmd+X)"><i class="fa fa-cut"></i></button>\
+		<button type="button" tabindex="-1" class="btn btn-secondary" data-edit="Undo" data-hotkey="ctrl_z meta_z" title="撤销 (Ctrl/Cmd+Z)"><i class="fa fa-undo"></i></button>\
+		<button type="button" tabindex="-1" class="btn btn-secondary" data-edit="Redo" data-hotkey="ctrl_y meta_y" title="重做 (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></button>\
 		<button type="button" tabindex="-1" class="btn btn-secondary" data-edit="removeFormat" title="删除文字格式"><i class="glyphicon glyphicon-pencil"></i></button>\
 	</div>\
 </div>';
@@ -130,11 +129,12 @@ var tb = '<div class="btn-toolbar" role="toolbar" data-role="editor-toolbar" dat
         // returns the jQuery object wrapper for element. It also assigns the
         // jQuery object wrapper to the property $editor on `this`.
         this.selectedRange = null;
-        this.editor = $( element );
-        var editor = $( element );
+        this.editor = element;
+        var editor = element;
         var defaults = {
             hotKeys: {
-
+            //"Ctrl+z": "undo",
+            //"Ctrl+j meta+j": "justifyfull"
             },
             toolbarSelector: "[data-role=editor-toolbar]",
             commandRole: "edit",
@@ -155,12 +155,13 @@ var tb = '<div class="btn-toolbar" role="toolbar" data-role="editor-toolbar" dat
         }
 
         this.bindToolbar( editor, $( options.toolbarSelector ), options, toolbarBtnSelector );
+var self = this;
 
-        editor.attr( "contenteditable", true )
+        editor.attr({ "contenteditable": true, "tabindex": "0", "title": "内容" })
             .on( "mouseup keyup mouseout", function() {
-                this.saveSelection();
-                this.updateToolbar( editor, toolbarBtnSelector, options );
-            }.bind( this ) );
+                self.saveSelection();
+                self.updateToolbar( editor, toolbarBtnSelector, options );
+            } );
 
         $( window ).bind( "touchend", function( e ) {
             var isInside = ( editor.is( e.target ) || editor.has( e.target ).length > 0 ),
@@ -168,8 +169,8 @@ var tb = '<div class="btn-toolbar" role="toolbar" data-role="editor-toolbar" dat
             clear = currentRange && ( currentRange.startContainer === currentRange.endContainer && currentRange.startOffset === currentRange.endOffset );
 
             if ( !clear || isInside ) {
-                this.saveSelection();
-                this.updateToolbar( editor, toolbarBtnSelector, options );
+                self.saveSelection();
+                self.updateToolbar( editor, toolbarBtnSelector, options );
             }
         } );
      }
@@ -218,6 +219,7 @@ var tb = '<div class="btn-toolbar" role="toolbar" data-role="editor-toolbar" dat
      };
 
      Wysiwyg.prototype.updateToolbar = function( editor, toolbarBtnSelector, options ) {
+/**
         if ( options.activeToolbarClass ) {
             $( options.toolbarSelector ).find( toolbarBtnSelector ).each( function() {
                 var self =  $( this );
@@ -240,6 +242,7 @@ var tb = '<div class="btn-toolbar" role="toolbar" data-role="editor-toolbar" dat
                 }
             } );
         }
+*/
      };
 
      Wysiwyg.prototype.execCommand = function( commandWithArgs, valueArg, editor, options, toolbarBtnSelector ) {
@@ -247,7 +250,7 @@ var tb = '<div class="btn-toolbar" role="toolbar" data-role="editor-toolbar" dat
             command = commandArr.shift(),
             args = commandArr.join( " " ) + ( valueArg || "" );
 
-        var parts = commandWithArgs.split( "-" );
+        var parts = command.split( "-" );
 
         if ( parts.length === 1 ) {
             document.execCommand( command, false, args );
@@ -257,7 +260,6 @@ var tb = '<div class="btn-toolbar" role="toolbar" data-role="editor-toolbar" dat
             this[ parts[ 1 ] ] ( args );
         }
 
-
         ( editor ).trigger( "change" );
         this.updateToolbar( editor, toolbarBtnSelector, options );
      };
@@ -266,42 +268,53 @@ var tb = '<div class="btn-toolbar" role="toolbar" data-role="editor-toolbar" dat
         var self = this;
 $( options.toolbarSelector ).find("[data-hotkey]").each(function(){
 var btn = $(this);
-var hotkey = btn.data('hotkey');
-
-            editor.keydown(hotkey, function( e ) {
+var hotkeyArr = btn.data('hotkey').split( ' ' );
+            hotkeyArr.forEach(function (item, index, input) {
+                input[index] = 'keydown.' + item;
+            });
+            var hotkeyDown = hotkeyArr.join( ' ' ).replace('+', '_');
+            var hotkeyUp = hotkeyDown.replace('keydown', 'keyup').replace('+', '_');
+            editor.on(hotkeyDown, function( e ) {
                 if ( editor.attr( "contenteditable" ) && $( editor ).is( ":visible" ) ) {
                     e.preventDefault();
                     e.stopPropagation();
 btn.trigger('click');
                 }
-            } ).keyup( hotkey, function( e ) {
+            } ).on( hotkeyUp, function( e ) {
                 if ( editor.attr( "contenteditable" ) && editor.is( ":visible" ) ) {
                     e.preventDefault();
                     e.stopPropagation();
                 }
             } );
 });
-
         $.each( options.hotKeys, function( hotkey, command ) {
             if(!command) return;
-            
-            $( editor ).keydown( hotkey, function( e ) {
+            var hotkeyArr = hotkey.split( ' ' );
+            hotkeyArr.forEach(function (item, index, input) {
+                input[index] = 'keydown.' + item;
+            });
+            var hotkeyDown = hotkeyArr.join( ' ' ).replace('+', '_');
+            var hotkeyUp = hotkeyDown.replace('keydown', 'keyup').replace('+', '_');
+            editor.on(hotkeyDown, function( e ) {
                 if ( editor.attr( "contenteditable" ) && $( editor ).is( ":visible" ) ) {
                     e.preventDefault();
                     e.stopPropagation();
                     self.execCommand( command, null, editor, options, toolbarBtnSelector );
                 }
-            } ).keyup( hotkey, function( e ) {
-                if ( editor.attr( "contenteditable" ) && $( editor ).is( ":visible" ) ) {
+            } ).on( hotkeyUp, function( e ) {
+                if ( editor.attr( "contenteditable" ) && editor.is( ":visible" ) ) {
                     e.preventDefault();
                     e.stopPropagation();
                 }
             } );
         } );
-
+editor.on('keydown.ctrl_q', function(e) { alert(self.selectedRange);});
+//editor.on('keydown.ctrl_m', function(e) {pasteHtmlAtCaret('<embed src="a.mp3"></embed><audio src="b.mp3" volume="50" autoplay="autoplay"></audio>');});
         editor.keyup( function() { editor.trigger( "change" ); } );
      };
-
+     Wysiwyg.prototype.alert = function(a) {
+alert(a);
+};
      Wysiwyg.prototype.getCurrentRange = function() {
         var sel, range;
         if ( window.getSelection ) {
@@ -339,41 +352,7 @@ btn.trigger('click');
         }
      };
 
-     // Adding Toggle HTML based on the work by @jd0000, but cleaned up a little to work in this context.
-     Wysiwyg.prototype.toggleHtmlEdit = function( editor ) {
-        if ( editor.data( "wysiwyg-html-mode" ) !== true ) {
-            var oContent = editor.html();
-            var editorPre = $( "<pre />" );
-            $( editorPre ).append( document.createTextNode( oContent ) );
-            $( editorPre ).attr( "contenteditable", true );
-            $( editor ).html( " " );
-            $( editor ).append( $( editorPre ) );
-            $( editor ).attr( "contenteditable", false );
-            $( editor ).data( "wysiwyg-html-mode", true );
-            $( editorPre ).focus();
-        } else {
-            $( editor ).html( $( editor ).text() );
-            $( editor ).attr( "contenteditable", true );
-            $( editor ).data( "wysiwyg-html-mode", false );
-            $( editor ).focus();
-        }
-     };
 
-     Wysiwyg.prototype.createMedia = function() {
-        var self = this;
-var el = $('#bswe-mediaurl');
-var url = el.val();
-el.val('');
-self.pasteHtmlAtCaret('<embed autostart="true" width="0" height="0" src="' + url + '" type="application/x-mplayer2"></embed>');
-					};
-     Wysiwyg.prototype.createLink = function( ) {
-        var self = this;
-var el = $('#bswe-linkurl');
-var url = el.val();
-var text = (self.selectedRange != null && self.selectedRange != '') ? self.selectedRange : $('#bswe-linktext').val();
- el.val('');
-self.pasteHtmlAtCaret('<a href="' + url + '" target="_blank">' + text + '</a>');
-					};
      Wysiwyg.prototype.pasteHtmlAtCaret = function(html) {
         var sel, range;
         if (window.getSelection) {
@@ -406,8 +385,42 @@ self.pasteHtmlAtCaret('<a href="' + url + '" target="_blank">' + text + '</a>');
 
             document.selection.createRange().pasteHTML(html);
         }
-      };
+      }
 
+     // Adding Toggle HTML based on the work by @jd0000, but cleaned up a little to work in this context.
+     Wysiwyg.prototype.toggleHtmlEdit = function( editor ) {
+        if ( editor.data( "wysiwyg-html-mode" ) !== true ) {
+            var oContent = editor.html();
+            var editorPre = $( "<pre />" );
+            $( editorPre ).append( document.createTextNode( oContent ) );
+            $( editorPre ).attr( "contenteditable", true );
+            $( editor ).html( " " );
+            $( editor ).append( $( editorPre ) );
+            $( editor ).attr( "contenteditable", false );
+            $( editor ).data( "wysiwyg-html-mode", true );
+            $( editorPre ).focus();
+        } else {
+            $( editor ).html( $( editor ).text() );
+            $( editor ).attr( "contenteditable", true );
+            $( editor ).data( "wysiwyg-html-mode", false );
+            $( editor ).focus();
+        }
+     };
+     Wysiwyg.prototype.createMedia = function() {
+        var self = this;
+var el = $('#bswe-mediaurl');
+var url = el.val();
+el.val('');
+self.pasteHtmlAtCaret('<embed autostart="true" width="0" height="0" src="' + url + '" type="application/x-mplayer2"></embed>');
+					};
+     Wysiwyg.prototype.createLink = function( ) {
+        var self = this;
+var el = $('#bswe-linkurl');
+var url = el.val();
+var text = (self.selectedRange != null && self.selectedRange != '') ? self.selectedRange : $('#bswe-linktext').val();
+ el.val('');
+self.pasteHtmlAtCaret('<a href="' + url + '" target="_blank">' + text + '</a>');
+					};
      Wysiwyg.prototype.noop = function() {};
      Wysiwyg.prototype.insertFiles = function( files, options, editor, toolbarBtnSelector ) {
         var self = this;
@@ -426,28 +439,14 @@ self.pasteHtmlAtCaret('<a href="' + url + '" target="_blank">' + text + '</a>');
         } );
      };
 
-     Wysiwyg.prototype.markSelection = function( color, options ) {
+     Wysiwyg.prototype.markSelection = function( input, color, options ) {
         this.restoreSelection(  );
         if ( document.queryCommandSupported( "hiliteColor" ) ) {
             document.execCommand( "hiliteColor", false, color || "transparent" );
         }
         this.saveSelection(  );
+        input.data( options.selectionMarker, color );
      };
-
-     //Move selection to a particular element
-     function selectElementContents(element) {
-        if (window.getSelection && document.createRange) {
-            var selection = window.getSelection();
-            var range = document.createRange();
-            range.selectNodeContents(element);
-            selection.removeAllRanges();
-            selection.addRange(range);
-        } else if (document.selection && document.body.createTextRange) {
-            var textRange = document.body.createTextRange();
-            textRange.moveToElementText(element);
-            textRange.select();
-        }
-    }
 
      Wysiwyg.prototype.bindToolbar = function( editor, toolbar, options, toolbarBtnSelector ) {
         var self = this;
@@ -464,40 +463,19 @@ self.pasteHtmlAtCaret('<a href="' + url + '" target="_blank">' + text + '</a>');
             self.saveSelection(  );
         } );
 
-        toolbar.find( "[data-toggle=dropdown]" ).on('click', (function () {
-            self.markSelection(options.selectionColor, options);
-//alert('ok');
-//$(this).find(':focus:first').focus();
-        }));
-        
+        toolbar.find( "[data-toggle=dropdown]" ).click( this.restoreSelection(  ) );
 
-        toolbar.on( "hide.bs.dropdown", function () {
-            self.markSelection( false, options );
-//alert('o');
-
-        });
-
-        toolbar.find( "input[type=text][data-" + options.commandRole + "]" ).on( "webkitspeechchange change", function() {
-            var newValue = this.value;  // Ugly but prevents fake double-calls due to selection restoration
-            this.value = "";
+        toolbar.find( "input[type=text][data-" + options.commandRole + "]" ).on("keydown.return", function() {
+if(this.value.trim() == '') {
+return false;
+}
             self.restoreSelection(  );
-            
-            var text = window.getSelection();
-            if (text.toString().trim() === '' && newValue) {
-                //create selection if there is no selection
-                self.editor.append('<span>' + newValue + '</span>');
-                selectElementContents($('span:last', self.editor)[0]);
-            }
-
-            if ( newValue ) {
-                editor.focus();
-                self.execCommand( $( this ).data( options.commandRole ), newValue, editor, options, toolbarBtnSelector );
-            }
+            editor.focus();
+                self.execCommand( $( this ).data( options.commandRole ), this.value.trim(), editor, options, toolbarBtnSelector );
             self.saveSelection(  );
-        } ).on( "blur", function() {
-            var input = $( this );
-            self.markSelection( false, options );
+this.value = '';
         } );
+
         toolbar.find( "input[type=file][data-" + options.commandRole + "]" ).change( function() {
             self.restoreSelection(  );
             if ( this.type === "file" && this.files && this.files.length > 0 ) {
@@ -532,7 +510,7 @@ self.pasteHtmlAtCaret('<a href="' + url + '" target="_blank">' + text + '</a>');
 $.fn.editor = function(userOptions) {
 var _this = this;
 var id = 'bswe' +$.now();
-_this.hide().after(tb + '<div aria-label="内容" class="bootstrap-wysiwyg" id="' + id + '" style="height: 400px">' + _this.val() + '</div>');
+_this.hide().after(tb + '<div class="bootstrap-wysiwyg" id="' + id + '" style="height: 400px"></div>');
 $('#' + id).wysiwyg(userOptions);
 $('#' + id).on('change', function() {
 _this.val($('#' + id).html());

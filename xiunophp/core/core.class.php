@@ -189,7 +189,16 @@ class core {
 		// 将更多有用的信息放入 $_SERVER 变量
 		$_SERVER['starttime'] = microtime(1);
 		$_SERVER['time'] = isset($_SERVER['REQUEST_TIME']) ? $_SERVER['REQUEST_TIME'] : time();
-		$_SERVER['ip'] = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
+		$ip = '0.0.0.0';
+		if(isset($_SERVER['HTTP_X_REAL_IP'])) {
+			$ip = $_SERVER['HTTP_X_REAL_IP'];
+		} elseif(isset($_SERVER['REMOTE_ADDR'])) {
+			$ip = $_SERVER['REMOTE_ADDR'];
+		}
+		$_SERVER['ip'] = long2ip(ip2long($ip));
+		$_SERVER['longip'] = ip2long($_SERVER['ip']);
+		$_SERVER['longip'] < 0 AND $_SERVER['longip'] = sprintf("%u", $_SERVER['longip']); // fix 32 位 OS 下溢出的问题
+		//$_SERVER['ip'] = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
 		$_SERVER['sqls'] = array();// debug
 		
 		// 兼容IIS $_SERVER['REQUEST_URI']
