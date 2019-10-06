@@ -86,6 +86,12 @@ class search_control extends common_control {
 			// 点击数
 			$readtids = implode(',', misc::arrlist_values($threadlist, 'tid'));
 			$click_server = $this->conf['click_server']."?r=$readtids";
+		$tidarr = explode(',', $readtids);
+		$tidarr = array_values(array_unique($tidarr));
+		$thread_views = $this->thread_views->mget($tidarr);
+		foreach($threadlist as $k =>&$thread) {
+			$thread['views'] = $thread_views['thread_views-tid-'.$thread['tid']]['views'];
+		}
 			$this->view->assign('readtids', $readtids);
 			$this->view->assign('click_server', $click_server);
 		} else {

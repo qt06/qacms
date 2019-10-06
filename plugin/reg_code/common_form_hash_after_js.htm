@@ -1,0 +1,41 @@
+$(document).on('click', 'button[name=sendcode]', function() {
+var _this = $(this);
+_this.attr('disabled', 'disabled');
+
+var jform = _this.parents('#create_form');
+var url = "?user-sendcode-ajax-1.htm";
+$.ajax({
+    url: url,
+    type: 'POST',
+    cache: false,
+    data: new FormData(jform[0]),
+    processData: false,
+    contentType: false
+}).done(function(s) {
+			var json = json_decode(s);
+			if(error = json_error(json)) {
+alert(error);
+$('#create_email').focus();
+				_this.removeAttr('disabled');
+return false;
+}
+			if(json.status <=0) {
+				alert(json.message);
+$('#create_email').focus();
+				_this.removeAttr('disabled');
+				return false;
+			}
+			if(json.status == 1) {
+				alert(json.message);
+$('#code').focus();
+setTimeout(function() {
+				_this.removeAttr('disabled');
+}, 120000);
+				return false;
+			}
+}).fail(function(res) {
+				_this.removeAttr('disabled');
+alert('failed.' + res.statusText + ',' + res.statusCode + Object.keys(res));
+});
+		  return false;
+	});

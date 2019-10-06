@@ -126,20 +126,6 @@ $('#body table.thread').each(function() {
 	}
 });
 
-// 点击服务器，火帖
-$.getScript('$click_server&'+Math.random(), function() {
-	if(!xn_json) return;
-	var json = xn_json;
-	for(tid in json) {
-		var viewspan = $('span.views[tid='+tid+']');
-		viewspan.html(json[tid]);
-		if(json[tid] > $conf[threadlist_hotviews]) {
-			viewspan.addClass('red bold');
-			//$('table[tid='+tid+'] a.subject_link').after(' <span class="icon icon-post-fire" title="火帖"></span>'); // 根据回复数
-			//viewspan.html(viewspan.html() + '<span class="icon icon-post-fire"></span>');
-		}
-	}
-});
 
 // 记录当前页码
 {if $fid}

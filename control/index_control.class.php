@@ -91,6 +91,15 @@ $this->bbs();
 		$readtids = substr($readtids, 1); 
 		$click_server = $this->conf['click_server']."?db=tid&r=$readtids";
 		
+		$tidarr = explode(',', $readtids);
+		$tidarr = array_values(array_unique($tidarr));
+		$thread_views = $this->thread_views->mget($tidarr);
+		foreach($threadlist as $k =>&$thread) {
+			$thread['views'] = $thread_views['thread_views-tid-'.$thread['tid']]['views'];
+		}
+		foreach($toplist as $k =>&$thread) {
+			$thread['views'] = $thread_views['thread_views-tid-'.$thread['tid']]['views'];
+		}
 		// 在线会员
 		$ismod = ($this->_user['groupid'] > 0 && $this->_user['groupid'] <= 4);
 		$fid = 0;

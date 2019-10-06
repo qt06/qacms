@@ -110,6 +110,10 @@ class thread_control extends common_control {
 		
 		// 分页
 		$pages = misc::pages("?thread-index-fid-$fid-tid-$tid.htm", $thread['posts'], $page, $this->conf['pagesize']);
+		$views = $this->thread_views->read($tid);
+		$views['views']++;
+		$this->thread_views->update($views);
+		$thread['views'] = $views['views'];
 		
 		// 点击数服务器 seo notfollow
 		$click_server = $this->conf['click_server']."?db=tid&w=$tid&r=$tid";

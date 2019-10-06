@@ -62,7 +62,7 @@ $post[message]
 					
 					<!--{hook thread_index_attachlist_after.htm}-->
 					
-<div class="meta">
+<div class="meta" role="option">
 <span>$post[floor]楼</span>
 					<span class="grey">发布于：</span><b>$post[dateline_fmt]</b> 
 		<!--{if $thread[firstpid] == $post[pid]}-->
@@ -261,12 +261,6 @@ $('#create_post').click(function() {
 	}
 });
 
-// 点击数服务器
-$.getScript('$click_server&'+Math.random(), function() {
-	if(typeof xn_json == 'undefined') return;
-	var json = xn_json;
-	$('#thread_views').html(json['$tid']);
-});
 
 // 自动伸缩，自动提交
 $('#quick_message').keyup(function(e) {

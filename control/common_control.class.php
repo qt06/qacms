@@ -414,7 +414,7 @@ class common_control extends base_control {
 	}
 	
 	public function json($message,$status = 1) {
-exit(core::json_encode(array('servererror'=>'','status'=>$status,'message'=>$message)));
+exit(json_encode(array('servererror'=>'','status'=>$status,'message'=>$message)));
 	}
 
 	// relocation

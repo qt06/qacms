@@ -52,7 +52,7 @@ class modlog extends base_model {
 		$modlog['credits_fmt'] = $modlog['credits'] ? ($modlog['credits'] > 0 ? '+' : '&nbsp;').$modlog['credits'] : '---';
 		$modlog['golds_fmt'] = $modlog['golds'] ? ($modlog['golds'] > 0 ? '+' : '&nbsp;').$modlog['golds'] : '---';
 		$modlog['dateline_fmt'] = misc::humandate($modlog['dateline']);
-		$modlog['forumname'] = $this->conf['forumarr'][$modlog['fid']];
+		$modlog['forumname'] = isset($this->conf['forumarr'][$modlog['fid']]) ? $this->conf['forumarr'][$modlog['fid']] : '';
 	}
 	
 	// hook modlog_model_end.php

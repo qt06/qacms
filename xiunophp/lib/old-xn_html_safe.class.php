@@ -133,7 +133,7 @@ class XML_HTMLSax3_OpeningTagState {
     */
     function parseAttributes(&$context) {
         $Attributes = array();
-
+    
         $context->ignoreWhitespace();
         $attributename = $context->scanUntilCharacters("=/> \n\r\t");
         while ($attributename != '') {
@@ -159,7 +159,7 @@ class XML_HTMLSax3_OpeningTagState {
                 $context->unscanCharacter();
             }
             $Attributes[$attributename] = $attributevalue;
-
+            
             $context->ignoreWhitespace();
             $attributename = $context->scanUntilCharacters("=/> \n\r\t");
         }
@@ -183,14 +183,14 @@ class XML_HTMLSax3_OpeningTagState {
                     $context->unscanCharacter();
                 }
                 $context->handler_object_element->
-                    {$context->handler_method_opening}($context->htmlsax, $tag,
+                    {$context->handler_method_opening}($context->htmlsax, $tag, 
                     $Attributes, TRUE);
                 $context->handler_object_element->
-                    {$context->handler_method_closing}($context->htmlsax, $tag,
+                    {$context->handler_method_closing}($context->htmlsax, $tag, 
                     TRUE);
             } else {
                 $context->handler_object_element->
-                    {$context->handler_method_opening}($context->htmlsax, $tag,
+                    {$context->handler_method_opening}($context->htmlsax, $tag, 
                     $Attributes, FALSE);
             }
         }
@@ -312,7 +312,7 @@ class XML_HTMLSax3_Trim {
     * @param string original handler method
     * @access protected
     */
-    function __construct(&$orig_obj, $orig_method) {
+    function XML_HTMLSax3_Trim(&$orig_obj, $orig_method) {
         $this->orig_obj =& $orig_obj;
         $this->orig_method = $orig_method;
     }
@@ -360,7 +360,7 @@ class XML_HTMLSax3_CaseFolding {
     * @param string original close handler method
     * @access protected
     */
-    function __construct(&$orig_obj, $orig_open_method, $orig_close_method) {
+    function XML_HTMLSax3_CaseFolding(&$orig_obj, $orig_open_method, $orig_close_method) {
         $this->orig_obj =& $orig_obj;
         $this->orig_open_method = $orig_open_method;
         $this->orig_close_method = $orig_close_method;
@@ -410,7 +410,7 @@ class XML_HTMLSax3_Linefeed {
     * @param string original handler method
     * @access protected
     */
-    function __construct(&$orig_obj, $orig_method) {
+    function XML_HTMLSax3_LineFeed(&$orig_obj, $orig_method) {
         $this->orig_obj =& $orig_obj;
         $this->orig_method = $orig_method;
     }
@@ -452,7 +452,7 @@ class XML_HTMLSax3_Tab {
     * @param string original handler method
     * @access protected
     */
-    function __construct(&$orig_obj, $orig_method) {
+    function XML_HTMLSax3_Tab(&$orig_obj, $orig_method) {
         $this->orig_obj =& $orig_obj;
         $this->orig_method = $orig_method;
     }
@@ -495,7 +495,7 @@ class XML_HTMLSax3_Entities_Parsed {
     * @param string original handler method
     * @access protected
     */
-    function __construct(&$orig_obj, $orig_method) {
+    function XML_HTMLSax3_Entities_Parsed(&$orig_obj, $orig_method) {
         $this->orig_obj =& $orig_obj;
         $this->orig_method = $orig_method;
     }
@@ -547,7 +547,7 @@ class XML_HTMLSax3_Entities_Unparsed {
     * @param string original handler method
     * @access protected
     */
-    function __construct(&$orig_obj, $orig_method) {
+    function XML_HTMLSax3_Entities_Unparsed(&$orig_obj, $orig_method) {
         $this->orig_obj =& $orig_obj;
         $this->orig_method = $orig_method;
     }
@@ -590,7 +590,7 @@ class XML_HTMLSax3_Escape_Stripper {
     * @param string original handler method
     * @access protected
     */
-    function __construct(&$orig_obj, $orig_method) {
+    function XML_HTMLSax3_Escape_Stripper(&$orig_obj, $orig_method) {
         $this->orig_obj =& $orig_obj;
         $this->orig_method = $orig_method;
     }
@@ -744,7 +744,7 @@ class XML_HTMLSax3_StateParser {
     * @var XML_HTMLSax3 instance of user front end class
     * @access protected
     */
-    function __construct (& $htmlsax) {
+    function XML_HTMLSax3_StateParser (& $htmlsax) {
         $this->htmlsax = & $htmlsax;
         $this->State[XML_HTMLSAX3_STATE_START] = new XML_HTMLSax3_StartingState();
 
@@ -915,8 +915,8 @@ class XML_HTMLSax3_StateParser_Lt430 extends XML_HTMLSax3_StateParser {
     * @var XML_HTMLSax3 instance of user front end class
     * @access protected
     */
-    function __construct(& $htmlsax) {
-        parent::__construct($htmlsax);
+    function XML_HTMLSax3_StateParser_Lt430(& $htmlsax) {
+        parent::XML_HTMLSax3_StateParser($htmlsax);
         $this->parser_options['XML_OPTION_TRIM_DATA_NODES'] = 0;
         $this->parser_options['XML_OPTION_CASE_FOLDING'] = 0;
         $this->parser_options['XML_OPTION_LINEFEED_BREAK'] = 0;
@@ -947,7 +947,7 @@ class XML_HTMLSax3_StateParser_Lt430 extends XML_HTMLSax3_StateParser {
     * @return void
     */
     function ignoreWhitespace() {
-        while ($this->position < $this->length &&
+        while ($this->position < $this->length && 
             strpos(" \n\r\t", $this->rawtext{$this->position}) !== FALSE) {
             $this->position++;
         }
@@ -979,8 +979,8 @@ class XML_HTMLSax3_StateParser_Gtet430 extends XML_HTMLSax3_StateParser {
     * @var XML_HTMLSax3 instance of user front end class
     * @access protected
     */
-    function __construct(& $htmlsax) {
-        parent::__construct($htmlsax);
+    function XML_HTMLSax3_StateParser_Gtet430(& $htmlsax) {
+        parent::XML_HTMLSax3_StateParser($htmlsax);
         $this->parser_options['XML_OPTION_TRIM_DATA_NODES'] = 0;
         $this->parser_options['XML_OPTION_CASE_FOLDING'] = 0;
         $this->parser_options['XML_OPTION_LINEFEED_BREAK'] = 0;
@@ -1069,7 +1069,7 @@ class XML_HTMLSax3 {
     * </pre>
     * @access public
     */
-    function __construct() {
+    function XML_HTMLSax3() {
         if (version_compare(phpversion(), '4.3', 'ge')) {
             $this->state_parser = new XML_HTMLSax3_StateParser_Gtet430($this);
         } else {
@@ -1116,7 +1116,7 @@ class XML_HTMLSax3 {
     * <li>XML_OPTION_ENTITIES_UNPARSED: XML entities are returned as
     * seperate data handler calls in unparsed form</li>
     * <li>XML_OPTION_ENTITIES_PARSED: (PHP 4.3.0+ only) XML entities are
-    * returned as seperate data handler calls and are parsed with
+    * returned as seperate data handler calls and are parsed with 
     * PHP's html_entity_decode() function</li>
     * <li>XML_OPTION_STRIP_ESCAPES: strips out the -- -- comment markers
     * or CDATA markup inside an XML escape, if found.</li>
@@ -1273,81 +1273,77 @@ class XML_HTMLSax3 {
     }
 }
 
-// class HTML_White by axiuno@gmail.com http://bbs.xiuno.com/
+// class HTML_White 由 axiuno@gmail.com 编写。
+// 技术支持：http://www.xiuno.com/
 class HTML_White {
-        private $_stack = array();	//
+        private $_stack = array();	// 
         private $_dcStack = array();	// 删除的栈
         private $_dcCounter = array();	// 删除的标签数
         private $_xhtml = '';
-        private $_counter = array();		 // 打开的标签数
+        private $_counter = '';		 // 打开的标签数
         private $tableTags = array('caption', 'col', 'colgroup', 'tbody', 'td', 'tfoot', 'th', 'thead',   'tr');
         private $closeParagraph = array(
-	        'address', 'blockquote', 'center', 'dd',      'dir',       'div',
-	        'dl',      'dt',         'h1',     'h2',      'h3',        'h4',
-	        'h5',      'h6',         'hr',     'isindex', 'listing',   'marquee',
-	        'menu',    'multicol',   'ol',     'p',       'plaintext', 'pre',
-	        'table',   'ul',         'xmp',
+	        'address', 'blockquote', 'center', 'dd',      'dir',       'div', 
+	        'dl',      'dt',         'h1',     'h2',      'h3',        'h4', 
+	        'h5',      'h6',         'hr',     'isindex', 'listing',   'marquee', 
+	        'menu',    'multicol',   'ol',     'p',       'plaintext', 'pre', 
+	        'table',   'ul',         'xmp', 
 	);
-
+	
 	private $listTags = array('dir', 'menu', 'ol', 'ul', 'dl');
 	private $_liStack = array();
         private $_listScope = 0;
-
+        
         private $singleTags = array('area', 'br', 'img', 'input', 'hr', 'wbr');
         private $noClose = array();
-
+        
         private $white_tag = array();
         private $white_css = array();
         private $white_value = array();
-        private $args = array();
-
-        function __construct($white_tag, $white_value, $white_css, $args) {
+        
+        function __construct($white_tag, $white_value, $white_css) {
 	        $this->white_tag = $white_tag;
 	        $this->white_css = $white_css;
 	        $this->white_value = $white_value;
-	        $this->args = $args;
         }
-
+	
         public function parse($doc) {
 		// Save all '<' symbols
 		$doc = preg_replace("/<(?=[^a-zA-Z\/\!\?\%])/", '&lt;', $doc);
-
+		
 		// Web documents shouldn't contains \x00 symbol
 		$doc = str_replace("\x00", '', $doc);
-
+		
 		// Opera6 bug workaround
 		$doc = str_replace("\xC0\xBC", '&lt;', $doc);
-
-		// UTF-7 encoding ASCII decode
-		// $doc = $this->repackUTF7($doc);
 		
-		// 过滤泰文, Filter Thai Character
-		$doc = preg_replace('/\p{Thai}/u', '', $doc);
-
+		// UTF-7 encoding ASCII decode
+		$doc = $this->repackUTF7($doc);
+		
 		// Instantiate the parser
 		$parser = new XML_HTMLSax3();
-
+		
 		// Set up the parser
 		$parser->set_object($this);
-
+		
 		$parser->set_element_handler('_openHandler','_closeHandler');
 		$parser->set_data_handler('_dataHandler');
 		$parser->set_escape_handler('_escapeHandler');
-
+		
 		$parser->parse($doc);
-
+		
 		return $this->getXHTML();
         }
-
+        
 	public function getXHTML() {
 		while($tag = array_pop($this->_stack)) {
 			$this->_closeTag($tag);
 		}
 		return $this->_xhtml;
 	}
-
+	
         // 过滤属性
-       private function _writeAttrs($attrs, $tagname) {
+        private function _writeAttrs($attrs) {
         	if(!is_array($attrs)) {
         	 	return true;
         	}
@@ -1361,11 +1357,11 @@ class HTML_White {
 					if ($_value == $value) break;
 					$value = $_value;
 				}
-
+				
 				// replace all & to &amp;
 				$value = str_replace('&amp;', '&', $value);
 				$value = str_replace('&', '&amp;', $value);
-
+				
 				preg_match_all('#\s*([\w\-]+)\s*:\s*([^;]+)\s*;?\s*#is', $value, $m);
 				$csskv = !empty($m[1]) && !empty($m[2]) ? array_combine($m[1], $m[2]) : array();
 				foreach($csskv as $cssname=>&$cssvalue) {
@@ -1380,17 +1376,10 @@ class HTML_White {
 							$cssvalue = intval($cssvalue);
 							$px = 1;
 						}
-						if($cssvalue < $v[2][0]) {
-                            $cssvalue = $v[2][0];
-                        } else if($cssvalue > $v[2][1]) {
-							$cssvalue = $v[2][1];
+						if($cssvalue < $v[2][0] || $cssvalue > $v[2][1]) {
+							$cssvalue = $v[1];
 						}
-						// 如果为 table，转换为百分比，参考值可以通过参数控制。
-						if($cssname == 'width' || $cssname == 'min-width') {
-							$px AND $cssvalue > $this->args['table_max_width'] AND $cssvalue = '100%' AND $px = 0;
-						}
-						$px AND $cssvalue .= 'px';
-						
+						if($px) $cssvalue .= 'px';
 					} elseif($v[0] == 'list') {
 						if(!in_array($cssvalue, $v[2])) $cssvalue = $v[1];
 					} elseif($v[0] == 'pcre') {
@@ -1410,9 +1399,9 @@ class HTML_White {
 					$value .= "$k:$v; ";
 				}
 				$value = substr($value, 0, -1);
-
-			// 过滤危险 iframe / embed src=
-	               } elseif($name == 'src') {
+				
+			// 过滤危险的 embed src=
+	               /*} elseif($name == 'src') {
 	              	 	$v = $this->white_value[$name];
 	              	 	$ok = 0;
 	              	 	foreach($v[2] as $pcre) {
@@ -1420,18 +1409,24 @@ class HTML_White {
 						$ok = 1; break;
 					}
 				}
-
-				//$tag = array_pop($this->_stack);
-				//array_push($this->_stack, $tag);
-	               		if($tagname == 'embed' || $tagname == 'iframe') {
+				
+				$tag = array_pop($this->_stack);
+				array_push($this->_stack, $tag);
+	               		if($tag == 'embed') {
 	               			//  && strpos($value, '.swf') !== FALSE
-	               			// 'http://player.youku.com/embed/'+matches[1];
-	               			if(!preg_match('#^http://player\.youku\.com/embed/[\w=]+$#i', $value)) {
-	               				$value = '';
+	               			$safearr = array('youku.com', '56.com', 'ku6.com', 'tudou.com', 'joy.cn', 'sina.com.cn', 'ifeng.com', 'qq.com', 'sohu.com', 'iqiyi.com', 'qiyi.com');
+	               			$arr = parse_url($value);
+	               			$hostarr = explode('.', $host);
+	               			if(count($hostarr) > 2) {
+	               				$hostarr = array_slice($hostarr, -2);
+	               			}
+	               			$host = implode('.', $hostarr);
+	               			if(!in_array($host, $safearr)) {
+	               				$value = 'http://cloud.xiuno.net/check-url.htm?url='.urlencode($value);
 	               			}
 	               		}
-	               		$value = $ok ? $value : $v[1];
-	                // 白名单	                
+	               		$value = $ok ? $value : $v[1];*/
+	                // 白名单值
 	                } elseif(isset($this->white_value[$name]))  {
 	                	$v = $this->white_value[$name];
         			if($v[0] == 'range') {
@@ -1458,70 +1453,70 @@ class HTML_White {
 	        	} else {
 	        		continue;
 	        	}
-
+	
 	        	if (($value === TRUE) || (is_null($value))) {
 				$value = $name;
 	                }
-
+	                
 			$tempval = preg_replace_callback('/&#(\d+);?/m', array($this, 'chr_callback'), $value); //"'
 			$tempval = preg_replace_callback('/&#x([0-9a-f]+);?/mi', array($this, 'chr_hexdec_callback'), $tempval);
 
 			$value = str_replace("\"", "&quot;", $value);
-			if($value == '' && $name == 'style') {
+			if($value == '' && $name == 'style') {  
 				//$this->_xhtml .= ' ' . $name . '="' . $value . '"';
 			} else {
 				$this->_xhtml .= ' ' . $name . '="' . $value . '"';
 			}
 		}
         }
-
+        
         private function chr_callback($matchs) {
         	$s = $matchs[1];
         	return chr($s);
         }
-
+        
         private function chr_hexdec_callback($matchs) {
         	$s = $matchs[1];
         	return chr(hexdec($s));
         }
-
+        
 	public function _openHandler(&$parser, $name, $attrs) {
 		$name = strtolower($name);
-
+		
 		// 删除标签和内容
 		if(!in_array($name, $this->white_tag)) {
 			array_push($this->_dcStack, $name);
 			$this->_dcCounter[$name] = isset($this->_dcCounter[$name]) ? $this->_dcCounter[$name]+1 : 1;
 		}
-
+		
 		if (count($this->_dcStack) != 0) {
 			return true;
 		}
-
+		
 		if (in_array($name, $this->singleTags)) {
 			$this->_xhtml .= '<' . $name;
-			$this->_writeAttrs($attrs, $name);
+			$this->_writeAttrs($attrs);
 			$this->_xhtml .= ' />';
 			return true;
 		}
-
+		
 		// TABLES: cannot open table elements when we are not inside table
 		if ((isset($this->_counter['table'])) && ($this->_counter['table'] <= 0) && (in_array($name, $this->tableTags))) {
 			return true;
 		}
-
+		
 		// PARAGRAPHS: close paragraph when closeParagraph tags opening
 		if ((in_array($name, $this->closeParagraph)) && (in_array('p', $this->_stack))) {
 			$this->_closeHandler($parser, 'p');
 		}
-
+		
 		// LISTS: we should close <li> if <li> of the same level opening
-		if ($name == 'li' && count($this->_liStack) &&
-		    $this->_listScope == $this->_liStack[count($this->_liStack)-1])
+		if ($name == 'li' && count($this->_liStack) && 
+		    $this->_listScope == $this->_liStack[count($this->_liStack)-1]) 
 		{
 			$this->_closeHandler($parser, 'li');
 		}
-
+		
 		// LISTS: we want to know on what nesting level of lists we are
 		if (in_array($name, $this->listTags)) {
 			$this->_listScope++;
@@ -1529,30 +1524,30 @@ class HTML_White {
 		if ($name == 'li') {
 			array_push($this->_liStack, $this->_listScope);
 		}
-
+		    
 		$this->_xhtml .= '<' . $name;
-		$this->_writeAttrs($attrs, $name);
+		$this->_writeAttrs($attrs);
 		$this->_xhtml .= '>';
 		array_push($this->_stack, $name);
 		$this->_counter[$name] = isset($this->_counter[$name]) ? $this->_counter[$name]+1 : 1;
 		return true;
 	}
-
+	
 	public function _closeHandler(&$parser, $name) {
-
+		
 		$name = strtolower($name);
-
+		
 		if (isset($this->_dcCounter[$name]) && ($this->_dcCounter[$name] > 0) && (!in_array($name, $this->white_tag))) {
 			while ($name != ($tag = array_pop($this->_dcStack))) {
 				$this->_dcCounter[$tag]--;
 			}
 			$this->_dcCounter[$name]--;
 		}
-
+		
 		if (count($this->_dcStack) != 0) {
 		    return true;
 		}
-
+		
 		if ((isset($this->_counter[$name])) && ($this->_counter[$name] > 0)) {
 			while ($name != ($tag = array_pop($this->_stack))) {
 				$this->_closeTag($tag);
@@ -1561,14 +1556,14 @@ class HTML_White {
 		}
 		return true;
 	}
-
+	
 	public function _dataHandler(&$parser, $data) {
 		if (count($this->_dcStack) == 0) {
 		    $this->_xhtml .= str_replace('>', '&gt;', $data);
 		}
 		return true;
 	}
-
+	
 	// parser comment recall
 	public function _escapeHandler(&$parser, $data) {
 		return true;
@@ -1578,23 +1573,23 @@ class HTML_White {
 		if (!in_array($tag, $this->noClose)) {
 		    $this->_xhtml .= '</' . $tag . '>';
 		}
-
+		
 		$this->_counter[$tag]--;
-
+		
 		if (in_array($tag, $this->listTags)) {
 		    $this->_listScope--;
 		}
-
+		
 		if ($tag == 'li') {
 		    array_pop($this->_liStack);
 		}
 		return true;
 	}
-
+	
 	private function repackUTF7($str) {
 		return preg_replace_callback('!\+([0-9a-zA-Z/]+)\-!', array($this, 'repackUTF7Callback'), $str);
 	}
-
+	
 	function repackUTF7Back($str) {
 		return $str[1].'+'.rtrim(base64_encode($str[2]), '=').'-';
 	}
@@ -1606,130 +1601,98 @@ class HTML_White {
 	}
 }
 
+// class xn_html_safe 由 axiuno@gmail.com 编写。
+// 技术支持：http://www.xiuno.com/
 class xn_html_safe {
-	public static function filter($doc, $arg = array()) {
-	
-	// hook model_xn_html_safe_start.php
-	
-	empty($arg['table_max_width']) AND $arg['table_max_width'] = 746; // 这个宽度为 bbs 回帖宽度
-	
-	$pattern = array (
-		//'img_url'=>'#^(https?://[^\'"\\\\<>:\s]+(:\d+)?)?([^\'"\\\\<>:\s]+?)*$#is',
-		'img_url'=>'#^(((https?://[^\'"\\\\<>:\s]+(:\d+)?)?([^\'"\\\\<>:\s]+?)*)|(data:image/png;base64,[\w\/+]+))$#is',
-		'url'=>'#^(https?://[^\'"\\\\<>:\s]+(:\d+)?)?([^\'"\\\\<>:\s]+?)*$#is', // '#https?://[\w\-/%?.=]+#is'
+	// 严格的图片URL格式
+	public static $pattern = array(
+		'img_url'=>'#^(https?://[^\'"\\\\<>:\s]+(:\d+)?)?([^\'"\\\\<>:\s]+?)*$#is',
+		'url'=>'#^(https?://[^\'"\\\\<>:\s]+(:\d+)?)?([^\'"\\\\<>:\s]+?)*$#is',
 		'mailto'=>'#^mailto:([\w%\-\.]+)@([\w%\-\.]+)(\.[\w%\-\.]+?)+$#is',
 		'ftp_url'=>'#^ftp:([\w%\-\.]+)@([\w%\-\.]+)(\.[\w%\-\.]+?)+$#is',
 		'ed2k_url'=>'#^(?:ed2k|thunder|qvod|magnet)://[^\s\'\"\\\\<>]+$#is',
 		'color'=>'#^(\#\w{3,6})|(rgb\(\d+,\s*\d+,\s*\d+\)|(\w{3,10}))$#is',
-		'safe'=>'#^[\w\-:;\.\s\x7f-\xff]+$#is',
-		'css'=>'#^[\(,\)\#;\w\-\.\s\x7f-\xff]+$#is',
+		'safe'=>'#^[\w\-\.\s\x7f-\xff]+$#is',
 		'word'=>'#^[\w\-\x7f-\xff]+$#is',
 	);
+	
+	public static function filter($doc) {
+		$white_tag = array('a', 'b', 'i', 'u', 'font', 'strong', 'em', 'span',
+			'table', 'tr', 'td', 'th', 'tbody', 'thead', 'tfoot','caption',
+			'ol', 'ul', 'li', 'dl', 'dt', 'dd', 'menu', 'multicol',
+			'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hr', 'p', 'div', 'pre',
+			'br', 'img', 'area',  'embed', 'code', 'blockquote'
+		);
+		$white_value = array(
+			'href'=>array('pcre', '', array(self::$pattern['url'], self::$pattern['ed2k_url'])),
+			'src'=>array('pcre', '', array(self::$pattern['img_url'])),
+			'width'=>array('range', '', array(0, 4096)),
+			'height'=>array('range', 'auto', array(0, 80000)),
+			'size'=>array('range', 4, array(-10, 10)),
+			'border'=>array('range', 0, array(0, 10)),
+			'family'=>array('pcre', '', array(self::$pattern['word'])),
+			'face'=>array('pcre', '', array(self::$pattern['word'])),
+			'color'=>array('pcre', '', array(self::$pattern['color'])),
+			'alt'=>array('pcre', '', array(self::$pattern['safe'])),
+			'title'=>array('pcre', '', array(self::$pattern['safe'])),
+			'target'=>array('list', '_self', array('_blank', '_self')),
+			'class'=>array('pcre', '', array('#^((code|quote)|(brush:\w+;?\s*(tab\-size:\d+)?))$#is')),
+			'type'=>array('pcre', '', array('#^[\w/\-]+$#')),
+			'allowfullscreen'=>array('list', 'true', array('true', '1', 'on')),
+			'wmode'=>array('list', 'transparent', array('transparent', '')),
+			'allowscriptaccess'=>array('list', 'never', array('never')),
+			'value'=>array('list', '', array('#^[\w+/\-]$#')),
+			'cellspacing'=>array('range', 0, array(0, 10)),
+			'cellpadding'=>array('range', 0, array(0, 10)),
+			'frameborder'=>array('range', 0, array(0, 10)),
+			'align'=>array('list', 'left', array('left', 'center', 'right')),
+			'valign'=>array('list', 'middle', array('middle', 'top', 'bottom')),
+		);
+		$white_css = array(
+			'font'=>array('pcre', 'none', array(self::$pattern['safe'])),
+			'font-style'=>array('pcre', 'none', array(self::$pattern['safe'])),
+			'font-weight'=>array('pcre', 'none', array(self::$pattern['safe'])),
+			'font-family'=>array('pcre', 'none', array(self::$pattern['word'])),
+			'font-size'=>array('range', 9, array(6, 26)),
+			'width'=>array('range', '100%', array(1, 1800)),
+			'height'=>array('range', '', array(1, 80000)),
+			'min-width'=>array('range', 1, array(1, 80000)),
+			'min-height'=>array('range', 400, array(1, 80000)),
+			'max-width'=>array('range', 1800, array(1, 80000)),
+			'max-height'=>array('range', 80000, array(1, 80000)),
+			'line-height'=>array('range', '14px', array(1, 50)),
+			'color'=>array('pcre', '#000000', array(self::$pattern['color'])),
+			'background'=>array('pcre', 'none', array(self::$pattern['color'], '#url\((https?://[^\'"\\\\<>]+?:?\d?)?([^\'"\\\\<>:]+?)*\)[\w\s\-]*$#')),
+			'background-color'=>array('pcre', 'none', array(self::$pattern['color'])),
+			'background-image'=>array('pcre', 'none', array(self::$pattern['img_url'])),
+			'background-position'=>array('pcre', 'none', array(self::$pattern['safe'])),
+			'border'=>array('pcre', 'none', array(self::$pattern['safe'])),
+			'margin-left'=>array('range', 0, array(0, 100)),
+			'margin-right'=>array('range', 0, array(0, 100)),
+			'margin-top'=>array('range', 0, array(0, 100)),
+			'margin-bottom'=>array('range', 0, array(0, 100)),
+			'margin'=>array('range', 0, array(0, 100)),
+			'padding'=>array('range', 0, array(0, 100)),
+			'padding-left'=>array('range', 0, array(0, 100)),
+			'padding-right'=>array('range', 0, array(0, 100)),
+			'padding-top'=>array('range', 0, array(0, 100)),
+			'padding-bottom'=>array('range', 0, array(0, 100)),
+			'zoom'=>array('range', 1, array(1, 10)),
+			'list-style'=>array('list', 'none', array('disc', 'circle', 'square', 'decimal', 'lower-roman', 'upper-roman', 'none')),
+			'text-align'=>array('list', 'left', array('left', 'right', 'center', 'justify')),
+			'text-indent'=>array('range', 0, array(0, 100)),
+		);
+		$safehtml = new HTML_White($white_tag, $white_value, $white_css);
+		$result = $safehtml->parse($doc);
+		return $result;
+	}
+}
 
-	$white_tag = array('a', 'b', 'i', 'u', 'font', 'strong', 'em', 'span',
-		'table', 'tr', 'td', 'th', 'tbody', 'thead', 'tfoot','caption',
-		'ol', 'ul', 'li', 'dl', 'dt', 'dd', 'menu', 'multicol',
-		'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hr', 'p', 'div', 'pre',
-		'br', 'img', 'area',  'embed', 'code', 'blockquote', 'iframe', 'section', 'fieldset', 'legend'
-	);
-	$white_value = array(
-		'href'=>array('pcre', '', array($pattern['url'], $pattern['ed2k_url'])),
-		'src'=>array('pcre', '', array($pattern['img_url'])),
-		'width'=>array('range', '', array(0, 4096)),
-		'height'=>array('range', 'auto', array(0, 80000)),
-		'size'=>array('range', 4, array(-10, 10)),
-		'border'=>array('range', 0, array(0, 10)),
-		'family'=>array('pcre', '', array($pattern['word'])),
-		'class'=>array('pcre', '', array($pattern['safe'])),
-		'face'=>array('pcre', '', array($pattern['word'])),
-		'color'=>array('pcre', '', array($pattern['color'])),
-		'alt'=>array('pcre', '', array($pattern['safe'])),
-		'label'=>array('pcre', '', array($pattern['safe'])),
-		'title'=>array('pcre', '', array($pattern['safe'])),
-		'target'=>array('list', '_self', array('_blank', '_self')),
-		'type'=>array('pcre', '', array('#^[\w/\-]+$#')),
-		'allowfullscreen'=>array('list', 'true', array('true', '1', 'on')),
-		'wmode'=>array('list', 'transparent', array('transparent', '')),
-		'allowscriptaccess'=>array('list', 'never', array('never')),
-		'value'=>array('list', '', array('#^[\w+/\-]$#')),
-		'cellspacing'=>array('range', 0, array(0, 10)),
-		'cellpadding'=>array('range', 0, array(0, 10)),
-		'frameborder'=>array('range', 0, array(0, 10)),
-		'allowfullscreen'=>array('range', 0, array(0, 10)),
-		'align'=>array('list', 'left', array('left', 'center', 'right')),
-		'valign'=>array('list', 'middle', array('middle', 'top', 'bottom')),
-        'name'=>array('pcre', '', array($pattern['word'])),
-	);
-	$white_css = array(
-		'font'=>array('pcre', 'none', array($pattern['safe'])),
-		'font-style'=>array('pcre', 'none', array($pattern['safe'])),
-		'font-weight'=>array('pcre', 'none', array($pattern['safe'])),
-		'font-family'=>array('pcre', 'none', array($pattern['word'])),
-		'font-size'=>array('range', 12, array(6, 48)),
-		'width'=>array('range', '100%', array(1, 1800)),
-		'height'=>array('range', '', array(1, 80000)),
-		'min-width'=>array('range', 1, array(1, 80000)),
-		'min-height'=>array('range', 400, array(1, 80000)),
-		'max-width'=>array('range', 1800, array(1, 80000)),
-		'max-height'=>array('range', 80000, array(1, 80000)),
-		'line-height'=>array('range', '14px', array(1, 50)),
-		'color'=>array('pcre', '#000000', array($pattern['color'])),
-		'background'=>array('pcre', 'none', array($pattern['color'], '#url\((https?://[^\'"\\\\<>]+?:?\d?)?([^\'"\\\\<>:]+?)*\)[\w\s\-]*$#')),
-		'background-color'=>array('pcre', 'none', array($pattern['color'])),
-		'background-image'=>array('pcre', 'none', array($pattern['img_url'])),
-		'background-position'=>array('pcre', 'none', array($pattern['safe'])),
-		'border'=>array('pcre', 'none', array($pattern['css'])),
-		'border-left'=>array('pcre', 'none', array($pattern['css'])),
-		'border-right'=>array('pcre', 'none', array($pattern['css'])),
-		'border-top'=>array('pcre', 'none', array($pattern['css'])),
-		'border-left-color'=>array('pcre', 'none', array($pattern['css'])),
-		'border-right-color'=>array('pcre', 'none', array($pattern['css'])),
-		'border-top-color'=>array('pcre', 'none', array($pattern['css'])),
-		'border-bottom-color'=>array('pcre', 'none', array($pattern['css'])),
-		'border-left-width'=>array('pcre', 'none', array($pattern['css'])),
-		'border-right-width'=>array('pcre', 'none', array($pattern['css'])),
-		'border-top-width'=>array('pcre', 'none', array($pattern['css'])),
-		'border-bottom-width'=>array('pcre', 'none', array($pattern['css'])),
-		'border-bottom-style'=>array('pcre', 'none', array($pattern['css'])),
-		'margin-left'=>array('range', 0, array(0, 100)),
-		'margin-right'=>array('range', 0, array(0, 100)),
-		'margin-top'=>array('range', 0, array(0, 100)),
-		'margin-bottom'=>array('range', 0, array(0, 100)),
-		'margin'=>array('pcre', '', array($pattern['safe'])),
-		'padding'=>array('pcre', '', array($pattern['safe'])),
-		'padding-left'=>array('range', 0, array(0, 100)),
-		'padding-right'=>array('range', 0, array(0, 100)),
-		'padding-top'=>array('range', 0, array(0, 100)),
-		'padding-bottom'=>array('range', 0, array(0, 100)),
-		'zoom'=>array('range', 1, array(1, 10)),
-		'list-style'=>array('list', 'none', array('disc', 'circle', 'square', 'decimal', 'lower-roman', 'upper-roman', 'none')),
-		'text-align'=>array('list', 'left', array('left', 'right', 'center', 'justify')),
-		'text-indent'=>array('range', 0, array(0, 100)),
-		
-		// 代码高亮需要支持，但是不安全！
-		/*
-		'position'=>array('list', 'static', array('absolute', 'fixed', 'relative', 'static')),
-		'left'=>array('range', 0, array(0, 1000)),
-		'top'=>array('range', 0, array(0, 1000)),
-		'white-space'=>array('list', 'nowrap', array('nowrap', 'pre')),
-		'word-wrap'=>array('list', 'normal', array('break-word', 'normal')),
-		'word-break'=>array('list', 'break-all', array('break-all', 'normal')),
-		'display'=>array('list', 'block', array('block', 'table', 'none', 'inline-block', 'table-cell')),
-		'overflow'=>array('list', 'auto', array('scroll', 'hidden', 'auto')),
-		'overflow-x'=>array('list', 'auto', array('scroll', 'hidden', 'auto')),
-		'overflow-y'=>array('list', 'auto', array('scroll', 'hidden', 'auto')),
-		*/
-		
-	);
-	
-	// hook model_xn_html_safe_new_before.php
-	$safehtml = new HTML_White($white_tag, $white_value, $white_css, $arg);
-	
-	// hook model_xn_html_safe_parse_before.php
-	$result = $safehtml->parse($doc);
-	
-	// hook model_xn_html_safe_end.php
-	
-	return $result;
-}
-}
+/*error_reporting(E_ALL);
+//$s = '<b onclick="ddd">abcc</b><table class="abc" style="width: 103330px;  expression:(alert(123)); background: url(1.jpg) no-repeat ;" allowfullscreen="xxx" allowscriptaccess="yes"><tr><td>xxxxxxxxxxx</td></tr></table>';
+//$s = '<embed wmode="transparent" src="http://player.youku.com/player.php/sid/XNDcxMDUzNzI4/v.swf" style="z-index:0;" width="876" height="454" type="application/x-shockwave-flash" allowfullscreen="true" class="border"><br><div></div>';
+//$s = '<p style="margin-top: 0px;">　　<strong style="margin: 0px; padding: 0px;">模仿视频练习杀人技巧</strong></p><p style="margin-top: 0px;">　　2007年7月，该团伙骨干成员木沙・艾山曾涉嫌暴恐活动被公安机关审查。2010年9月，木沙・艾山与喀斯木・买买提结识。此后，喀斯木・买买提先后与团伙其他成员相识。2012年9月以来，上述人员经常观看宣传宗教极端和暴恐内容的音视频，形成了暴恐团伙。</p>';
+$s = '<a href="javascript://www.baidu.com/">baidu</a>';
+echo xn_html_safe::filter($s);*/
+
+?>

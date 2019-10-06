@@ -102,6 +102,15 @@ class forum_control extends common_control {
 		}
 		$readtids = substr($readtids, 1); 
 		$click_server = $this->conf['click_server']."?db=tid&r=$readtids";
+		$tidarr = explode(',', $readtids);
+		$tidarr = array_values(array_unique($tidarr));
+		$thread_views = $this->thread_views->mget($tidarr);
+		foreach($threadlist as $k =>&$thread) {
+			$thread['views'] = $thread_views['thread_views-tid-'.$thread['tid']]['views'];
+		}
+		foreach($toplist as $k =>&$thread) {
+			$thread['views'] = $thread_views['thread_views-tid-'.$thread['tid']]['views'];
+		}
 		// hook forum_index_get_list_after.php
 		$digestadd = $digest > 0 ? "-digest-$digest" : '';
 		$typeidadd = $typeidsum > 0 ? "-typeid1-$typeid1-typeid2-$typeid2-typeid3-$typeid3-typeid4-$typeid4" : '';
