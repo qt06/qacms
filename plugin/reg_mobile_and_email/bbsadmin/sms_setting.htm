@@ -1,0 +1,91 @@
+<!--{include header.htm}-->
+
+<div class="row">
+	<div class="col-lg-10 mx-auto">
+		<div class="card">
+			<div class="card-body">
+				<form action="?sms-setting.htm" method="post" id="form">
+<input type="hidden" name="FORM_HASH" value="<?php echo FORM_HASH; ?>" />
+
+					<h4 class="card-title">设置</h4>
+						<div class="form-group row">
+							<label class="col-4 form-control-label" for="everyday_limit">每天最大发送数：</label>
+							<div class="col-8">
+								<input type="text" id="everyday_limit" name="everyday_limit" value="<!--{php echo $input['everyday_limit']; }-->" />
+							</div>
+						</div>
+
+					<div class="form-group row">
+						<label class="col-4 form-control-label" for="send_plat">发送短信的平台：</label>
+						<div class="col-8">
+							<select id="send_plat" name="send_plat" class="custom-select">
+								<option value="">请选择</option>
+								<option value="tencent"<!--{php echo $input['send_plat'] == 'tencent' ? ' selected' : ''; }-->>腾讯云短信平台</option>
+								<option value="aliyun"<!--{php echo $input['send_plat'] == 'aliyun' ? ' selected' : ''; }-->>阿里云短信平台</option>
+							</select>
+						</div>
+					</div>
+					<div id="tencent" class="d-none send_plat_div">
+						<div class="form-group row">
+							<label class="col-4 form-control-label" for="tencent_appid">腾讯短信 APPID：</label>
+							<div class="col-8">
+								<input type="text" id="tencent_appid" name="tencent_appid" value="<!--{php echo $input['tencent_appid']; }-->" />
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-4 form-control-label" for="tencent_appkey">腾讯短信 APPKEY：</label>
+							<div class="col-8">
+								<input type="text" id="tencent_appkey" name="tencent_appkey" value="<!--{php echo $input['tencent_appkey']; }-->" />
+							</div>
+						</div>
+						<div class="form-group row d-none">
+							<label class="col-4 form-control-label" for="tencent_sign">腾讯短信签名：</label>
+							<div class="col-8">
+								<input type="text" id="tencent_sign" name="tencent_sign" value="<!--{php echo $input['tencent_sign']; }-->" />
+							</div>
+						</div>
+					</div>
+					<div id="aliyun" class="d-none send_plat_div">
+						<div class="form-group row">
+							<label class="col-4 form-control-label" for="aliyun_appid">阿里云短信 APPID：</label>
+							<div class="col-8">
+								<input type="text" id="aliyun_appid" name="aliyun_appid" value="<!--{php echo $input['aliyun_appid']; }-->" />
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-4 form-control-label" for="aliyun_appkey">阿里云短信 APPKEY：</label>
+							<div class="col-8">
+								<input type="text" id="aliyun_appkey" name="aliyun_appkey" value="<!--{php echo $input['aliyun_appkey']; }-->" />
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-4 form-control-label" for="aliyun_sign">阿里云短信签名：</label>
+							<div class="col-8">
+								<input type="text" id="aliyun_sign" name="aliyun_sign" value="<!--{php echo $input['aliyun_sign']; }-->" />
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-4 form-control-label" for="aliyun_templateid">阿里云模板ID：</label>
+							<div class="col-8">
+								<input type="text" id="aliyun_templateid" name="aliyun_templateid" value="<!--{php echo $input['aliyun_templateid']; }-->" />
+							</div>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-4 form-control-label"></label>
+						<div class="col-8">
+							<button type="submit" class="btn btn-primary btn-block" id="submit" data-loading-text="...">保存</button>
+							<a role="button" class="btn btn-secondary btn-block mt-3" href="javascript:history.back();">返回</a>
+						</div>
+					</div>
+				</form>
+				<p class="my-3 small">注：腾讯申请地址：<a href="https://buy.cloud.tencent.com/sms" target="_blank">https://buy.cloud.tencent.com/sms</a></p>
+				<p class="my-3 small">注：阿里云申请地址：<a href="https://www.aliyun.com/product/sms" target="_blank">https://www.aliyun.com/product/sms</a></p>
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--{include footer.htm}-->
+

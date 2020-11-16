@@ -716,12 +716,13 @@ class core {
 		core::init_handle();
 		
 		// GPC 安全过滤，关闭，数据的正确性可能会受到影响。
+		/**
 		if(get_magic_quotes_gpc()) {
 			core::stripslashes($_GET);
 			core::stripslashes($_POST);
 			core::stripslashes($_COOKIE);
 		}
-		
+		*/
 		// 如果非命令行，则输出 header 头
 		if(!core::is_cmd()) {
 			

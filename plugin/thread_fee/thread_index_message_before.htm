@@ -1,0 +1,16 @@
+<!--{if $thread[firstpid] == $post[pid]}-->
+<!--{if $thread['golds'] > 0}-->
+<p>该主题为收费主题。。</p>
+<!--{/if}-->
+<!--{if $need_buy}-->
+<p>
+您需要支付$thread['golds'] 个金币。
+<a href="?thread-buy-fid-$fid-tid-$tid.htm">现在购买</a>
+</p>
+<!--{else}-->
+<!--{if $thread['uid'] != $_user['uid']}-->
+<p>您已购买。</p>
+<!--{/if}-->
+$post['message']
+<!--{/if}-->
+<!--{else}-->

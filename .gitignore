@@ -11,5 +11,7 @@
 /conf/127*.php
 /conf/lh*.php
 /conf/*conf.php
-/plugin/thread_fee/
 /plugin/qmall/
+/plugin/*.zip
+/plugin/*.rar
+/plugin/*.7z
