@@ -9,10 +9,10 @@
 	<dl>
 		<dt><label for="verify_type">选择注册方式：</label></dt>
 		<dd><select id="verify_type" name="verify_type" style="width: 250px;" tabindex="1">
-<option value="email">邮箱注册</option>
-<option value="mobile">手机注册</option>
+<option value="email">邮箱</option>
+<option value="mobile">手机</option>
 </select></dd>
-		<dt><label for="create_email">邮箱或者手机号：</label></dt>
+		<dt><label for="create_email">邮箱：</label></dt>
 		<dd><input type="text" name="email" id="create_email" value="$user[email]" tabindex="1" style="width: 250px;" /> <span id="create_check_email"><a href="?user-login-ajax-1.htm" onclick="return false;" class="ajaxdialog">登录</a></span></dd>
 		<dt><label for="code">验证码：</label></dt>
 		<dd><input type="text" name="code" id="code" value="" tabindex="2" style="width: 250px;" /> <span><button type="button" id="sendcode" name="sendcode" tabindex="1">发送验证码</button></span></dd>
@@ -193,6 +193,10 @@ return false;
 		check_email($('#create_email').val());
 	});
 	
+	$('#verify_type').change(function() {
+		$('label[for=create_email]').text($(this).find('option:selected').text());
+	});
+	
 	$('#create_username').blur(function() {
 		check_username($('#create_username').val());
 	});
@@ -202,9 +206,8 @@ return false;
 $(document).on('click', 'button[name=sendcode]', function() {
 var _this = $(this);
 _this.attr('disabled', 'disabled');
-	var verify_type = $('#verify_type').val();
 var jform = _this.parents('#create_form');
-var url = "?user-send_" + verify_type + "_code-ajax-1.htm";
+var url = "?user-sendcode-ajax-1.htm";
 $.ajax({
     url: url,
     type: 'POST',

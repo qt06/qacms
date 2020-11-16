@@ -55,7 +55,12 @@ $this->message($code, 1);
 	}
 
 	public function on_sendcode() {
-		$this->on_send_email_code()
+		$verify_type = core::gpc('verify_type', 'P');
+		if($verify_type == 'email') {
+			$this->on_send_email_code();
+		} else {
+			$this->on_send_mobile_code();
+		}
 	}
 
 	public function on_send_email_code() {
