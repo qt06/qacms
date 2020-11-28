@@ -55,7 +55,7 @@ $this->message($code, 1);
 	}
 
 	public function on_sendcode() {
-		$verify_type = core::gpc('verify_type', 'P');
+		$verify_type = core::gpc('verify_type', 'P') ? core::gpc('verify_type', 'P') : 'email';
 		if($verify_type == 'email') {
 			$this->on_send_email_code();
 		} else {

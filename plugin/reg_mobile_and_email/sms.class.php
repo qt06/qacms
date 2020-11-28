@@ -1,7 +1,7 @@
 <?php
 
-include BBS_PATH.'plugin/reg_mobile/sms_tencent.func.php';
-include BBS_PATH.'plugin/reg_mobile/sms_aliyun.func.php';
+include BBS_PATH.'plugin/reg_mobile_and_email/sms_tencent.func.php';
+include BBS_PATH.'plugin/reg_mobile_and_email/sms_aliyun.func.php';
 class sms extends base_model {
 // 发送验证码接口
 function send_code($tomobile, $code) {

@@ -14,7 +14,7 @@ $this->conf['reg_email_on'] = 0;
 		session_start();
 			// 接受数据
 			$userdb = $error = array();
-			$verify_type = core::gpc('verify_type', 'P');
+			$verify_type = core::gpc('verify_type', 'P') ? core::gpc('verify_type', 'P') : 'email';
 			$email = core::gpc('email', 'P');
 			$username = core::gpc('username', 'P');
 			$password= core::gpc('password', 'P');
