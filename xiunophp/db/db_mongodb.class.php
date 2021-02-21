@@ -147,7 +147,7 @@ class db_mongodb implements db_interface {
 		$maxid = $maxid['data'];
 		if($val === FALSE) {
 			return intval($maxid);
-		} elseif(is_string($val) && $val{0} == '+') {
+		} elseif(is_string($val) && $val[0] == '+') {
 			$val = intval($val) + $maxid;
 			$this->set($key, array('data'=>$val), $this->xdb);
 			return $val;
@@ -171,7 +171,7 @@ class db_mongodb implements db_interface {
 		if($val === FALSE) {
 			return $count;
 		} elseif(is_string($val)) {
-			if($val{0} == '+') {
+			if($val[0] == '+') {
 				$val = intval($val);
 				$count = max(0, intval($key) + $val);
 				$this->set($key, array('data'=>$count), $this->xdb);

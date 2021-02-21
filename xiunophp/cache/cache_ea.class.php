@@ -67,7 +67,7 @@ class cache_ea implements cache_interface {
 		$key = $table.'-Auto_increment';
 		if($val === FALSE) {
 			return intval($this->get($key));
-		} elseif(is_string($val) && $val{0} == '+') {
+		} elseif(is_string($val) && $val[0] == '+') {
 			$val = intval($val);
 			$val += intval($this->get($key));
 			$this->set($key, $val);
@@ -83,7 +83,7 @@ class cache_ea implements cache_interface {
 		if($val === FALSE) {
 			return intval($this->get($key));
 		} elseif(is_string($val)) {
-			if($val{0} == '+') {
+			if($val[0] == '+') {
 				$val = intval($val);
 				$n = intval($this->get($key)) + $val;
 				$this->set($key, $n);

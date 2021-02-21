@@ -127,7 +127,7 @@ class db_pdo_sqlite implements db_interface {
 		$maxid = $this->table_maxid($key);
 		if($val === FALSE) {
 			return $maxid;
-		} elseif(is_string($val) && $val{0} == '+') {
+		} elseif(is_string($val) && $val[0] == '+') {
 			$val = intval($val);
 			$this->query("UPDATE {$this->tablepre}framework_maxid SET maxid=maxid+'$val' WHERE name='$table'", $this->link);
 			return $maxid += $val;
@@ -143,7 +143,7 @@ class db_pdo_sqlite implements db_interface {
 		if($val === FALSE) {
 			return $count;
 		} elseif(is_string($val)) {
-			if($val{0} == '+') {
+			if($val[0] == '+') {
 				$val = $count + abs(intval($val));
 				$this->query("UPDATE {$this->tablepre}framework_count SET count='$val' WHERE name='$key'", $this->link);
 				return $val;

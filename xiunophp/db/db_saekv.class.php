@@ -87,7 +87,7 @@ class db_saekv implements db_interface {
 		$maxidkey = "kv_maxid_{$table}";
 		if($val === FALSE) {
 			return $this->saekv->get($maxidkey);
-		} elseif(is_string($val) && $val{0} == '+') {
+		} elseif(is_string($val) && $val[0] == '+') {
 			$val = intval($val);
 			$maxid = intval($this->saekv->get($maxidkey)) + $val;
 			$this->saekv->set($maxidkey, $maxid);
@@ -102,7 +102,7 @@ class db_saekv implements db_interface {
 		$countkey = "kv_count_{$key}";
 		if($val === FALSE) {
 			return $this->saekv->get($countkey);
-		} elseif(is_string($val) && $val{0} == '+') {
+		} elseif(is_string($val) && $val[0] == '+') {
 			$val = intval($val);
 			$count = intval($this->saekv->get($countkey)) + $val;
 			$this->saekv->set($countkey, $count);
