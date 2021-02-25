@@ -43,7 +43,7 @@ class AliyunSignatureHelper {
 
 		try {
 			$content = $this->fetchContent($url);
-			return xn_json_decode($content);
+			return json_decode($content);
 		} catch(Exception $e) {
 			return false;
 		}
@@ -129,7 +129,7 @@ function sms_aliyun_send_code($tomobile, $code, $appid, $appkey, $sign, $templat
 
 	// *** 需用户填写部分结束, 以下代码若无必要无需更改 ***
 	if(!empty($params["TemplateParam"]) && is_array($params["TemplateParam"])) {
-		$params["TemplateParam"] = xn_json_encode($params["TemplateParam"]);
+		$params["TemplateParam"] = json_encode($params["TemplateParam"]);
 	}
 
 	// 初始化SignatureHelper实例用于设置参数，签名以及发送请求
@@ -157,11 +157,11 @@ function sms_aliyun_send_code($tomobile, $code, $appid, $appkey, $sign, $templat
 		    [Code] => OK
 		)
 	*/
-	if($r && $r['Message'] == 'OK') {
-		xn_log(print_r($arr, 1), 'sms_success');
+	if($r && $r->Message == 'OK') {
+		log::write(print_r($arr, 1), 'sms_success');
 		return TRUE;
 	} else {
-		xn_log(print_r($arr, 1), 'sms_error');
+		log::write(print_r($arr, 1), 'sms_error');
 		return FALSE;
 	}
 }
