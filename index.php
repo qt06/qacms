@@ -29,7 +29,7 @@ if(empty($conf['installed'])) {
 	exit;
 }
 include 'qacms_version.php';
-define('QACMS_VERSION', '2.2.0');
+define('QACMS_VERSION', '2.2.1');
 if(QV != QACMS_VERSION) {
 	exit('版本错误。');
 }

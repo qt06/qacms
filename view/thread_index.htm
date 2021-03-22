@@ -72,7 +72,7 @@ $post[message]
 					<div class="mod" pid="$post[pid]">
 							
 							<!--{if (!$conf[post_post_expiry] && $_user[uid]) || ($_user[uid] && $conf[post_post_expiry] && $_SERVER[time] - $thread[dateline] < $conf[post_post_expiry])}-->
-							<a href="?post-post-fid-$fid-tid-$post[tid]-pid-$post[pid].htm" class="ajaxdialog" ajaxdialog="{cache: true}" >引用</a>
+							<a href="?post-post-fid-$fid-tid-$post[tid]-pid-$post[pid].htm">引用</a>
 							<!--{/if}-->
 							
 							<!--{if $ismod}-->	
@@ -80,7 +80,7 @@ $post[message]
 							<!--{/if}-->
 							
 							<!--{if $ismod || (!$conf[post_update_expiry] && $_user[uid] == $post[uid]) || ($_user[uid] == $post[uid] && $conf[post_update_expiry] && $_SERVER[time] - $post[dateline] < $conf[post_update_expiry])}-->	
-							<a href="?post-update-fid-$thread[fid]-pid-$post[pid].htm" class="ajaxdialog" ajaxdialog="{modal: false, cache: false}" >编辑</a>
+							<a href="?post-update-fid-$thread[fid]-pid-$post[pid].htm">编辑</a>
 							<!--{/if}-->
 							<!--{if $ismod}-->	
 							<a href="?post-delete-fid-$fid-pid-$post[pid].htm" class="ajaxconfirm" ajaxconfirm="{message: '确定删除吗？'}" >删除</a>

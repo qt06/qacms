@@ -97,7 +97,7 @@ class post_control extends common_control {
 			$this->init_type_select($forum, $typeid1, $typeid2, $typeid3, $typeid4);
 			
 			// hook post_thread_before.php
-			$this->view->display('post_thread_ajax.htm');
+			$this->view->display('post_thread.htm');
 		} else {
 			
 			$subject = htmlspecialchars(core::gpc('subject', 'P'));
@@ -310,7 +310,7 @@ class post_control extends common_control {
 			$this->view->assign('message', $message);
 			$this->view->assign('forum', $forum);
 			// hook post_post_before.php
-			$this->view->display('post_post_ajax.htm');
+			$this->view->display('post_post.htm');
 		} else {
 			
 			// 引用某帖
@@ -517,7 +517,7 @@ class post_control extends common_control {
 			$this->view->assign('input', $input);
 			$this->view->assign('error', $error);
 			// hook post_update_before.php
-			$this->view->display('post_update_ajax.htm');
+			$this->view->display('post_update.htm');
 		} else {
 			
 			$subject = htmlspecialchars(core::gpc('subject', 'P'));
