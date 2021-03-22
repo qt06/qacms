@@ -16,7 +16,7 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'others', groups: [ 'others' ] },
 		{ name: 'about', groups: [ 'about' ] }
 	];
-	config.startupFocus = true;
+	//config.startupFocus = true;
 	config.extraPlugins = ['divarea', 'html5audio'];
 	//config.removePlugins = 'forms';
 

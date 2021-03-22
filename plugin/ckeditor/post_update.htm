@@ -43,13 +43,13 @@ form.update_form dd {width: 93%;}
 
 <script type="text/javascript">
 $.xload('$conf[plugin_url]ckeditor/4.13.1/ckeditor.js', function() {
-CKEDITOR.replace('update_message_$pid');
+CKEDITOR.replace('update_message_$pid', {startupFocus: true});
 });
 
 	
 	// hook post_update_delay_execute_start.htm
 	
-	$('#update_message_$pid')[0].focus();
+
 	
 	// 自动伸缩，自动提交
 	$('#update_message_$pid').keyup(function(e) {
