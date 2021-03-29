@@ -1,11 +1,14 @@
+				$referer = $this->get_referer();
 		if(!$this->form_submit()) {
 			
 			// hook user_login_before.php
+
 			if(core::gpc('ajax')) {
 				$this->view->display('user_login_ajax.htm');
 			} else {
-				$referer = $this->get_referer();
+
 				$this->view->assign('referer', $referer);
+		$this->_title[] = '用户登录';
 				$this->view->display('user_login.htm');
 			}
 		} else {
@@ -55,7 +58,9 @@
 				// 更新在线列表
 				$this->update_online();
 			}
-			$this->message($error);
-			
+			if(core::gpc('ajax', 'R')) {
+				$this->message($error);
+			}
+			$this->location($referer);
 		}
 exit;

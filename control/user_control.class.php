@@ -18,19 +18,23 @@ class user_control extends common_control {
 		
 	}
 	
-	// ajax 登录
+	// 登录
 	public function on_login() {
+		$referer = $this->get_referer();
+		$this->_user['uid'] != 0 && $this->message('您已经登陆了。',0,$referer);
 		// hook user_login_start.php
+
 		if(!$this->form_submit()) {
 			
 			// hook user_login_before.php
-			if(core::gpc('ajax')) {
-				$this->view->display('user_login_ajax.htm');
-			} else {
+			//if(core::gpc('ajax')) {
+				//$this->view->display('user_login_ajax.htm');
+			//} else {
 				$referer = $this->get_referer();
 				$this->view->assign('referer', $referer);
+		$this->_title[] = '用户登录';
 				$this->view->display('user_login.htm');
-			}
+			//}
 		} else {
 			$userdb = $error = array();
 			$email = core::gpc('email', 'P');
@@ -75,11 +79,13 @@ class user_control extends common_control {
 				// 更新在线列表
 				$this->update_online();
 			}
-			$this->message($error);
-			
+			if(core::gpc('ajax','R')) {
+				$this->message($error);
+			}
+			$this->location($referer);
 		}
 	}
-	
+
 	public function on_logout() {
 		
 			// 清除 online username
@@ -95,11 +101,13 @@ class user_control extends common_control {
 			misc::setcookie($this->conf['cookie_pre'].'auth', '', 0, $this->conf['cookie_path'], $this->conf['cookie_domain']);
 			$this->_title[] = "退出成功";
 			$referer = $this->get_referer();
-			$this->message("退出成功！",1,$referer);
+			$this->location($referer);
 	}
 	
-	// ajax 注册
+	// 注册
 	public function on_create() {
+		$referer = $this->get_referer();
+		$this->_user['uid'] != 0 && $this->message('您已经登陆了。',0, $referer);
 		
 		// 检查IP 屏蔽
 		$this->check_ip();
@@ -114,8 +122,8 @@ class user_control extends common_control {
 			if(core::gpc('ajax')) {
 				$this->view->display('user_create_ajax.htm');
 			} else {
-				$referer = $this->get_referer();
 				$this->view->assign('referer', $referer);
+				$this->_title[] = '用户注册';
 				$this->view->display('user_create.htm');
 			}
 		} else {
@@ -198,7 +206,10 @@ class user_control extends common_control {
 					
 				}
 			}
-			$this->message($error);
+			if(core::gpc('ajax', 'R')) {
+				$this->message($error);
+			}
+			$this->location($referer);
 		}
 	}
 	

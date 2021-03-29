@@ -5,8 +5,8 @@ $this->conf['reg_email_on'] = 0;
 			if(core::gpc('ajax')) {
 				$this->view->display('user_create_ajax.htm');
 			} else {
-				$referer = $this->get_referer();
 				$this->view->assign('referer', $referer);
+		$this->_title[] = '用户注册';
 				$this->view->display('user_create.htm');
 			}
 		} else {
@@ -109,6 +109,9 @@ $user['mobile'] = $email;
 					
 				}
 			}
-			$this->message($error);
+			if(core::gpc('ajax', 'R')) {
+				$this->message($error);
+			}
+			$this->location($referer);
 		}
 exit;

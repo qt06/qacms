@@ -1,6 +1,5 @@
 <!--{include header.htm}-->
 <div class="width">
-
 <!--{hook user_create_start.htm}-->
 <h3>用户注册</h3>
 <form action="?user-create.htm" method="post" id="create_form">
@@ -8,8 +7,15 @@
 	<input type="hidden" name="clienttime" value="" />
 	<!--{hook common_form_hash_after.htm}-->
 	<dl>
-		<dt><label for="create_email">Email：</label></dt>
+		<dt><label for="verify_type">选择注册方式：</label></dt>
+		<dd><select id="verify_type" name="verify_type" style="width: 250px;" tabindex="1">
+<option value="email">邮箱</option>
+<option value="mobile">手机</option>
+</select></dd>
+		<dt><label for="create_email">邮箱：</label></dt>
 		<dd><input type="text" name="email" id="create_email" value="$user[email]" tabindex="1" style="width: 250px;" /> <span id="create_check_email"><a href="?user-login.htm">登录</a></span></dd>
+		<dt><label for="code">验证码：</label></dt>
+		<dd><input type="text" name="code" id="code" value="" tabindex="2" style="width: 250px;" /> <span><button type="button" id="sendcode" name="sendcode" tabindex="1">发送验证码</button></span></dd>
 		<dt><label for="create_username">用户名：</label></dt>
 		<dd><input type="text" name="username" id="create_username" size="24" value="$user[username]" title="请输入用户名" tabindex="2" style="width: 250px;" /> <span id="create_check_username"></span></dd>
 		<dt><label for="create_password">密　码：</label></dt>
@@ -19,7 +25,7 @@
 		<!--{hook user_create_submit_before.htm}-->
 		<dt></dt>
 		<dd>
-			<button tabindex="5" type="submit" class="button bigblue" id="create_submit">注册</button>
+			<button type="submit" class="button bigblue" id="create_submit_ajax" tabindex="5">注册</button>
 		</dd>
 		<!--{hook user_create_submit_after.htm}-->
 	</dl>
@@ -53,7 +59,8 @@ function check_email(email) {
 		return false;
 	}
 	var email_url = urlencode(email);
-	$.get('?user-checkemail-email-'+email_url+'-ajax-1.htm', function(s) {
+	var verify_type = $('#verify_type').val();
+	$.get('?user-check' + verify_type + '-' + verify_type + '-'+email_url+'-ajax-1.htm', function(s) {
 		var json = json_decode(s);
 		if(error = json_error(json)) {alert(error); return false;}
 		if(json.status <= 0) {
@@ -66,15 +73,13 @@ function check_email(email) {
 	});
 }
 
-
-	$('#create_email').focus();
-
+	$('#verify_type').focus();
 	$('#create_form input').keyup(function(e) {
 		//e = e || document.parentWindow.event;
 		var e = e ? e : window.event;
                 var kc = e.keyCode ? e.keyCode : e.charCode;
 		if(kc == 13) {
-			$('#create_submit').trigger('click');
+			$('#create_submit_ajax').trigger('click');
 		}
 	});
 	
@@ -84,12 +89,56 @@ function check_email(email) {
 		check_email($('#create_email').val());
 	});
 	
+	$('#verify_type').change(function() {
+		$('label[for=create_email]').text($(this).find('option:selected').text());
+	});
+	
 	$('#create_username').blur(function() {
 		check_username($('#create_username').val());
 	});
 
 	$('#create_form input[name=clienttime]').val(Math.round(new Date().getTime()/1000));
 	
+$(document).on('click', 'button[name=sendcode]', function() {
+var _this = $(this);
+_this.attr('disabled', 'disabled');
+var jform = _this.parents('#create_form');
+var url = "?user-sendcode-ajax-1.htm";
+$.ajax({
+    url: url,
+    type: 'POST',
+    cache: false,
+    data: new FormData(jform[0]),
+    processData: false,
+    contentType: false
+}).done(function(s) {
+			var json = json_decode(s);
+			if(error = json_error(json)) {
+alert(error);
+$('#create_email').focus();
+				_this.removeAttr('disabled');
+return false;
+}
+			if(json.status <=0) {
+				alert(json.message);
+$('#create_email').focus();
+				_this.removeAttr('disabled');
+				return false;
+			}
+			if(json.status == 1) {
+				alert(json.message);
+$('#code').focus();
+setTimeout(function() {
+				_this.removeAttr('disabled');
+}, 120000);
+				return false;
+			}
+}).fail(function(res) {
+				_this.removeAttr('disabled');
+alert('failed.' + res.statusText + ',' + res.statusCode + Object.keys(res));
+});
+		  return false;
+	});
 	// hook user_create_delay_execute_js.htm
 	
 	// hook common_form_hash_after_js.htm

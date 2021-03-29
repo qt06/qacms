@@ -1,23 +1,40 @@
 <!--{include header.htm}-->
-
-<!--{hook message_before.htm}-->
-
 <div class="width">
-	<div class="box bg2 border shadow">
-		<div style="margin: 2em; height: 300px;" id="msgbox"></div>
-	</div>
+<!--{hook user_login_start.htm}-->
+<h3>用户登录</h3>
+
+<form action="?user-login.htm" method="post" id="login_form">
+	<input type="hidden" name="FORM_HASH" value="{FORM_HASH}" />
+	<input type="hidden" name="clienttime" value="" />
+	<dl>
+		<dt><label for="login_email">Email/用户名：</label></dt>
+		<dd><input tabindex="1" type="text" name="email" id="login_email" value="$user[email]" style="width: 250px;" /> <a href="?user-create.htm" id="login_create_link">注册</a></dd>
+		
+		<dt><label for="login_password">密　码：</label></dt>
+		<dd>
+			<input tabindex="2" type="password" name="password" id="login_password" size="24" value="" title="请输入密码" style="width: 250px;" /> 
+			<!--{if $conf[resetpw_on]}--><a href="?user-resetpw.htm" target="_blank">找回密码</a><!--{/if}-->
+		</dd>
+		
+		<!--{hook user_login_submit_before.htm}-->
+		
+		<dt></dt>
+		<dd>
+			<button tabindex="3" type="submit" class="button bigblue" id="login_submit">登录</button>
+
+		</dd>
+		
+		<!--{hook user_login_submit_after.htm}-->
+	</dl>
+</form>
+
+<!--{hook user_login_end.htm}-->
 </div>
-
 <!--{include footer.htm}-->
-
 <script type="text/javascript">
-$('#msgbox').height($(window).height() -  $('#header').height() - 300 - $('#menu').height());
-ajaxdialog_request('?user-login-ajax-1.htm', function() {
-	window.location = '$referer';
-});
+
+	$('#login_email').focus();
+
 </script>
-
-<!--{hook message_end.htm}-->
-
 </body>
 </html>
