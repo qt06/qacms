@@ -7,6 +7,8 @@
 /upload/plugin.json
 /upload/*.db
 /tmp/*.php
+/log/sms_error
+/log/sms_success
 /log/*.php
 /conf/127*.php
 /conf/lh*.php

@@ -231,7 +231,7 @@ class SmsSingleSender
 	Array ( [result] => 0 [errmsg] => OK [ext] => [sid] => 8:3rlKRUUk6jVtAfpJAWU20180218 [fee] => 1 )
 
 */
-function sms_tencent_send_code($tomobile, $code, $appid, $appkey) {
+function sms_tencent_send_code($tomobile, $code, $appid, $appkey, $sign, $template) {
 	
 	/*
 	$kv = kv_get('xn_mobile');
@@ -251,8 +251,8 @@ function sms_tencent_send_code($tomobile, $code, $appid, $appkey) {
 	// 短信模板ID，需要在短信应用中申请
 	//$templateId = 7839;  // NOTE: 这里的模板ID`7839`只是一个示例，真实的模板ID需要在短信控制台中申请
 	
-	$message = '【智慧人生】欢迎您注册智慧人生软件论坛通用账号，您的验证码为'.$code.'，请在30分钟内完成注册，若非本人操作，请忽略此短信'; //'您的验证码：'.$code.'，该验证码5分钟内有效。';
-	
+	//$message = '【智慧人生】欢迎您注册智慧人生软件论坛通用账号，您的验证码为'.$code.'，请在30分钟内完成注册，若非本人操作，请忽略此短信'; //'您的验证码：'.$code.'，该验证码5分钟内有效。';
+	$message = '【'.$sign.'】'.str_replace('{1}', $code, $template);
 	try {
 		$ssender = new SmsSingleSender($appid, $appkey);
 		$result = $ssender->send(0, "86", $tomobile, $message, "", "");

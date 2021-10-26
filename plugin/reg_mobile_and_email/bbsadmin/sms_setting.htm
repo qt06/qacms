@@ -8,6 +8,16 @@
 <input type="hidden" name="FORM_HASH" value="<?php echo FORM_HASH; ?>" />
 
 					<h4 class="card-title">设置</h4>
+					<div class="form-group row">
+						<label class="col-4 form-control-label" for="reg_type">启用的注册类型：</label>
+						<div class="col-8">
+							<select id="reg_type" name="reg_type" class="custom-select">
+								<option value="all"<!--{php echo $input['reg_type'] == 'all' ? ' selected' : ''; }-->>手机和邮箱注册</option>
+								<option value="mobile"<!--{php echo $input['reg_type'] == 'mobile' ? ' selected' : ''; }-->>手机注册</option>
+								<option value="email"<!--{php echo $input['reg_type'] == 'email' ? ' selected' : ''; }-->>邮箱注册</option>
+							</select>
+						</div>
+					</div>
 						<div class="form-group row">
 							<label class="col-4 form-control-label" for="everyday_limit">每天最大发送数：</label>
 							<div class="col-8">
@@ -39,9 +49,15 @@
 							</div>
 						</div>
 						<div class="form-group row d-none">
-							<label class="col-4 form-control-label" for="tencent_sign">腾讯短信签名：</label>
+							<label class="col-4 form-control-label" for="tencent_sign">腾讯短信签名内容：</label>
 							<div class="col-8">
 								<input type="text" id="tencent_sign" name="tencent_sign" value="<!--{php echo $input['tencent_sign']; }-->" />
+							</div>
+						</div>
+						<div class="form-group row d-none">
+							<label class="col-4 form-control-label" for="tencent_template">腾讯短信模版内容：</label>
+							<div class="col-8">
+								<input type="text" id="tencent_template" name="tencent_template" value="<!--{php echo $input['tencent_template']; }-->" />
 							</div>
 						</div>
 					</div>

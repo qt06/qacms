@@ -1,7 +1,9 @@
 $this->conf['reg_email_on'] = 0;
 		if(!$this->form_submit()) {
-			
-			// hook user_create_before.php
+	$kv = $this->kv->get('mobile_setting');			
+	$reg_type = $kv['reg_type'];
+		$this->view->assign('reg_type', $reg_type);
+				// hook user_create_before.php
 			if(core::gpc('ajax')) {
 				$this->view->display('user_create_ajax.htm');
 			} else {

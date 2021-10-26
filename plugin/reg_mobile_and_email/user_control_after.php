@@ -1,3 +1,67 @@
+	public function on_reset_password() {
+		$error = array();
+		if($this->form_submit()) {
+		session_start();
+			$verify_type = core::gpc('verify_type', 'P') ? core::gpc('verify_type', 'P') : 'email';
+			$email = core::gpc('email', 'P');
+			$code = core::gpc('code', 'P');
+			$s_code = isset($_SESSION['code']) ? $_SESSION['code'] : '';
+			$s_email = isset($_SESSION['reg_email']) ? $_SESSION['reg_email'] : '';
+			$s_mobile = isset($_SESSION['reg_mobile']) ? $_SESSION['reg_mobile'] : '';
+			$password = core::gpc('password', 'P');
+			$password2 = core::gpc('password2', 'P');
+			if($email != $s_mobile) {
+				$this->message('手机号错误', 0);
+			}
+			$error['mobile'] = $this->user->check_mobile($email);
+			$error['mobile_exists'] = $this->user->check_mobile_exists($email);
+			//如果手机号已存在，表示存在该用户，否则表示该用户不存在，则无需找回密码。
+			if(!empty($error['mobile_exists'])) {
+				unset($error['mobile_exists']);
+			} else {
+				$error['mobile_exists'] = '手机号不存在。';
+			}
+			if(array_filter($error)) {
+				$this->message(implode(',', $error), 0);
+			}
+			if($code != $s_code) {
+				$this->message('验证码错误。', 0);
+			}
+			$error['password'] = $this->user->check_password($password);
+			if(empty($error['password'])) {
+				if($password != $password2) {
+					$error['password2'] = '两次输入的不一致';
+				} else {
+					// 设置密码
+					$user = $this->user->get_user_by_mobile($email);
+					if(empty($user)) {
+						$this->message('该用户不存在！', 0);
+					} else {
+						$user['password'] = $this->user->md5_md5($password, $user['salt']);
+						$this->user->update($user);
+						$error = array();
+						
+						// 重新设置 cookie
+						$this->user->set_login_cookie($user);
+						$this->message($user['username'].'，您好，修改密码成功！', 1, './');
+					}
+				}
+			}
+			if(array_filter($error)) {
+				$this->message(implode(',', $error), 0);
+			}
+		}
+		
+	$kv = $this->kv->get('mobile_setting');			
+	$reg_type = $kv['reg_type'];
+		if($reg_type == 'mobile') {
+			$this->view->assign('reg_type', $reg_type);
+		$this->_title[] = '找回密码';
+			$this->view->display('user_reset_password.htm');
+		} else {
+			$this->on_resetpw();
+		}
+	}
 	public function on_checkmobile() {
 		$mobile = core::urldecode(core::gpc('mobile'));
 		$mobileerror = $this->user->check_mobile($mobile);
@@ -14,12 +78,20 @@
 
 	public function on_send_mobile_code() {
 		$mobile = core::gpc('email', 'P');
+		$code_type = core::gpc('code_type', 'P') ? core::gpc('code_type', 'P') : 'create_user';
 		$error = array();
 		$error['mobile'] = $this->user->check_mobile($mobile);
 		if(array_filter($error)) {
 			$this->message(implode(',',$error), -2);
 		}
 		$error['mobile_exists'] = $this->user->check_mobile_exists($mobile);
+			if($code_type == 'reset_password') {
+				if(!empty($error['mobile_exists'])) {
+					unset($error['mobile_exists']);
+				} else {
+					$error['mobile_exists'] = '手机号不存在。';
+				}
+			}
 		if(array_filter($error)) {
 			$this->message(implode(',',$error), -2);
 		}

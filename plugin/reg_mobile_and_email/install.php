@@ -10,6 +10,7 @@ if($this->conf['db']['type'] != 'mongodb') {
 'tencent_appid'=>'',
 'tencent_appkey'=>'',
 'tencent_sign'=>'',
+'tencent_template'=>'',
 'aliyun_appid'=>'',
 'aliyun_appkey'=>'',
 'aliyun_sign'=>'',
