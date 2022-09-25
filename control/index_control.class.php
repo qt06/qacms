@@ -82,8 +82,10 @@ $this->bbs();
 		foreach($toplist as $k=>&$thread) {
 			$this->thread->format($thread);
 		//get postmessage
+		if($this->conf['homepage_type'] == 'blog' && $this->format != 'json') {
 		$post = $this->post->read($thread['fid'],$thread['firstpid']);
 		$thread['message'] = $post['message'];
+		}
 		//end get post message
                         $readtids .= ','.$thread['tid'];
                 }
